@@ -1,0 +1,32 @@
+{
+  "audios": [
+    {
+      "id": 1,
+      "title": "You Said It",
+      "albumArt": "http://images.genius.com/a99efcb1f3327ea6446d72ce19c09b7e.700x700x1.jpg",
+      "albumName" : "Beverly",
+      "url": "https://www.samsungdforum.com/smartview/sample/audio/Beverly_-_01_-_You_Said_It.mp3"
+    },
+    {
+      "id": 2,
+      "title": "Bergwald Bergwald",
+      "albumArt": "",
+      "albumName" : "Every Now & Every Then",
+      "url": "https://www.samsungdforum.com/smartview/sample/audio/Every_Now_and_Every_Then_-_08_-_Bergwald_Bergwald.mp3"
+    },
+    {
+      "id": 3,
+      "title": "Retake",
+      "albumArt": "",
+      "albumName" : "Ketsa",
+      "url": "https://www.samsungdforum.com/smartview/sample/audio/Ketsa_-_11_-_Retake.mp3"
+    },
+    {
+      "id": 4,
+      "title": "Lullaby For A Robot",
+      "albumArt": "",
+      "albumName" : "Matt Oakley",
+      "url": "https://www.samsungdforum.com/smartview/sample/audio/Matt_Oakley_-_01_-_Lullaby_for_a_Robot.mp3"
+    }
+  ]
+}

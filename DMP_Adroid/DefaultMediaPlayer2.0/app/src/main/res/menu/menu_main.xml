@@ -1,0 +1,24 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:title="@string/shareIcon"
+        android:id="@+id/action_AddAllToList"
+        android:icon="@drawable/add_all"
+        android:visible="false"
+        app:showAsAction="always"/>
+   <item
+        android:title="@string/queueIcon"
+        android:id="@+id/action_queue"
+        android:icon="@drawable/queue_deactive"
+        android:visible="false"
+        app:showAsAction="always"/>
+    <item
+        android:title="@string/castIcon"
+        android:id="@+id/action_connectTV"
+        android:icon="@drawable/cast_white_idle"
+        app:showAsAction="always"/>
+</menu>

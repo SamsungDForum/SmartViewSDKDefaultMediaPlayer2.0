@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="1dp">
+
+    <ImageView
+        android:id="@+id/photo_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@drawable/image_background"
+        android:gravity="center"
+        android:scaleType="fitXY"
+        android:padding="1dp"/>
+
+    <TextView
+        android:id="@+id/photo_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/T_WHITE"
+        android:textColor="@color/BLACK"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:layout_alignTop="@+id/photo_thumbnail"
+        android:layout_alignStart="@+id/photo_thumbnail"
+        android:layout_marginTop="1dp"
+        android:layout_marginStart="1dp"/>
+
+    <Button
+        android:id="@+id/btnEnqueue"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:background="@drawable/button_selector_light"
+        android:focusable="false"
+        android:visibility="visible"
+        android:text="ADD"
+        android:textColor="@color/T_SAFRON"
+        android:textSize="13sp"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/photo_thumbnail"
+        android:layout_alignEnd="@+id/photo_thumbnail"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"/>
+
+</RelativeLayout>

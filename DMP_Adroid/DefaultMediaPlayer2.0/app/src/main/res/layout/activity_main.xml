@@ -1,0 +1,228 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.75"
+        android:id="@+id/rlvBody">
+
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/viewpager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="visible">
+            <android.support.v4.view.PagerTitleStrip
+                android:id="@+id/pager_title_strip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:background="@color/T_BLACK"
+                android:textColor="@color/WHITE"
+                android:padding="5dp"/>
+        </android.support.v4.view.ViewPager>
+
+        <ListView
+            android:id="@+id/queueListView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/T_BLACK"
+            android:drawSelectorOnTop="true"
+            android:layout_gravity="center"
+            android:focusable="true"
+            android:clickable="true"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="150dp">
+
+        <View
+            android:id="@+id/PlaybackControlsDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/T_GREY"/>
+
+        <SeekBar
+            android:id="@+id/videoSeekBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"/>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/videoSeekBar">
+
+            <ImageView
+                android:id="@+id/imgVolDown"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/volume_down"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/thumbnail"
+                android:layout_marginStart="5dp"/>
+
+            <ImageView
+                android:id="@+id/imgVolUp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/volume_up"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"/>
+
+            <SeekBar
+                android:id="@+id/volumeSeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/imgVolDown"
+                android:layout_toStartOf="@+id/imgVolUp"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/image_background"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="98dp"
+                android:layout_height="25dp"
+                android:background="@color/T_WHITE"
+                android:textColor="@color/BLACK"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:layout_alignBottom="@+id/thumbnail"
+                android:layout_alignStart="@+id/thumbnail"
+                android:layout_marginBottom="1dp"
+                android:layout_marginStart="1dp"/>
+
+            <RelativeLayout
+                android:id="@+id/rlvPlaybackControls"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/volumeSeekBar"
+                android:layout_toEndOf="@+id/thumbnail">
+
+                <Button
+                    android:id="@+id/btnPrevious"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/previous"
+                    android:layout_toStartOf="@+id/btnRewind"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"/>
+
+                <Button
+                    android:id="@+id/btnRewind"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/rewind"
+                    android:layout_toStartOf="@+id/btnPlay"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"/>
+
+                <Button
+                    android:id="@+id/btnPlay"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/play"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"/>
+
+                <Button
+                    android:id="@+id/btnForward"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/forward"
+                    android:layout_toEndOf="@+id/btnPlay"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"/>
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/next"
+                    android:layout_toEndOf="@+id/btnForward"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlvOtherControls"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/volumeSeekBar"
+                android:layout_toEndOf="@+id/thumbnail"
+                android:layout_centerHorizontal="true">
+
+                <View
+                    android:id="@+id/centerDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+                <Button
+                    android:id="@+id/btnStop"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/stop"
+                    android:layout_toStartOf="@+id/centerDivider"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <Button
+                    android:id="@+id/btnMute"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/mute"
+                    android:layout_toStartOf="@+id/btnStop"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <Button
+                    android:id="@+id/btnRepeat"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/repeat_off"
+                    android:layout_toEndOf="@+id/centerDivider"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:layout_marginStart="10dp"/>
+
+                <Button
+                    android:id="@+id/btnShuffle"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shuffle_off"
+                    android:layout_toEndOf="@+id/btnRepeat"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:layout_marginStart="10dp"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

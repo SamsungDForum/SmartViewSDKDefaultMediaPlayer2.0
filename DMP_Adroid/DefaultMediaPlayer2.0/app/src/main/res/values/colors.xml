@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="BLACK">#000000</color>
+    <color name="T_BLACK">#AA000000</color>
+    <color name="WHITE">#FFFFFF</color>
+    <color name="T_WHITE">#AAFFFFFF</color>
+    <color name="GREY">#616161</color>
+    <color name="T_GREY">#77616161</color>
+    <color name="SAFRON">#FFB000</color>
+    <color name="DARK_SAFRON">#e65100</color>
+    <color name="T_SAFRON">#AAe65100</color>
+</resources>

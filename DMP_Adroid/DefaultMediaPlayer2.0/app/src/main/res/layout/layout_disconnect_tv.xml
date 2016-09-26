@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <RelativeLayout
+        android:id="@+id/rlvTitleBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgCastIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/cast_blue_connected"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/imgCastIcon"
+            android:layout_centerVertical="true"
+            android:paddingStart="5dp">
+
+            <TextView
+                android:id="@+id/lblConnectedTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="@string/lbl_ConnectedTV"
+                android:textSize="15sp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="@color/GREY"/>
+
+            <TextView
+                android:id="@+id/txtConnectedTVName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblConnectedTV"
+                android:textSize="15sp"
+                android:textAllCaps="true"
+                android:textColor="@color/T_BLACK"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnDisconnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_DisconnectTV"
+        android:layout_below="@+id/rlvTitleBar"
+        android:clickable="true"/>
+
+</RelativeLayout>

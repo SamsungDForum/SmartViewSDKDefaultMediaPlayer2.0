@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/lblAppBackgroundMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblAppBackground"
+        android:textSize="15sp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@color/GREY"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnBringAppToForeground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblAppBackgroundMessage"
+        android:background="@drawable/button_selector_highlighted"
+        android:text="@string/btnBringAppToForeground"
+        android:textColor="@color/T_BLACK"
+        android:textAlignment="center"
+        android:clickable="true"/>
+</RelativeLayout>
