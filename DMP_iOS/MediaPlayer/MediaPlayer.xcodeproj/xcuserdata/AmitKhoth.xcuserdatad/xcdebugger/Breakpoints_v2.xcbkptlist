@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493635132.376728"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "playContent(_:type:completionHandler:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed&gt; of SmartView.PhotoPlayer.playContent (SmartView.PhotoPlayer)(__ObjC.NSURL, title : Swift.String, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.558421"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "388">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed and Exploded, Arg[3] = Owned To Guaranteed, Arg[4] = Owned To Guaranteed&gt; of SmartView.AudioPlayer.playContent (SmartView.AudioPlayer)(__ObjC.NSURL, title : Swift.String, albumName : Swift.String, albumArtUrl : __ObjC.NSURL, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.558557"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "496">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed, Arg[3] = Owned To Guaranteed&gt; of SmartView.VideoPlayer.playContent (SmartView.VideoPlayer)(__ObjC.NSURL, title : Swift.String, thumbnailURL : __ObjC.NSURL, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.558662"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "460">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493636013.524005"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "playContent(_:type:completionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493636023.548246"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "playContent(_:type:completionHandler:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed&gt; of SmartView.PhotoPlayer.playContent (SmartView.PhotoPlayer)(__ObjC.NSURL, title : Swift.String, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.563953"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
+                  offsetFromSymbolStart = "568">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed&gt; of SmartView.PhotoPlayer.playContent (SmartView.PhotoPlayer)(__ObjC.NSURL, title : Swift.String, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.564093"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
+                  offsetFromSymbolStart = "576">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed and Exploded, Arg[3] = Owned To Guaranteed, Arg[4] = Owned To Guaranteed&gt; of SmartView.AudioPlayer.playContent (SmartView.AudioPlayer)(__ObjC.NSURL, title : Swift.String, albumName : Swift.String, albumArtUrl : __ObjC.NSURL, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.564234"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
+                  offsetFromSymbolStart = "676">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed and Exploded, Arg[3] = Owned To Guaranteed, Arg[4] = Owned To Guaranteed&gt; of SmartView.AudioPlayer.playContent (SmartView.AudioPlayer)(__ObjC.NSURL, title : Swift.String, albumName : Swift.String, albumArtUrl : __ObjC.NSURL, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.564431"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
+                  offsetFromSymbolStart = "684">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed, Arg[3] = Owned To Guaranteed&gt; of SmartView.VideoPlayer.playContent (SmartView.VideoPlayer)(__ObjC.NSURL, title : Swift.String, thumbnailURL : __ObjC.NSURL, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.564541"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
+                  offsetFromSymbolStart = "640">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed, Arg[3] = Owned To Guaranteed&gt; of SmartView.VideoPlayer.playContent (SmartView.VideoPlayer)(__ObjC.NSURL, title : Swift.String, thumbnailURL : __ObjC.NSURL, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.564646"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
+                  offsetFromSymbolStart = "648">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493639004.718301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
+            landmarkName = "startPlay(_:type:completionHandler:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmartView.MediaPlayer.((startPlay in _D4D28CDE6A6321229ECEC1F3ED545D7E) (SmartView.MediaPlayer) -&gt; (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, type : SmartView.BasePlayer.PlayerTypes, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.566707"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "318"
+                  endingLineNumber = "318"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmartView.MediaPlayer.((startPlay in _D4D28CDE6A6321229ECEC1F3ED545D7E) (SmartView.MediaPlayer) -&gt; (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, type : SmartView.BasePlayer.PlayerTypes, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.566866"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "318"
+                  endingLineNumber = "318"
+                  offsetFromSymbolStart = "256">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493636667.618456"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "isMediaPlayerRunning(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493639004.718301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
+            landmarkName = "startPlay(_:type:completionHandler:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmartView.MediaPlayer.((startPlay in _D4D28CDE6A6321229ECEC1F3ED545D7E) (SmartView.MediaPlayer) -&gt; (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, type : SmartView.BasePlayer.PlayerTypes, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.568476"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "394"
+                  endingLineNumber = "394"
+                  offsetFromSymbolStart = "5864">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmartView.MediaPlayer.((startPlay in _D4D28CDE6A6321229ECEC1F3ED545D7E) (SmartView.MediaPlayer) -&gt; (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, type : SmartView.BasePlayer.PlayerTypes, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()).(closure #1).(closure #3)"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.5686"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "395"
+                  endingLineNumber = "395"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493639004.718301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "startPlay(_:type:completionHandler:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmartView.MediaPlayer.(startPlay in _D4D28CDE6A6321229ECEC1F3ED545D7E) (SmartView.MediaPlayer)(Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, type : SmartView.BasePlayer.PlayerTypes, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.569709"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "314"
+                  endingLineNumber = "314"
+                  offsetFromSymbolStart = "1240">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmartView.MediaPlayer.((startPlay in _D4D28CDE6A6321229ECEC1F3ED545D7E) (SmartView.MediaPlayer) -&gt; (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, type : SmartView.BasePlayer.PlayerTypes, completionHandler : Swift.Optional&lt;(Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "SmartView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amitdhawan/Desktop/23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+                  timestampString = "493643549.56985"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493638259.933191"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "isMediaPlayerRunning(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493639004.718301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
+            landmarkName = "startPlay(_:type:completionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493640431.925321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "isMediaPlayerRunning(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493640578.264478"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "isMediaPlayerRunning(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493640579.912639"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "isMediaPlayerRunning(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493640581.640755"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "isMediaPlayerRunning(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493640583.232578"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "isMediaPlayerRunning(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493641409.570973"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
+            landmarkName = "startPlay(_:type:completionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/MediaPlayer.swift"
+            timestampString = "493641550.550099"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "startPlay(_:type:completionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaPlayer/PhotoShareController.swift"
+            timestampString = "494230727.816476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "onPlayerChange(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaPlayer/PhotoShareController.swift"
+            timestampString = "494230727.816476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "onPause()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaPlayer/PhotoShareController.swift"
+            timestampString = "494230727.816476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "onForward()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaPlayer/PhotoShareController.swift"
+            timestampString = "494230727.816476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "onRewind()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaPlayer/PhotoShareController.swift"
+            timestampString = "494230727.816476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "onMute()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaPlayer/PhotoShareController.swift"
+            timestampString = "494230727.816476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "onUnMute()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/BasePlayer.swift"
+            timestampString = "493823683.933679"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "onConnect(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaPlayer/PhotoShareController.swift"
+            timestampString = "494230727.816476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "MediaShareController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/BasePlayer.swift"
+            timestampString = "493894585.158843"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "onConnect(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/VideoPlayer.swift"
+            timestampString = "494163272.117668"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "addToList(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/VideoPlayer.swift"
+            timestampString = "494163280.134069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "addToList(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/AudioPlayer.swift"
+            timestampString = "494163349.951922"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "addToList(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/AudioPlayer.swift"
+            timestampString = "494163414.137528"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "addToList(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../23august/Aseem/XCODE70_DMP/SmartViewSDK/SmartViewSDK/public/VideoPlayer.swift"
+            timestampString = "494163594.261987"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "addToList(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaPlayer/PhotoPlayerController.swift"
+            timestampString = "494937556.049878"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "onPlayerChange(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MediaPlayer/PhotoPlayerController.swift"
+            timestampString = "494938439.207321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "onGetList(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

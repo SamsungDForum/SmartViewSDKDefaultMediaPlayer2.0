@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Audio</key>
+	<array>
+		<dict>
+			<key>id</key>
+			<string>1</string>
+			<key>title</key>
+			<string>You Said It</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/audio/Beverly_-_01_-_You_Said_It.mp3</string>
+			<key>thumbUrl</key>
+			<string>http://images.genius.com/a99efcb1f3327ea6446d72ce19c09b7e.700x700x1.jpg</string>
+			<key>albumName</key>
+			<string>Beverly</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>2</string>
+			<key>title</key>
+			<string>Bergwald Bergwald</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/audio/Every_Now_and_Every_Then_-_08_-_Bergwald_Bergwald.mp3</string>
+			<key>thumbUrl</key>
+			<string></string>
+			<key>albumName</key>
+			<string>Every Now &amp; Every Then</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>3</string>
+			<key>title</key>
+			<string>Retake</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/audio/Ketsa_-_11_-_Retake.mp3</string>
+			<key>thumbUrl</key>
+			<string></string>
+			<key>albumName</key>
+			<string>Ketsa</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>4</string>
+			<key>title</key>
+			<string>Lullaby For A Robot</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/audio/Matt_Oakley_-_01_-_Lullaby_for_a_Robot.mp3</string>
+			<key>thumbUrl</key>
+			<string></string>
+			<key>albumName</key>
+			<string>Matt Oakley</string>
+		</dict>
+	</array>
+	<key>Video</key>
+	<array>
+		<dict>
+			<key>id</key>
+			<string>1</string>
+			<key>title</key>
+			<string>Big Buck Bunny</string>
+			<key>url</key>
+			<string>http://www.samsungdforum.com/smartview/sample/video/BigBuckBunny.mp4</string>
+			<key>thumbUrl</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/BigBuckBunny.jpg</string>
+			<key>subtitleUrl</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>2</string>
+			<key>title</key>
+			<string>Elephant Dream</string>
+			<key>url</key>
+			<string>http://www.samsungdforum.com/smartview/sample/video/ElephantsDream.mp4</string>
+			<key>thumbUrl</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/ElephantsDream.jpg</string>
+			<key>subtitleUrl</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>3</string>
+			<key>title</key>
+			<string>Sintel</string>
+			<key>url</key>
+			<string>http://www.samsungdforum.com/smartview/sample/video/Sintel.mp4</string>
+			<key>thumbUrl</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Sintel.jpg</string>
+			<key>subtitleUrl</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>4</string>
+			<key>title</key>
+			<string>Tears of Steel</string>
+			<key>url</key>
+			<string>http://www.samsungdforum.com/smartview/sample/video/TearsOfSteel.mp4</string>
+			<key>thumbUrl</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/TearsOfSteel.jpg</string>
+			<key>subtitleUrl</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>5</string>
+			<key>title</key>
+			<string>SmartView SDK Demo</string>
+			<key>url</key>
+			<string>http://www.samsungdforum.com/smartview/sample/video/SamsungSamrtViewSDKDemo.mp4</string>
+			<key>thumbUrl</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/SamsungSamrtViewSDKDemo.jpg</string>
+			<key>subtitleUrl</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>6</string>
+			<key>title</key>
+			<string>Samsung SmartView SDK</string>
+			<key>url</key>
+			<string>http://www.samsungdforum.com/smartview/sample/video/SamsungSmartViewSDK.mp4</string>
+			<key>thumbUrl</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/SamsungSmartViewSDK.jpg</string>
+			<key>subtitleUrl</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>7</string>
+			<key>title</key>
+			<string>Developer&apos;s Funding</string>
+			<key>url</key>
+			<string>http://developersfunding.s3.amazonaws.com/hlf.mp4</string>
+			<key>thumbUrl</key>
+			<string></string>
+			<key>subtitleUrl</key>
+			<string></string>
+		</dict>
+	</array>
+	<key>Photo</key>
+	<array>
+		<dict>
+			<key>id</key>
+			<string>1</string>
+			<key>title</key>
+			<string>Image 1</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125722.126_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125722.126.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>2</string>
+			<key>title</key>
+			<string>Image 2</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125723.656_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125723.656.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>3</string>
+			<key>title</key>
+			<string>Image 3</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125729.083_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125729.083.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>4</string>
+			<key>title</key>
+			<string>Image 4</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125935.117_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125935.117.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>5</string>
+			<key>title</key>
+			<string>Image 5</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125940.734_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125940.734.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>6</string>
+			<key>title</key>
+			<string>Image 6</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125941.279_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_125941.279.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>7</string>
+			<key>title</key>
+			<string>Image 7</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_130029.641_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Food_Online_4K_30p.mp4_20160614_130029.641.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>8</string>
+			<key>title</key>
+			<string>Image 8</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130055.473_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130055.473.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>9</string>
+			<key>title</key>
+			<string>Image 9</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130104.632_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130104.632.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>11</string>
+			<key>title</key>
+			<string>Image 11</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130105.739_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130105.739.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>12</string>
+			<key>title</key>
+			<string>Image 12</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130120.778_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130120.778.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>13</string>
+			<key>title</key>
+			<string>Image 13</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130121.447_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_30p.mp4_20160614_130121.447.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>14</string>
+			<key>title</key>
+			<string>Image 14</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130130.746_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130130.746.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>15</string>
+			<key>title</key>
+			<string>Image 15</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130132.242_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130132.242.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>16</string>
+			<key>title</key>
+			<string>Image 16</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130133.506_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130133.506.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>17</string>
+			<key>title</key>
+			<string>Image 17</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130136.861_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130136.861.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>18</string>
+			<key>title</key>
+			<string>Image 18</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130137.047_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130137.047.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>19</string>
+			<key>title</key>
+			<string>Image 19</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130138.342_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130138.342.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>20</string>
+			<key>title</key>
+			<string>Image 20</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130139.278_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130139.278.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>21</string>
+			<key>title</key>
+			<string>Image 21</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130140.417_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130140.417.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>22</string>
+			<key>title</key>
+			<string>Image 22</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130141.509_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130141.509.jpg</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>23</string>
+			<key>title</key>
+			<string>Image 23</string>
+			<key>url</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130144.942_small.jpg</string>
+			<key>url_HD</key>
+			<string>https://www.samsungdforum.com/smartview/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130144.94.jpg</string>
+		</dict>
+	</array>
+</dict>
+</plist>

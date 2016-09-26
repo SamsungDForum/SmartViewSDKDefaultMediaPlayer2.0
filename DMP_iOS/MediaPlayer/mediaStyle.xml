@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<styledmediareceiver>
+    <background>http://wallpaperswide.com/download/minimalist_background_iv-wallpaper-1024x576.jpg</background>
+    <logo>http://msf-website-prod.elasticbeanstalk.com/assets/images/logo.png</logo>
+    <splash>http://www.samsungdforum.com/Content/images/Rev6/main/tv_multi4.png</splash>
+    <watermark>http://vignette4.wikia.nocookie.net/samsung/images/0/0e/698px-Samsung_Logo_svg.png/revision/latest?cb=20111014135432</watermark>
+    <progressbar>#40C4FF</progressbar>
+</styledmediareceiver>
