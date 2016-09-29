@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9A1AFD6D1D533DE400CE1FC9 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1AFD6C1D533DE400CE1FC9 /* AudioViewController.swift */; };
 		9A1AFD751D5C8C2500CE1FC9 /* MediaListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1AFD741D5C8C2500CE1FC9 /* MediaListController.swift */; };
+		9A43D0F51D9CF1530021A7AD /* SmartView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A43D0F31D9CF13E0021A7AD /* SmartView.framework */; };
+		9A43D0F61D9CF1530021A7AD /* SmartView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A43D0F31D9CF13E0021A7AD /* SmartView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9A59F07C1D7AFD8F00BAB560 /* thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A59F07B1D7AFD8F00BAB560 /* thumb.png */; };
 		9A8655371D70063F00B0B5C4 /* add_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8655331D70063F00B0B5C4 /* add_all.png */; };
 		9A8655381D70063F00B0B5C4 /* clear_queue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8655341D70063F00B0B5C4 /* clear_queue.png */; };
@@ -25,8 +27,6 @@
 		9A896B421D4B2B4500994F30 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A896B411D4B2B4500994F30 /* Media.swift */; };
 		9A896B441D4B2CE500994F30 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A896B431D4B2CE500994F30 /* MediaCell.swift */; };
 		9A896B461D4F216600994F30 /* MediaItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A896B451D4F216600994F30 /* MediaItems.plist */; };
-		9AAD83121D80232C004407EB /* SmartView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAD83101D802324004407EB /* SmartView.framework */; };
-		9AAD83131D80232C004407EB /* SmartView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAD83101D802324004407EB /* SmartView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9AFD0C6C1D507F0400C3494A /* ImageCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFD0C6B1D507F0400C3494A /* ImageCacheHelper.swift */; };
 		C9043F221D759D3B00C7826E /* MediaPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9043F211D759D3B00C7826E /* MediaPlayViewController.swift */; };
 		C9043F261D759E4F00C7826E /* previous.png in Resources */ = {isa = PBXBuildFile; fileRef = C9043F251D759E4F00C7826E /* previous.png */; };
@@ -95,7 +95,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9AAD83131D80232C004407EB /* SmartView.framework in Embed Frameworks */,
+				9A43D0F61D9CF1530021A7AD /* SmartView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +105,7 @@
 /* Begin PBXFileReference section */
 		9A1AFD6C1D533DE400CE1FC9 /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9A1AFD741D5C8C2500CE1FC9 /* MediaListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MediaListController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		9A43D0F31D9CF13E0021A7AD /* SmartView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SmartView.framework; sourceTree = "<group>"; };
 		9A59F07B1D7AFD8F00BAB560 /* thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb.png; sourceTree = "<group>"; };
 		9A8655331D70063F00B0B5C4 /* add_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_all.png; sourceTree = "<group>"; };
 		9A8655341D70063F00B0B5C4 /* clear_queue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear_queue.png; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		9A896B411D4B2B4500994F30 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		9A896B431D4B2CE500994F30 /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
 		9A896B451D4F216600994F30 /* MediaItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MediaItems.plist; sourceTree = "<group>"; };
-		9AAD83101D802324004407EB /* SmartView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SmartView.framework; sourceTree = "<group>"; };
 		9AFD0C6B1D507F0400C3494A /* ImageCacheHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ImageCacheHelper.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C9043F211D759D3B00C7826E /* MediaPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayViewController.swift; sourceTree = "<group>"; };
 		C9043F251D759E4F00C7826E /* previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previous.png; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AAD83121D80232C004407EB /* SmartView.framework in Frameworks */,
+				9A43D0F51D9CF1530021A7AD /* SmartView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +201,7 @@
 		C91382E91C15A54F00A35DA3 = {
 			isa = PBXGroup;
 			children = (
-				9AAD83101D802324004407EB /* SmartView.framework */,
+				9A43D0F31D9CF13E0021A7AD /* SmartView.framework */,
 				C9530E241C17F1CF00D8BAF4 /* images */,
 				C91382F41C15A54F00A35DA3 /* MediaPlayer */,
 				C91383091C15A54F00A35DA3 /* MediaPlayerTests */,

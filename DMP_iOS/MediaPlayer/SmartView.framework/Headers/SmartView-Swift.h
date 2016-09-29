@@ -101,8 +101,6 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 
 
 /// A Channel is a discreet connection where multiple clients can communicate
-///
-/// :since: 2.0
 SWIFT_CLASS("_TtC9SmartView7Channel")
 @interface Channel : NSObject
 
@@ -185,6 +183,8 @@ SWIFT_CLASS("_TtC9SmartView7Channel")
 - (void)publishWithEvent:(NSString * __nonnull)event message:(id __nullable)message data:(NSData * __nonnull)data target:(id __nonnull)target;
 
 /// A snapshot of the list of clients currently connected to the channel
+///
+/// \returns  list of clients currently connected to the channel
 - (NSArray<ChannelClient *> * __nonnull)getClients;
 
 /// A convenience method to subscribe for notifications using blocks.
@@ -202,6 +202,8 @@ SWIFT_CLASS("_TtC9SmartView7Channel")
 ///
 /// \param observer The observer object to unregister observations
 - (void)off:(id __nonnull)observer;
+
+/// The description of the client
 @property (nonatomic, readonly, copy) NSString * __nonnull description;
 @end
 
@@ -213,8 +215,14 @@ SWIFT_CLASS("_TtC9SmartView11Application")
 
 /// The id of the channel
 @property (nonatomic, readonly, copy) NSString * __null_unspecified id;
+
+/// start arguments
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * __nullable args;
+
+/// Bundle Indentifier
 + (NSString * __nonnull)BUNDLE_IDENTIFIER;
+
+/// property value library
 + (NSString * __nonnull)PROPERTY_VALUE_LIBRARY;
 
 /// Retrieves information about the Application on the TV
@@ -237,12 +245,16 @@ SWIFT_CLASS("_TtC9SmartView11Application")
 /// \param completionHandler The callback handler
 - (void)install:(void (^ __nullable)(BOOL, NSError * __nullable))completionHandler;
 
-/// MARK: override channel connect
+/// override channel connect. connects your client with the host TV app
+///
+/// \param attributes Any attributes you want to associate with the client (ie. ["name":"FooBar"])
+///
+/// \param completionHandler The callback handler
 - (void)connect:(NSDictionary<NSString *, NSString *> * __nullable)attributes completionHandler:(void (^ __nullable)(ChannelClient * __nullable, NSError * __nullable))completionHandler;
 
 /// Disconnects your client with the host TV app
 ///
-/// \param leaveHostRunning True leaves the TV app running False stops the TV app if yours is the last client
+/// \param leaveHostRunning True leaves the TV app running ,False stops the TV app if yours is the last client
 ///
 /// \param completionHandler The callback handler
 - (void)disconnectWithLeaveHostRunning:(BOOL)leaveHostRunning completionHandler:(void (^ __nullable)(ChannelClient * __nullable, NSError * __nullable))completionHandler;
@@ -253,6 +265,8 @@ SWIFT_CLASS("_TtC9SmartView11Application")
 - (void)disconnectWithLeaveHostRunning:(BOOL)leaveHostRunning;
 
 /// Disconnect from the channel and terminate the host application if you are the last client
+///
+/// \param completionHandler The callback handler
 - (void)disconnect:(void (^ __nullable)(ChannelClient * __nullable, NSError * __nullable))completionHandler;
 @end
 
@@ -262,9 +276,17 @@ SWIFT_CLASS("_TtC9SmartView11Application")
 
 @protocol ConnectionDelegate;
 
+
+/// Base class for audio, video and photo player
 SWIFT_CLASS("_TtC9SmartView10BasePlayer")
 @interface BasePlayer : NSObject
+
+/// The Connection delegate protocol defines the event methods available for channel Connection/DisConnection.
 @property (nonatomic, weak) id <ConnectionDelegate> __nullable connectionDelegate;
+
+/// Disconnects to the channel. This method will asynchronously call the delegate's onDisconnect method and post a ChannelEvent.
+///
+/// \param completionHandler callback handler of OnDisconnect
 - (void)disconnect:(void (^ __nullable)(NSError * __nullable))completionHandler;
 
 /// Play last sent media contents.
@@ -296,67 +318,205 @@ SWIFT_CLASS("_TtC9SmartView10BasePlayer")
 /// \param volume Integer value between 0 and 100.
 - (void)setVolume:(uint8_t)volume;
 
-/// Volume Up.
+/// increase volume of the player by 1.
 - (void)volumeUp;
 
-/// Volume Down
+/// decrease volume of the player by 1.
 - (void)volumeDown;
 @end
 
 @class NSURL;
 @protocol AudioPlayerDelegate;
 
+
+/// Audio Player Class handle the Audio share,control and TV Player queue.
 SWIFT_CLASS("_TtC9SmartView11AudioPlayer")
 @interface AudioPlayer : BasePlayer
+
+/// The Audio Player delegate protocol defines the event methods available for a Audio.
 @property (nonatomic, weak) id <AudioPlayerDelegate> __nullable playerDelegate;
+
+/// this method play Audio content on TV.
+///
+/// \param contentURL Audio Url
+///
+/// \param completionHandler The response completion closure, it will be executed in the request queue i.e. in a backgound thread.
 - (void)playContent:(NSURL * __nonnull)contentURL completionHandler:(void (^ __nullable)(NSError * __nullable))completionHandler;
+
+/// play Audio content on TV.
+///
+/// \param contentURL Content URL
+///
+/// \param title Content Title
+///
+/// \param albumName Content album name
+///
+/// \param albumArtUrl Content thumbnail URL
+///
+/// \param completionHandler The response completion closure, it will be executed in the request queue i.e. in a backgound thread.
 - (void)playContent:(NSURL * __nonnull)contentURL title:(NSString * __nonnull)title albumName:(NSString * __nonnull)albumName albumArtUrl:(NSURL * __nonnull)albumArtUrl completionHandler:(void (^ __nullable)(NSError * __nullable))completionHandler;
 
 /// Seek the given time in currently playing media.
 ///
-/// \param toTime Time in seconds within length of currently playing media.
+/// \param time Time in seconds within length of currently playing media.
 - (void)seek:(NSTimeInterval)time;
 
 /// resumes TV widget/application from background process.
+///
+/// \param completionHandler The response completion closure, it will be executed in the request queue i.e. in a backgound thread.
 - (void)resumeApplicationInForeground:(void (^ __nullable)(NSError * __nullable))completionHandler;
+
+/// repeat player list.
 - (void)repeatQueue;
+
+/// shuffle player list.
 - (void)shuffle;
+
+/// request player list i.e currently playing on TV.
 - (void)getList;
+
+/// request to delete(removeAll) player list.
 - (void)clearList;
+
+/// remove specific audio from player list.
+///
+/// \param contentURL Audio URL
 - (void)removeFromList:(NSURL * __nonnull)contentURL;
+
+/// Add Audio item to player list.
+///
+/// \param contentURL URL
+///
+/// \param title Title
+///
+/// \param albumName Album NAme
+///
+/// \param albumArtUrl thumbnail URL
 - (void)addToList:(NSURL * __nonnull)contentURL title:(NSString * __nonnull)title albumName:(NSString * __nonnull)albumName albumArtUrl:(NSURL * __nonnull)albumArtUrl;
+
+/// Add Audio item to player list.
+///
+/// \param arrayDictofData list data in form array of dictionary
 - (void)addToList:(NSArray<NSDictionary<NSString *, id> *> * __nonnull)arrayDictofData;
+
+/// Notification of any data received from TV player
+///
+/// \param notification contains player queue event and action
 - (void)onMessage:(NSNotification * __null_unspecified)notification;
 @end
 
 
+
+/// The Audio Player delegate protocol defines the event methods available for a Audio.
 SWIFT_PROTOCOL("_TtP9SmartView19AudioPlayerDelegate_")
 @protocol AudioPlayerDelegate
 @optional
+
+/// event occurs on Buffering of Audio Start.
 - (void)onBufferingStart;
+
+/// event occurs on Buffering of Audio Complete.
 - (void)onBufferingComplete;
+
+/// event occurs asynchronously when audio buffering is in progress.
+///
+/// \param progress current Buffer Progerss
 - (void)onBufferingProgress:(NSInteger)progress;
+
+/// event occurs continously when Audio streaming is going on.
+///
+/// \param progress current playing time of Audio.
 - (void)onCurrentPlayTime:(NSInteger)progress;
+
+/// event occurs when Audio streaming start.
+///
+/// \param duration total duration of audio.
 - (void)onStreamingStarted:(NSInteger)duration;
+
+/// event occurs when Audio streaming completed.
 - (void)onStreamCompleted;
+
+/// event occurs when Audio is shared with TV for the first time.
 - (void)onPlayerInitialized;
+
+/// event occurs when different type of media is shared with TV. (Audio is shared after photo/video share)
+///
+/// \param playerType current player type (photo/audio/video)
 - (void)onPlayerChange:(NSString * __nonnull)playerType;
+
+/// event occurs when paused audio is played.
 - (void)onPlay;
+
+/// event occurs on audio pause.
 - (void)onPause;
+
+/// event occurs on audio stop.
 - (void)onStop;
+
+/// event occurs on Player mute.
 - (void)onMute;
+
+/// event occurs on Player unMute.
 - (void)onUnMute;
+
+/// provides the status of play controls like volume, mute/unmute and mode of player like single or repeat all
+///
+/// \param volLevel player volume level
+///
+/// \param muteStatus player mute status
+///
+/// \param shuffleStatus player shuffle status
+///
+/// \param mode player mode single or repeat all
 - (void)onControlStatus:(NSInteger)volLevel muteStatus:(BOOL)muteStatus shuffleStatus:(BOOL)shuffleStatus mode:(NSString * __nonnull)mode;
+
+/// event occurs on  player volume change.
+///
+/// \param volLevel player volume to be set.
 - (void)onVolumeChange:(NSInteger)volLevel;
+
+/// event occurs on audio addition in TV queue(player list).
+///
+/// \param enqueuedItem enqueued audio item.
 - (void)onAddToList:(NSDictionary<NSString *, id> * __nonnull)enqueuedItem;
+
+/// event occurs on audio remove from TV queue(player list).
+///
+/// \param dequeuedItem dequeued audio Item.
 - (void)onRemoveFromList:(NSDictionary<NSString *, id> * __nonnull)dequeuedItem;
+
+/// event occurs on TV queue(player list) deletion.
 - (void)onClearList;
+
+/// event occurs when player list(TV queue) is recieved.
+///
+/// \param queueList play list of TV
 - (void)onGetList:(NSDictionary<NSString *, id> * __nonnull)queueList;
+
+/// event occurs when player list is shuffled.
+///
+/// \param status shuffle status(true/false)
 - (void)onShuffle:(BOOL)status;
+
+/// event occurs on player list repeat.
+///
+/// \param mode specify repeat all/repeat single audio
 - (void)onRepeat:(NSString * __nonnull)mode;
+
+/// occurs when new audio is shared with TV.
+///
+/// \param currentItem current shared item.
 - (void)onCurrentPlaying:(NSDictionary<NSString *, id> * __nonnull)currentItem;
+
+/// occurs when TV Application/widget goes into background.
 - (void)onApplicationSuspend;
+
+/// occurs when  TV Application/widget comes in foreground.
 - (void)onApplicationResume;
+
+/// occurs when error is occured in playing Audio
+///
+/// \param error eror details
 - (void)onError:(NSError * __nonnull)error;
 @end
 
@@ -451,27 +611,57 @@ SWIFT_PROTOCOL("_TtP9SmartView15ChannelDelegate_")
 @end
 
 
+
+/// The Connection delegate protocol defines the event methods available for channel Connection/DisConnection.
 SWIFT_PROTOCOL("_TtP9SmartView18ConnectionDelegate_")
 @protocol ConnectionDelegate
 @optional
+
+/// event occur when connection occur with channel.
+///
+/// \param error connection error
 - (void)onConnect:(NSError * __nullable)error;
+
+/// event occur when Disconnection occur with channel.
+///
+/// \param error disconnect error.
 - (void)onDisconnect:(NSError * __nullable)error;
 
 /// Called when media player on target device sends "playerNotice" event to client. It may be change of playback status, error message or informative event about video stream state. See MediaPlayer.PlayerNotice definition for possible values.
+///
+/// \param messageData information about player events
 - (void)onPlayerNotice:(NSDictionary<NSString *, id> * __nonnull)messageData;
 @end
 
 
+
+/// This class is wrapper which handle tv media calls. its basic functionality is to launch DMP on TV and whatever notification comes from TV side it passes on to further module.
 SWIFT_CLASS("_TtC9SmartView11MediaPlayer")
 @interface MediaPlayer : NSObject
+
+/// TV service name
 @property (nonatomic, readonly, strong) Service * __nonnull service;
+
+/// Application Connection Status with TV.
 @property (nonatomic, readonly) BOOL connected;
 @end
 
 
 @interface MediaPlayer (SWIFT_EXTENSION(SmartView)) <ChannelDelegate>
+
+/// Notification of any data received from TV player
+///
+/// \param notification contains player queue event and action
 - (void)onMessage:(Message * __nonnull)message;
+
+/// event occur when connection occur with channel
+///
+/// <ul><li>client: The client that is connecting which is yourself</li><li>error: An error info if connect fails</li></ul>
 - (void)onConnect:(ChannelClient * __nullable)client error:(NSError * __nullable)error;
+
+/// event occur when disconnection occur with channel.
+///
+/// <ul><li>client: The client that is disconnecting which is yourself</li><li>error: An error info if disconnect fails</li></ul>
 - (void)onDisconnect:(ChannelClient * __nullable)client error:(NSError * __nullable)error;
 @end
 
@@ -493,51 +683,157 @@ SWIFT_CLASS("_TtC9SmartView7Message")
 
 @protocol PhotoPlayerDelegate;
 
+
+/// Photo Player Class handle the Photo share,control and TV Player queue.
 SWIFT_CLASS("_TtC9SmartView11PhotoPlayer")
 @interface PhotoPlayer : BasePlayer
+
+/// The Photo Player delegate protocol defines the event methods available for a Photo.
 @property (nonatomic, weak) id <PhotoPlayerDelegate> __nullable playerDelegate;
+
+/// this method play image content on TV.
+///
+/// \param contentURL image Url
+///
+/// \param completionHandler The response completion closure, it will be executed in the request queue i.e. in a backgound thread.
 - (void)playContent:(NSURL * __nonnull)contentURL completionHandler:(void (^ __nullable)(NSError * __nullable))completionHandler;
+
+/// this method play image content on TV.
+///
+/// \param contentURL image URL
+///
+/// \param title image Title
+///
+/// \param completionHandler The response completion closure, it will be executed in the request queue i.e. in a backgound thread.
 - (void)playContent:(NSURL * __nonnull)contentURL title:(NSString * __nonnull)title completionHandler:(void (^ __nullable)(NSError * __nullable))completionHandler;
 
-/// <ul><li>sets slide show timeout period</li><li>@param slideTimeout slide show time-out period in milliseconds.</li></ul>
+/// sets slide show timeout period
+///
+/// \param time slide show time-out period in milliseconds.
 - (void)setSlideTimeout:(NSTimeInterval)time;
 
-/// <ul><li>sets background audio in slide show.</li><li>@param NSURL Background audio contentURL.</li></ul>
+/// sets background audio in slide show.
+///
+/// \param contentURL Background audio contentURL.
 - (void)setBackgroundMusic:(NSURL * __nonnull)contentURL;
 
-/// <ul><li>stops background audio in slide show.</li></ul>
+/// stops background audio in slide show.
 - (void)stopBackgroundMusic;
 
 /// resumes TV widget/application from background process.
 - (void)resumeApplicationInForeground:(void (^ __nullable)(NSError * __nullable))completionHandler;
+
+/// request player list i.e currently playing on TV.
 - (void)getList;
+
+/// request to delete(removeAll) player list.
 - (void)clearList;
+
+/// remove specific image from player list.
+///
+/// \param contentURL image URL
 - (void)removeFromList:(NSURL * __nonnull)contentURL;
+
+/// add image to player list.
+///
+/// \param contentURL URL
+///
+/// \param title Title
+///
+/// \param albumName Album NAme
+///
+/// \param albumArtUrl Album Art URL
 - (void)addToList:(NSURL * __nonnull)contentURL title:(NSString * __nonnull)title albumName:(NSString * __nonnull)albumName albumArtUrl:(NSURL * __nonnull)albumArtUrl;
+
+/// add Photo item to player list.
+///
+/// \param arrayDictofData list data in form array of dictionary
 - (void)addToList:(NSArray<NSDictionary<NSString *, id> *> * __nonnull)arrayDictofData;
+
+/// Notification of any data received from TV player
+///
+/// \param notification contains player queue event and action
 - (void)onMessage:(NSNotification * __null_unspecified)notification;
 @end
 
 
+
+/// The Photo Player delegate protocol defines the event methods available for a Photo.
 SWIFT_PROTOCOL("_TtP9SmartView19PhotoPlayerDelegate_")
 @protocol PhotoPlayerDelegate
 @optional
+
+/// event occurs when Photo is shared with TV for the first time or after audio/video share.
 - (void)onPlayerInitialized;
+
+/// event occurs when different type of media is shared with TV. (Photo is shared after audio/video share)
+///
+/// \param playerType current player type (photo/audio/video)
 - (void)onPlayerChange:(NSString * __nonnull)playerType;
+
+/// event occurs when paused photo player list is played.
 - (void)onPlay;
+
+/// event occurs on photo player list pause.
 - (void)onPause;
+
+/// event occurs on photo player list stop.
 - (void)onStop;
+
+/// event occurs on Player mute.
 - (void)onMute;
+
+/// event occurs on Player unMute.
 - (void)onUnMute;
+
+/// provides the status of play controls like volume, mute/unmute and mode of player like single or repeat all
+///
+/// \param volLevel player volume level
+///
+/// \param muteStatus player mute status
+///
+/// \param shuffleStatus player shuffle status
+///
+/// \param mode player mode single or repeat all
 - (void)onControlStatus:(NSInteger)volLevel muteStatus:(BOOL)muteStatus;
+
+/// event occurs on  player volume change.
+///
+/// \param volLevel player volume to be set.
 - (void)onVolumeChange:(NSInteger)volLevel;
+
+/// event occurs on photo(image) addition in TV queue(player list).
+///
+/// \param enqueuedItem enqueued photo item.
 - (void)onAddToList:(NSDictionary<NSString *, id> * __nonnull)enqueuedItem;
+
+/// event occurs on photo remove from TV queue(player list).
+///
+/// \param dequeuedItem dequeued photo item.
 - (void)onRemoveFromList:(NSDictionary<NSString *, id> * __nonnull)dequeuedItem;
+
+/// event occurs on TV queue(player list) deletion.
 - (void)onClearList;
+
+/// event occurs when player list(TV queue) is recieved.
+///
+/// \param queueList play list of TV
 - (void)onGetList:(NSDictionary<NSString *, id> * __nonnull)queueList;
+
+/// occurs when new photo is shared with TV.
+///
+/// \param currentItem current shared item.
 - (void)onCurrentPlaying:(NSDictionary<NSString *, id> * __nonnull)currentItem;
+
+/// occurs when TV Application/widget goes into background.
 - (void)onApplicationSuspend;
+
+/// occurs when  TV Application/widget comes in foreground.
 - (void)onApplicationResume;
+
+/// occurs when error is occured in playing Audio
+///
+/// \param error eror details
 - (void)onError:(NSError * __nonnull)error;
 @end
 
@@ -578,8 +874,7 @@ SWIFT_CLASS("_TtC9SmartView7Service")
 
 /// Creates an application instance belonging to that service
 ///
-/// <ul><li>For an installed application this is the string id as provided by Samsung, If your TV app is still in development, you can use the folder name of your app as the id. Once the TV app has been released into Samsung Apps, you must use the supplied app id.`</li><li>For a cloud application this is the application's URL</li></ul>
-/// \param id The id of the application
+/// \param id The id of the application<ul><li>For an installed application this is the string id as provided by Samsung, If your TV app is still in development, you can use the folder name of your app as the id. Once the TV app has been released into Samsung Apps, you must use the supplied app id.`</li><li>For a cloud application this is the application's URL</li></ul>
 ///
 /// \param channelURI The uri of the Channel ("com.samsung.multiscreen.helloworld")
 ///
@@ -593,8 +888,26 @@ SWIFT_CLASS("_TtC9SmartView7Service")
 /// <ul><li>`: The uri of the Channel ("com.samsung.multiscreen.helloworld")</li></ul>
 /// \returns  A Channel instance
 - (Channel * __nonnull)createChannel:(NSString * __nonnull)channelURI;
+
+/// Creates video player instance
+///
+/// \param appName 
+///
+/// \returns  VideoPlayer instance
 - (VideoPlayer * __nonnull)createVideoPlayer:(NSString * __nonnull)appName;
+
+/// Creates audio player instance
+///
+/// \param appName 
+///
+/// \returns  AudioPlayer instance
 - (AudioPlayer * __nonnull)createAudioPlayer:(NSString * __nonnull)appName;
+
+/// Creates photo player instance
+///
+/// \param appName 
+///
+/// \returns  PhotoPlayer instance
 - (PhotoPlayer * __nonnull)createPhotoPlayer:(NSString * __nonnull)appName;
 
 /// Creates a service search object
@@ -604,33 +917,47 @@ SWIFT_CLASS("_TtC9SmartView7Service")
 
 /// This asynchronous method retrieves a service instance given a service URI
 ///
-/// <ul><li>service: The service instance</li><li>timeout: The timeout for the request</li><li>error: An error info if getByURI fails</li></ul>
 /// \param uri The uri of the service
 ///
-/// \param completionHandler The completion handler with the service instance or an error
+/// \param timeOut 
+///
+/// \param completionHandler The completion handler with the service instance or an error<ul><li>service: The service instance</li><li>timeout: The timeout for the request</li><li>error: An error info if getByURI fails</li></ul>
 + (void)getByURI:(NSString * __nonnull)uri timeout:(NSTimeInterval)timeout completionHandler:(void (^ __nonnull)(Service * __nullable, NSError * __nullable))completionHandler;
 
 /// This asynchronous method retrieves a service instance given a service id
 ///
-/// <ul><li>service: The service instance</li><li>error: An error info if getById fails</li></ul>
 /// \param id The id of the service
 ///
-/// \param completionHandler The completion handler with the service instance or an error
+/// \param completionHandler The completion handler with the service instance or an error<ul><li>service: The service instance</li><li>error: An error info if getById fails</li></ul>
 + (void)getById:(NSString * __nonnull)id completionHandler:(void (^ __nonnull)(Service * __nullable, NSError * __nullable))completionHandler;
 
 /// Send a packet for WakeOnWirelessLan.
 ///
-/// <ul><li>param macAddr: Mac Address of TV</li></ul>
+/// \param macAddr Mac Address of TV
 + (void)WakeOnWirelessLan:(NSString * __nonnull)macAddr;
 
 /// Send a packet via WakeOnWirelessLan and create and connect to particular appilcation
 ///
-/// <ul><li>param macAddr: Mac Address of TV</li><li>param uri: The uri of service</li><li>service: The service instance</li><li>error: An error info if getByURI fails</li></ul>
+/// \param macAddr Mac Address of TV
+///
+/// \param uri The uri of service
+///
+/// \param service The service instance
+///
+/// \param error An error info if getByURI fails
 + (void)WakeOnWirelessAndConnect:(NSString * __nonnull)macAddr uri:(NSString * __nonnull)uri completionHandler:(void (^ __nonnull)(Service * __nullable, NSError * __nullable))completionHandler;
 
 /// Send a packet via WakeOnWirelessLan and create and connect to particular appilcation
 ///
-/// <ul><li>param macAddr: Mac Address of TV</li><li>param uri: The uri of service</li><li>timeOut: timeout to wakeup</li><li>service: The service instance</li><li>error: An error info if getByURI fails</li></ul>
+/// \param macAddr Mac Address of TV
+///
+/// \param uri The uri of service
+///
+/// \param timeOut timeout to wakeup
+///
+/// \param service The service instance
+///
+/// \param error An error info if getByURI fails
 + (void)WakeOnWirelessAndConnect:(NSString * __nonnull)macAddr uri:(NSString * __nonnull)uri timeOut:(NSTimeInterval)timeOut completionHandler:(void (^ __nonnull)(Service * __nullable, NSError * __nullable))completionHandler;
 @end
 
@@ -646,6 +973,10 @@ SWIFT_CLASS("_TtC9SmartView13ServiceSearch")
 
 /// The search status
 @property (nonatomic, readonly) BOOL isSearching;
+
+/// request for TV list found on Network/BLE.
+///
+/// \returns  returns TV List.
 - (NSArray<Service *> * __nonnull)getServices;
 
 /// A convenience method to suscribe for notifications using blocks
@@ -662,17 +993,25 @@ SWIFT_CLASS("_TtC9SmartView13ServiceSearch")
 /// \param observer The observer object to unregister observations
 - (void)off:(id __nonnull)observer;
 
-/// Start the search
+/// Start discovering TV on Network/Bluetooth
 - (void)start;
+
+/// check bluetooth searching is on or off
+///
+/// \returns  true if bluetooth discovery on otherwise false
 - (BOOL)isSearchingBLE;
 
 /// Start BLE Search Process
+///
+/// \returns  returns 'True' if using BLE otherwise 'False'
 - (BOOL)startUsingBLE;
 
 /// Stop BLE Search Process
+///
+/// \returns  True
 - (BOOL)stopUsingBLE;
 
-/// Stops the search
+/// Stops the Device discovery.
 - (void)stop;
 @end
 
@@ -708,72 +1047,218 @@ SWIFT_PROTOCOL("_TtP9SmartView21ServiceSearchDelegate_")
 - (void)onStart;
 
 /// If BLE device is found
+///
+/// \param NameOfTV Name of TV found on Bluetooth
 - (void)onFoundOnlyBLE:(NSString * __nonnull)NameOfTV;
 
 /// Find other network (other than BLE)
+///
+/// \param NameOfTV Name of TV found on Network
 - (void)onFoundOtherNetwork:(NSString * __nonnull)NameOfTV;
 @end
 
+
+/// Describe Service Search DiscoveryType
 typedef SWIFT_ENUM(NSInteger, ServiceSearchDiscoveryType) {
+
+/// LAN type
   ServiceSearchDiscoveryTypeLAN = 0,
+
+/// Cloud Type
   ServiceSearchDiscoveryTypeCLOUD = 1,
 };
 
 @protocol VideoPlayerDelegate;
 
+
+/// Video Player Class handle the Video share, control and TV Player queue.
 SWIFT_CLASS("_TtC9SmartView11VideoPlayer")
 @interface VideoPlayer : BasePlayer
+
+/// The Video Player delegate protocol defines the event methods available for a Video.
 @property (nonatomic, weak) id <VideoPlayerDelegate> __nullable playerDelegate;
+
+/// this method play video content on TV.
+///
+/// \param contentURL video Url
+///
+/// \param completionHandler The response completion closure, it will be executed in the request queue i.e. in a backgound thread.
 - (void)playContent:(NSURL * __nonnull)contentURL completionHandler:(void (^ __nullable)(NSError * __nullable))completionHandler;
+
+/// this method play video content on TV.
+///
+/// \param contentURL Content URL
+///
+/// \param title Content Title
+///
+/// \param thumbnailURL Content thumbnail URL
+///
+/// \param completionHandler The response completion closure, it will be executed in the request queue i.e. in a backgound thread.
 - (void)playContent:(NSURL * __nonnull)contentURL title:(NSString * __nonnull)title thumbnailURL:(NSURL * __nonnull)thumbnailURL completionHandler:(void (^ __nullable)(NSError * __nullable))completionHandler;
+
+/// This method sends request to player for fast forwarding the video.
 - (void)forward;
+
+/// This method sends request to player for rewind the video.
 - (void)rewind;
 
 /// Seek the given time in currently playing media.
 ///
-/// \param toTime Time in seconds within length of currently playing media.
+/// \param time Time in seconds within length of currently playing media.
 - (void)seek:(NSTimeInterval)time;
+
+/// repeat player list.
 - (void)repeatQueue;
 
 /// resumes TV widget/application from background process.
+///
+/// \param completionHandler The response completion closure, it will be executed in the request queue i.e. in a backgound thread.
 - (void)resumeApplicationInForeground:(void (^ __nullable)(NSError * __nullable))completionHandler;
+
+/// request player list i.e currently playing on TV.
 - (void)getList;
+
+/// request to delete(removeAll) player list.
 - (void)clearList;
+
+/// remove specific video content from player list.
+///
+/// \param contentURL video URL
 - (void)removeFromList:(NSURL * __nonnull)contentURL;
+
+/// Add video item to player list.
+///
+/// \param contentURL URL
+///
+/// \param title Title
+///
+/// \param thumbnailURL thumbnail URL
 - (void)addToList:(NSURL * __nonnull)contentURL title:(NSString * __nonnull)title thumbnailURL:(NSURL * __nonnull)thumbnailURL;
+
+/// Add video item to player list.
+///
+/// \param arrayDictofData list data in form array of dictionary
 - (void)addToList:(NSArray<NSDictionary<NSString *, id> *> * __nonnull)arrayDictofData;
+
+/// Notification of any data received from TV player
+///
+/// \param notification contains player queue event and action
 - (void)onMessage:(NSNotification * __null_unspecified)notification;
 @end
 
 
+
+/// The Video Player delegate protocol defines the event methods available for a Video.
 SWIFT_PROTOCOL("_TtP9SmartView19VideoPlayerDelegate_")
 @protocol VideoPlayerDelegate
 @optional
+
+/// event occurs on Buffering of Video Start.
 - (void)onBufferingStart;
+
+/// event occurs on Buffering of Video Complete.
 - (void)onBufferingComplete;
+
+/// event occurs asynchronously when video buffering is in progress.
+///
+/// \param progress current Buffer Progerss
 - (void)onBufferingProgress:(NSInteger)progress;
+
+/// event occurs continously when video streaming is going on.
+///
+/// \param progress current playing time of video.
 - (void)onCurrentPlayTime:(NSInteger)progress;
+
+/// event occurs when video streaming start.
+///
+/// \param duration total duration of video.
 - (void)onStreamingStarted:(NSInteger)duration;
+
+/// event occurs when video streaming completed.
 - (void)onStreamCompleted;
+
+/// event occurs when video is shared with TV for the first time.
 - (void)onPlayerInitialized;
+
+/// event occurs when different type of media is shared with TV. (video is shared after photo/audio share)
+///
+/// \param playerType current player type (photo/audio/video)
 - (void)onPlayerChange:(NSString * __nonnull)playerType;
+
+/// event occurs when paused video is played.
 - (void)onPlay;
+
+/// event occurs on video pause.
 - (void)onPause;
+
+/// event occurs on video stop.
 - (void)onStop;
+
+/// event occurs on fast forwarding the video.
 - (void)onForward;
+
+/// event occurs on rewind the video.
 - (void)onRewind;
+
+/// event occurs on Player mute.
 - (void)onMute;
+
+/// event occurs on Player unMute.
 - (void)onUnMute;
+
+/// provides the status of play controls like volume, mute/unmute and mode of player like single or repeat all
+///
+/// \param volLevel player volume level
+///
+/// \param muteStatus player mute status
+///
+/// \param shuffleStatus player shuffle status
+///
+/// \param mode player mode single or repeat all
 - (void)onControlStatus:(NSInteger)volLevel muteStatus:(BOOL)muteStatus mode:(NSString * __nonnull)mode;
+
+/// event occurs on  player volume change.
+///
+/// \param volLevel player volume to be set.
 - (void)onVolumeChange:(NSInteger)volLevel;
+
+/// event occurs on video addition in TV queue(player list).
+///
+/// \param enqueuedItem enqueued video item.
 - (void)onAddToList:(NSDictionary<NSString *, id> * __nonnull)enqueuedItem;
+
+/// event occurs on video remove from TV queue(player list).
+///
+/// \param dequeuedItem dequeued video Item.
 - (void)onRemoveFromList:(NSDictionary<NSString *, id> * __nonnull)dequeuedItem;
+
+/// event occurs on TV queue(player list) deletion.
 - (void)onClearList;
+
+/// event occurs when player list(TV queue) is recieved.
+///
+/// \param queueList play list of TV
 - (void)onGetList:(NSDictionary<NSString *, id> * __nonnull)queueList;
+
+/// event occurs on player list repeat.
+///
+/// \param mode specify repeat all/repeat single audio
 - (void)onRepeat:(NSString * __nonnull)mode;
+
+/// occurs when new audio is shared with TV.
+///
+/// \param currentItem current shared item.
 - (void)onCurrentPlaying:(NSDictionary<NSString *, id> * __nonnull)currentItem;
+
+/// occurs when TV Application/widget goes into background.
 - (void)onApplicationSuspend;
+
+/// occurs when  TV Application/widget comes in foreground.
 - (void)onApplicationResume;
+
+/// occurs when error is occured in playing Audio
+///
+/// \param error eror details
 - (void)onError:(NSError * __nonnull)error;
 @end
 

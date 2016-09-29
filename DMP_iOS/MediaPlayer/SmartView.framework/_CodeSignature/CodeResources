@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/SmartView-Swift.h</key>
 		<data>
-		+acvKIu3nREiqKbt3zFFSff9wtU=
+		I0jQkqvMCQB1rI+Sy245RPQrk0o=
 		</data>
 		<key>Headers/SmartView.h</key>
 		<data>
@@ -26,19 +26,19 @@
 		</data>
 		<key>Modules/SmartView.swiftmodule/arm.swiftdoc</key>
 		<data>
-		v87pYUS36Y1jncdoaToco/jzoYE=
+		FqpEa93ySXIoA9eqHF3RUqAoaoI=
 		</data>
 		<key>Modules/SmartView.swiftmodule/arm.swiftmodule</key>
 		<data>
-		kV/PlVM+pt9g82nfs2rUn+RiOnI=
+		bGVnA1Vetmi6CaSi6gJGsc3voDg=
 		</data>
 		<key>Modules/SmartView.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		uJl8JyAx6Xo6hz9ILxcuen9SRP0=
+		AttA0L2g7EpBwYHVvgFRKu0gaj0=
 		</data>
 		<key>Modules/SmartView.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		OgqdIxb4IAuiTMIavhPQHGxFCrI=
+		hcQYL2LG77pCBjKPm0A40bbFWsc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -62,11 +62,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+acvKIu3nREiqKbt3zFFSff9wtU=
+			I0jQkqvMCQB1rI+Sy245RPQrk0o=
 			</data>
 			<key>hash2</key>
 			<data>
-			sh1krjsFDbgoLqAwLFe1VWrQ0Ilnnp/aUOr8ymBvt2I=
+			tNCWKgcLmIy0NfYGTyfuHzEzxptjDeHjlYlyaeLbglY=
 			</data>
 		</dict>
 		<key>Headers/SmartView.h</key>
@@ -95,44 +95,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			v87pYUS36Y1jncdoaToco/jzoYE=
+			FqpEa93ySXIoA9eqHF3RUqAoaoI=
 			</data>
 			<key>hash2</key>
 			<data>
-			hJKcHqvEnGZNK0/t/vNoSFaSOu6MRAuLxHdWyZRecf0=
+			W1HPLHUmCXEYGz+C+X/weBpQyQQ5ZJBfyFWWdmRXpxw=
 			</data>
 		</dict>
 		<key>Modules/SmartView.swiftmodule/arm.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			kV/PlVM+pt9g82nfs2rUn+RiOnI=
+			bGVnA1Vetmi6CaSi6gJGsc3voDg=
 			</data>
 			<key>hash2</key>
 			<data>
-			cQ8Q3AIIXl9E8VecDhCWQ7j3e8qNiQc1efHtMsg4h2A=
+			BCAYgVVKQ9dkvUsloHr4KXMjFaFjLic2Na5nwn28FnM=
 			</data>
 		</dict>
 		<key>Modules/SmartView.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			uJl8JyAx6Xo6hz9ILxcuen9SRP0=
+			AttA0L2g7EpBwYHVvgFRKu0gaj0=
 			</data>
 			<key>hash2</key>
 			<data>
-			TCMP3P1Fd29yqkvpfAfqg/aN9DTuGJOwFzcs82Nm2TU=
+			WHSrFpIhRrR2iB9f1AGdRuV6BfkaJTLCmZolkQbAycA=
 			</data>
 		</dict>
 		<key>Modules/SmartView.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			OgqdIxb4IAuiTMIavhPQHGxFCrI=
+			hcQYL2LG77pCBjKPm0A40bbFWsc=
 			</data>
 			<key>hash2</key>
 			<data>
-			O3lDvRl7Y/kp93C+he4ctWu1AmgYA3Wn/JQbXhWiLhk=
+			XG+mBYJ4UKzRRCcHZILobQIaXraCNHgwlX1H12wG1j8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
