@@ -17,7 +17,7 @@ This application demonstrates how to send a **video,audio,photo content** URL to
 
 ###  Videos
 
-If you want cast to DMP video content, refer to video tabs
+If you want cast to DMP video content, refer to Videos tabs
 
 ![](/DMP_ScreenShot/SmartViewSDK_Screenshot_01.png)
 
@@ -31,7 +31,7 @@ DMP2.0 is launched and play your video content.
 
 ###  Audios
 
-If you want cast to DMP audio content, refer to video tabs
+If you want cast to DMP audio content, refer to Audios tabs
 
 ![](/DMP_ScreenShot/SmartViewSDK_Screenshot_02.png)
 
@@ -45,7 +45,7 @@ DMP2.0 is launched and play your audio content.
 
 ###  Photos
 
-If you want cast to DMP image content, refer to photo tabs
+If you want cast to DMP image content, refer to Photos tabs
 
 ![](/DMP_ScreenShot/SmartViewSDK_Screenshot_03.png)
 
