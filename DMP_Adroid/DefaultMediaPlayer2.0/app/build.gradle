@@ -22,5 +22,5 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.+'
-    compile files('libs/android-smartview-sdk-2.0.17.jar')
+    compile files('libs/android-smartview-sdk-2.3.4.jar')
 }
