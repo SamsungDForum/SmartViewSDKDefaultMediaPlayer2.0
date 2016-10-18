@@ -3,21 +3,20 @@
 
 
 ###1. Library
-1. [SmartView SDK iOS framework](http://www.samsungdforum.com/AddLibrary/SmartViewDownload):  iOS Package(Mobile)
-
-add smartview.framework
+1. [SmartView SDK iOS framework](http://www.samsungdforum.com/AddLibrary/SmartViewDownload):  iOS Package(Mobile) 
+	added smartview.framework
 
 
 ###2. Build Environment
 1. This sample app is developed using swift language.
-2. Required Xcode version is 7.2	
+2. Required XCode version 7.2 for XCODE70 and version 8.0 for XCODE80
 
 
 ###3. Recommendation for  iOS framework
-> **sample app includes smartview SDK with 
+> 1) This sample app includes SmartView SDK with
 > 2) iphoneos+iphonesimulator library: works on devices and simulator( + i386,x86_64)
-> Apple appstore reject your app  when register your app with iphoneos+iphonesimulator framework.
-> so, you should change iphoneos framework finally when you develop iphoneos+iphonesimulator framework, 
+> ** Apple App Store will reject your app  when you register your app with iphoneos+iphonesimulator framework.
+> So, you should change iphoneos framework finally when you develop iphoneos+iphonesimulator framework, 
 > or you should  remove manually that unused architectures from the final binary.
 > refer to : [Stripping Unwanted Architectures From Dynamic Libraries In Xcode](http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/)**
 
@@ -26,7 +25,7 @@ add smartview.framework
 2. Populate device list by overriding onFound() & onLost() listeners.
 3. Stop device discovery, by calling stop search API [search.stop()].
 
-MediaShareController.swift
+	MediaShareController.swift
 	
 
          let search = Service.search()
@@ -72,7 +71,7 @@ MediaShareController.swift
 Note: All players support PlayContent API but with their respective argument set. Below example shows use of Video Player APIs.
 
 
-MediaShareController.swift
+        MediaShareController.swift
 	
         var videoplayer: VideoPlayer? = nil
         var videoPlaycontroller: VideoPlayerController? = nil
@@ -114,7 +113,7 @@ MediaShareController.swift
 1. Events for successful player's & client's connection/disconnection can be handled via overloading respective listeners.
 2. To handle player events from TV following events are recieved at application end.
 
-VideoPlayerController.swift
+    VideoPlayerController.swift
 
 
     func onBufferingStart()
@@ -300,7 +299,7 @@ VideoPlayerController.swift
 1. Use respective player's APIs to send commands to TV(like play, pause, stop, mute, etc.).
 2. List is maintained by TV of playing/to be played content. This list can be curated via APIs like addToList(), removeFromList, etc.
 
-MediaPlayViewController.swift
+    MediaPlayViewController.swift
 
     func previousAction(_ gestureRecognizer:UITapGestureRecognizer)
     {
