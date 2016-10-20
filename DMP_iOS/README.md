@@ -1,3 +1,5 @@
+# SmartViewSDK Default Media Player 2.0 Sample App #
+
 ##Prerequisite
 
 
@@ -13,19 +15,24 @@
 
 
 ###3. Recommendation for  iOS framework
-> 1) This sample app includes SmartView SDK with
-> 2) iphoneos+iphonesimulator library: works on devices and simulator( + i386,x86_64)
-> ** Apple App Store will reject your app  when you register your app with iphoneos+iphonesimulator framework.
-> So, you should change iphoneos framework finally when you develop iphoneos+iphonesimulator framework, 
-> or you should  remove manually that unused architectures from the final binary.
-> refer to : [Stripping Unwanted Architectures From Dynamic Libraries In Xcode](http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/)**
+1. This sample app includes SmartView SDK with
+2. iphoneos+iphonesimulator library: works on devices and simulator( + i386,x86_64)
 
-## Discover : Search devices around your mobile.
+ ***Note**: Apple App Store will reject your app  when you register your app with iphoneos+iphonesimulator framework.
+ So, you should change iphoneos framework finally when you develop iphoneos+iphonesimulator framework, 
+ or you should  remove manually that unused architectures from the final binary.
+ refer to : [Stripping Unwanted Architectures From Dynamic Libraries In Xcode](http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/)*
+
+###4. Discover : Search devices around your mobile.
 1. Pressing 'Cast' button in ActionBar, must start search API [search.start()].
 2. Populate device list by overriding onFound() & onLost() listeners.
 3. Stop device discovery, by calling stop search API [search.stop()].
 
-	MediaShareController.swift
+### 5.Code Snippet with Examples:
+
+```swift
+
+	// Inside MediaShareController.swift file
 	
 
          let search = Service.search()
@@ -62,6 +69,7 @@
 			}
 		}
 
+```
 
 ## Create [Video|Audio|Photo]Player object and launch a TV application.
 
@@ -70,8 +78,9 @@
 3. Now, content on the TV can be launched by calling player's respective API - PlayContent(Parameters).
 Note: All players support PlayContent API but with their respective argument set. Below example shows use of Video Player APIs.
 
+``` swift
 
-        MediaShareController.swift
+        // Inside MediaShareController.swift file
 	
         var videoplayer: VideoPlayer? = nil
         var videoPlaycontroller: VideoPlayerController? = nil
@@ -108,12 +117,15 @@ Note: All players support PlayContent API but with their respective argument set
         /* Share Content on TV */
          videoplayer?.playContent(URL(string :item.mediaUrl), title: item.mediaTitle ,thumbnailURL: URL(string :item.mediaimageUrl))
 
+```
 
 ##Event Handling
 1. Events for successful player's & client's connection/disconnection can be handled via overloading respective listeners.
 2. To handle player events from TV following events are recieved at application end.
 
-    VideoPlayerController.swift
+```swift
+
+   //Inside VideoPlayerController.swift file
 
 
     func onBufferingStart()
@@ -294,12 +306,15 @@ Note: All players support PlayContent API but with their respective argument set
         NotificationCenter.default.post(name: Notification.Name(rawValue: "videoApplicationSuspend"), object: self, userInfo: nil)
     }
 
+```
         
 ##API usage
 1. Use respective player's APIs to send commands to TV(like play, pause, stop, mute, etc.).
 2. List is maintained by TV of playing/to be played content. This list can be curated via APIs like addToList(), removeFromList, etc.
 
-    MediaPlayViewController.swift
+   //Inside MediaPlayViewController.swift file
+
+```swift
 
     func previousAction(_ gestureRecognizer:UITapGestureRecognizer)
     {
@@ -384,6 +399,7 @@ Note: All players support PlayContent API but with their respective argument set
        videoplayer?.resumeApplicationInForeground()
     }
 
+```
 		
 ##Handling Player Process State
 Launching application(s) on TV (while default media player[DMP] is running on TV) may put DMP in suspended state. To resume DMP as foreground process use API resumeApplicationInForeground().
