@@ -2,10 +2,21 @@
 This application demonstrates how to send a **video,audio,photo content** URL to a default media player app on TV and how to control the playback and make a list of the content from mobile.
 
 
-*  Refer to SmartviewSDK Guideline:
-  * [DMP2.0 sender guide](https://www.samsungdforum.com/TizenGuide/tizen4941/index.html)
-  * [DMP2.0 UX guide](https://www.samsungdforum.com/TizenUxGuide/07/07_Smart_View_enabled_Apps_(for_Samsung_Smart_View_SDK).html#ux-10)
-  * [DMP2.0 Media Spec of 2016 TV](https://www.samsungdforum.com/Tizen/Spec#2016TVSpec)
+## UX Guide
+  - [the UX guideline](http://developer.samsung.com/tv/design/smart-view-sdk)
+
+## Developer Guide
+  - [SmartViewSDK Developer Guide](http://developer.samsung.com/tv/develop/extension-libraries/smart-view-sdk/introduction)
+  - [SmartViewSDK **Default Media Player**](http://developer.samsung.com/tv/develop/extension-libraries/smart-view-sdk/default-media-player)
+
+## SmartViewSDK SDK Download
+  - [SmartView SDK Download](http://developer.samsung.com/tv/develop/tools/extension-libraries/smartview-sdk-download)
+
+## TV Media Specifications
+DMP2.0 supports general media spec and adative streaming(mpeg-dash/hls/smooth streaming)
+
+  - [2015 TV Media Specifications](http://developer.samsung.com/tv/develop/specification/tv-model-lineup/2015-tv-media-specifications)
+  - [2016 TV Media Specifications](http://developer.samsung.com/tv/develop/specification/tv-model-lineup/2016-tv-media-specifications)
 
 ##Sender (mobile)
 
