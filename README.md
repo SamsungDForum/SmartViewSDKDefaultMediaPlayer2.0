@@ -3,7 +3,7 @@ This application demonstrates how to send a **video,audio,photo content** URL to
 
 
 ## UX Guide
-  - [the UX guideline](http://developer.samsung.com/tv/design/smart-view-sdk)
+  - [The UX guideline](http://developer.samsung.com/tv/design/smart-view-sdk)
 
 ## Developer Guide
   - [SmartViewSDK Developer Guide](http://developer.samsung.com/tv/develop/extension-libraries/smart-view-sdk/introduction)
