@@ -149,19 +149,20 @@ class PhotoCollectionView : UIViewController, UICollectionViewDataSource, UIColl
         cell.indicator.hidesWhenStopped = true
         let queue:DispatchQueue = DispatchQueue.main
     
-        ImageCacheHelper.downloadImageAtIndexPath(indexPath , mediaCollection: deviceMediaCollection, completionBlock: { (result: UIImage) in
+        ImageCacheHelper.downloadImageAtIndexPath(indexPath , mediaCollection: self.deviceMediaCollection, completionBlock: { (result: UIImage) in
         queue.async
             {
+                cell.mImageView.image = result
 
-                let cell1 =  collectionView.cellForItem(at: indexPath) as? MediaCell
-        
+                /*let cell1 =  collectionView.cellForItem(at: indexPath) as? MediaCell
                 if let cell2 = cell1
                 {
-                    cell2.mImageView.image = result
+                    cell.mImageView.image = result
                     cell.indicator.hidesWhenStopped = true
-                }
-            }
+                }*/
+           }
         })
+       
     
         if cell.mImageView == nil
         {

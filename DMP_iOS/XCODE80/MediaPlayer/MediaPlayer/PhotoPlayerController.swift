@@ -28,7 +28,7 @@ import SmartView
 
 class PhotoPlayerController: NSObject, PhotoPlayerDelegate {
 
-    
+    private var isPlayerAlreadyInit = true
     override init ()
     {
         super.init()
@@ -36,24 +36,23 @@ class PhotoPlayerController: NSObject, PhotoPlayerDelegate {
     }
     func onPlayerInitialized(){
     
-        if  MediaShareController.sharedInstance.mediaType == "audio"
+        isPlayerAlreadyInit = true
+        if MediaShareController.sharedInstance.playType != nil
         {
-            MediaShareController.sharedInstance.playType = "audio"
-        }
-        else if  MediaShareController.sharedInstance.mediaType == "photo"
-        {
-            MediaShareController.sharedInstance.playType = "photo"
-        }
-        else if  MediaShareController.sharedInstance.mediaType == "video"
-        {
-            MediaShareController.sharedInstance.playType = "video"
+           MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()
+           NotificationCenter.default.post(name: Notification.Name(rawValue: "clearTvQueue"), object: self, userInfo: nil)
         }
         
-       MediaShareController.sharedInstance.photoplayer?.setBackgroundMusic(URL(string: "https://www.samsungdforum.com/smartview/sample/audio/Beverly_-_01_-_You_Said_It.mp3")!)    }
+        if MediaShareController.sharedInstance.settingsValue.audioURL != ""
+        {
+            MediaShareController.sharedInstance.photoplayer?.setBackgroundMusic(URL(string: MediaShareController.sharedInstance.settingsValue.audioURL)!)
+        }
+    
+    }
     
     func onPlayerChange(_ playerType: String)
     {
-        MediaShareController.sharedInstance.photoplayer?.setBackgroundMusic(URL(string :"https://www.samsungdforum.com/smartview/sample/audio/Beverly_-_01_-_You_Said_It.mp3")!)
+         MediaShareController.sharedInstance.photoplayer?.setBackgroundMusic(URL(string :"https://www.samsungdforum.com/smartview/sample/audio/Beverly_-_01_-_You_Said_It.mp3")!)
     }
     
     func onPlay()
@@ -91,12 +90,16 @@ class PhotoPlayerController: NSObject, PhotoPlayerDelegate {
     
     func onAddToList(_ enqueuedItem: [String: AnyObject])
     {
-        
     }
     
     func onRemoveFromList(_ dequeuedItem: [String: AnyObject])
     {
-        MediaShareController.sharedInstance.photoplayer?.getList()
+        let mediaurl_HD = dequeuedItem["uri"] as! String
+        if let index = IndexOfMediaItem(mediaurl_HD)
+        {
+            MediaShareController.sharedInstance.tvQueueMediaCollection.remove(at: index)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "removeItemFromTVQueue"), object: self, userInfo:nil)
+        }
     }
     
     func onClearList()
@@ -106,25 +109,19 @@ class PhotoPlayerController: NSObject, PhotoPlayerDelegate {
     
     func onGetList(_ queueList: [String: AnyObject])
     {
-        MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()
+      //  MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()
         let items = queueList["data"] as! NSArray
-        
+        var itemfoundInMediaCollec_Flag = false
         for inputItem in items {
             
             let mediaItem : Media = Media(url: "")
             if let uri = (inputItem as AnyObject).object(forKey: "uri")
             {
-                if MediaShareController.sharedInstance.playType == "photo"
+                mediaItem.mediaimageUrl = uri as? String
+                if  mediaItem.mediaimageUrl.contains("developer.samsung.com") == true && mediaItem.mediaimageUrl?.contains("_small") == false
                 {
-                    mediaItem.mediaimageUrl = uri as? String
-                    if  mediaItem.mediaimageUrl.contains("samsungdforum") == true && mediaItem.mediaimageUrl?.contains("_small") == false
-                    {
-                      mediaItem.mediaimageUrl.insert(contentsOf: "_small".characters, at: (mediaItem.mediaimageUrl?.index((mediaItem.mediaimageUrl?.endIndex)!, offsetBy: -4))!)
-                    }
-                }
-                else
-                {
-                    mediaItem.mediaUrl = uri as! String
+                    mediaItem.mediaimageUrl_HD = uri as? String
+                    mediaItem.mediaimageUrl.insert(contentsOf: "_small".characters, at: (mediaItem.mediaimageUrl?.index((mediaItem.mediaimageUrl?.endIndex)!, offsetBy: -4))!)
                 }
             }
             if let title = (inputItem as AnyObject).object(forKey: "title")
@@ -143,39 +140,37 @@ class PhotoPlayerController: NSObject, PhotoPlayerDelegate {
             {
                 mediaItem.mediaimageUrl = albumArt as? String
             }
-            if MediaShareController.sharedInstance.tvQueueMediaCollection.contains(mediaItem) == false
+            if IndexOfMediaItem(mediaItem.mediaimageUrl_HD) == nil
             {
+                itemfoundInMediaCollec_Flag = true
                 MediaShareController.sharedInstance.tvQueueMediaCollection.append(mediaItem)
             }
         }
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "TvlistRecieved"), object: self, userInfo: nil)
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "NotifyPlay"), object: self, userInfo: nil)
-        
+        if itemfoundInMediaCollec_Flag == true
+        {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "addItemToTVQueue"), object: self, userInfo: nil)
+        }
+    }
+    
+    func IndexOfMediaItem(_ mediaUrl :String) -> Int?
+    {
+        return  MediaShareController.sharedInstance.tvQueueMediaCollection.index(where: { $0.mediaimageUrl_HD == mediaUrl })
     }
 
-    
     func onCurrentPlaying(_ currentItem: [String: AnyObject])
     {
+        if isPlayerAlreadyInit == true
+        {
+            isPlayerAlreadyInit = false
+            MediaShareController.sharedInstance.playType = "photo"
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "onPlay"), object: self, userInfo: nil)
+        }
         if let uri = currentItem["uri"]
         {
             let mediaImageUrl = uri as! String
              NotificationCenter.default.post(name: Notification.Name(rawValue: "onThumbnailChange"), object: self, userInfo: ["url": mediaImageUrl])
         }
-        if  MediaShareController.sharedInstance.mediaType == "audio"
-        {
-            MediaShareController.sharedInstance.playType = "audio"
-        }
-        else if  MediaShareController.sharedInstance.mediaType == "photo"
-        {
-            MediaShareController.sharedInstance.playType = "photo"
-        }
-        else if  MediaShareController.sharedInstance.mediaType == "video"
-        {
-            MediaShareController.sharedInstance.playType = "video"
-        }
-        
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "onPlay"), object: self, userInfo: nil)
-        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "NotifyPlay"), object: self, userInfo: nil)
     }
     
     func onError(_ error: NSError)

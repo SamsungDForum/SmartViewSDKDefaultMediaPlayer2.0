@@ -16,6 +16,9 @@ class MediaListController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(MediaListController.updateMediaCollection), name: NSNotification.Name(rawValue: "clearTvQueue"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MediaListController.updateMediaCollection), name: NSNotification.Name(rawValue: "removeItemFromTVQueue"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MediaListController.updateMediaCollection), name: NSNotification.Name(rawValue: "addItemToTVQueue"), object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool)
@@ -47,7 +50,7 @@ class MediaListController: UIViewController
     {
         return MediaShareController.sharedInstance.tvQueueMediaCollection.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell
     {
         
@@ -61,12 +64,13 @@ class MediaListController: UIViewController
         ImageCacheHelper.downloadImageAtIndexPath(indexPath , mediaCollection: MediaShareController.sharedInstance.tvQueueMediaCollection, completionBlock: { (result: UIImage) in
             DispatchQueue.main.async
             {
-                let cell1 =  collectionView.cellForItem(at: indexPath) as? MediaCell
+                cell.mImageView.image = result
+                /*let cell1 =  collectionView.cellForItem(at: indexPath) as? MediaCell
                 if let cell2 = cell1
                 {
                     cell2.mImageView.image = result
                     cell.indicator.hidesWhenStopped = true
-                }
+                }*/
             }
         })
         if MediaShareController.sharedInstance.playType == "audio"{
@@ -80,34 +84,39 @@ class MediaListController: UIViewController
         }
         return cell;
     }
+
     @IBAction func removeItemFromList(_ sender: AnyObject)
     {
-        
+        let tag = sender.tag
         if MediaShareController.sharedInstance.playType == "photo"
         {
-            let tag = sender.tag
-            let imageUrl = MediaShareController.sharedInstance.tvQueueMediaCollection[tag!].mediaimageUrl
-            if var url = imageUrl
+            let imageUrl = MediaShareController.sharedInstance.tvQueueMediaCollection[tag!].mediaimageUrl_HD
+            if let url = imageUrl
             {
-                if url.contains("_small") == true
-                {
-                    let range  = url.index((url.endIndex), offsetBy: -10)..<url.index((url.endIndex), offsetBy: -4)
-                    url.removeSubrange(range)
-                }
-                MediaShareController.sharedInstance.photoplayer?.removeFromList(URL(string: imageUrl!)!)
+                MediaShareController.sharedInstance.photoplayer?.removeFromList(URL(string: url)!)
             }
         }
        if  MediaShareController.sharedInstance.playType == "audio"
        {
-            let tag = sender.tag
             let audioUrl = MediaShareController.sharedInstance.tvQueueMediaCollection[tag!].mediaUrl
-            MediaShareController.sharedInstance.audioplayer?.removeFromList(URL(string: audioUrl!)!)
+            if let url = audioUrl
+            {
+                MediaShareController.sharedInstance.audioplayer?.removeFromList(URL(string: url)!)
+            }
         }
        if MediaShareController.sharedInstance.playType == "video"
        {
-            let tag = sender.tag
             let videoUrl = MediaShareController.sharedInstance.tvQueueMediaCollection[tag!].mediaUrl
-            MediaShareController.sharedInstance.videoplayer?.removeFromList(URL(string: videoUrl!)!)
+            if let url = videoUrl
+            {
+                MediaShareController.sharedInstance.videoplayer?.removeFromList(URL(string: url)!)
+            }
+        }
+    }
+    func updateMediaCollection()
+    {
+         DispatchQueue.main.async {
+            self.mediaCollection.reloadData()
         }
     }
 }

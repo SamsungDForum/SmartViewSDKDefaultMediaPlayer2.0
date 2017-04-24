@@ -279,11 +279,18 @@ class MediaPlayViewController : UIViewController
     {
         if (MediaShareController.sharedInstance.playType == "audio")
         {
-            MediaShareController.sharedInstance.audioplayer?.repeatQueue()
+            //MediaShareController.sharedInstance.audioplayer?.repeat()
+            
+            //Supported mode: repeatAll,repeatOff,repeatSingle
+            MediaShareController.sharedInstance.audioplayer?.setRepeat(AudioPlayer.AudioRepeatMode.repeatSingle)
         }
         else if (MediaShareController.sharedInstance.playType == "video")
         {
-            MediaShareController.sharedInstance.videoplayer?.repeatQueue()
+            
+            //MediaShareController.sharedInstance.videoplayer?.repeat()
+            
+            //Supported mode: repeatAll,repeatOff,repeatSingle
+            MediaShareController.sharedInstance.videoplayer?.setRepeat(VideoPlayer.VideoRepeatMode.repeatSingle)
         }
     }
     
@@ -291,7 +298,7 @@ class MediaPlayViewController : UIViewController
     {
         if (MediaShareController.sharedInstance.playType == "audio")
         {
-            MediaShareController.sharedInstance.audioplayer?.shuffle()
+            MediaShareController.sharedInstance.audioplayer?.setShuffle(true)
         }
 //        else if (MediaShareController.sharedInstance.playType == "video")
 //        {
@@ -303,55 +310,75 @@ class MediaPlayViewController : UIViewController
     {
         mediaPlay = true
         mediaPause = false
-        playPauseImgView.image = UIImage(named: "pause")
+        
+        DispatchQueue.main.async
+        {
+            self.playPauseImgView.image = UIImage(named: "pause")
+        }
+        
     }
     
     func Pause()
     {
         mediaPause = true
         mediaPlay = false
-        playPauseImgView.image = UIImage(named: "play")
+        
+        DispatchQueue.main.async
+        {
+                self.playPauseImgView.image = UIImage(named: "play")
+        }
+        
     }
     
     func Stop()
     {
-        mediaPause = false
-        mediaPlay = true
-        playPauseImgView.image = UIImage(named: "play")
-        timeSliderBar.value = 0.0
-        completionTimeText.text = timeFormatted(totalMediaDuration/1000)
-        startTimeText.text = timeFormatted(0)
+        DispatchQueue.main.async
+        {
+            self.mediaPause = false
+            self.mediaPlay = true
+            self.timeSliderBar.value = 0.0
+            self.completionTimeText.text = self.timeFormatted(self.totalMediaDuration/1000)
+            self.startTimeText.text = self.timeFormatted(0)
+            self.playPauseImgView.image = UIImage(named: "play")
+        }
     }
     
     func Repeat(_ notification: Notification)
     {
         let repeatMode = (notification as NSNotification).userInfo?["repeatMode"] as! String
         
-        if(repeatMode.compare("repeatOff") == ComparisonResult.orderedSame)
+        DispatchQueue.main.async
         {
-            repeatImgView.image = UIImage(named: "repeat_off")
-        }
-        else if(repeatMode.compare("repeatSingle") == ComparisonResult.orderedSame)
-        {
-            repeatImgView.image = UIImage(named: "repeat_single")
-        }
-        else if(repeatMode.compare("repeatAll") == ComparisonResult.orderedSame)
-        {
-            repeatImgView.image = UIImage(named: "repeat_all")
+            if(repeatMode.compare("repeatOff") == ComparisonResult.orderedSame)
+            {
+                self.repeatImgView.image = UIImage(named: "repeat_off")
+            }
+            else if(repeatMode.compare("repeatSingle") == ComparisonResult.orderedSame)
+            {
+                self.repeatImgView.image = UIImage(named: "repeat_single")
+            }
+            else if(repeatMode.compare("repeatAll") == ComparisonResult.orderedSame)
+            {
+                self.repeatImgView.image = UIImage(named: "repeat_all")
+            }
         }
     }
     
     func Shuffle(_ notification: Notification)
     {
-         let shuffleStatus = (notification as NSNotification).userInfo?["shuffleStatus"] as! Bool
+        let shuffleStatus = (notification as NSNotification).userInfo?["shuffleStatus"] as! Bool
         
-        if(shuffleStatus)
+        DispatchQueue.main.async
         {
-            shuffleImgView.image = UIImage(named: "shuffle_off")
-        }
-        else
-        {
-            shuffleImgView.image = UIImage(named: "shuffle_on")
+        
+            if(shuffleStatus)
+            {
+                self.shuffleImgView.image = UIImage(named: "shuffle_off")
+            }
+            else
+            {
+                self.shuffleImgView.image = UIImage(named: "shuffle_on")
+            }
         }
     }
     
@@ -387,28 +414,34 @@ class MediaPlayViewController : UIViewController
     func Mute()
     {
         mute = true
-        muteUnmuteImgView.image = UIImage(named: "unmute")
+        DispatchQueue.main.async
+        {
+            self.muteUnmuteImgView.image = UIImage(named: "unmute")
+        }
     }
     
     func UnMute()
     {
          mute = false
-         muteUnmuteImgView.image = UIImage(named: "mute")
+        DispatchQueue.main.async
+        {
+            self.muteUnmuteImgView.image = UIImage(named: "mute")
+        }
     }
-    
     
     func updateTimeProgress(_ notification: Notification)
     {
-        let progressValue = (notification as NSNotification).userInfo?["progress"] as! Int
-        let  totalDuration = (notification as NSNotification).userInfo?["totalDuration"] as! Int
+        DispatchQueue.main.async
+        {
+            let progressValue = (notification as NSNotification).userInfo?["progress"] as! Int
+            let  totalDuration = (notification as NSNotification).userInfo?["totalDuration"] as! Int
         
-        totalMediaDuration = (notification as NSNotification).userInfo?["totalDuration"] as! Int
-        timeSliderBar.value = Float(progressValue*100)/Float(totalDuration)
+            self.totalMediaDuration = (notification as NSNotification).userInfo?["totalDuration"] as! Int
+            self.timeSliderBar.value = Float(progressValue*100)/Float(totalDuration)
         
-        startTimeText.text = timeFormatted(Int(progressValue/1000))
-        completionTimeText.text = timeFormatted(Int(totalDuration/1000))
-        
-        
+            self.startTimeText.text = self.timeFormatted(Int(progressValue/1000))
+            self.completionTimeText.text = self.timeFormatted(Int(totalDuration/1000))
+        }
     }
     
     @IBAction func timeSliderValueChanged(_ sender: AnyObject)
@@ -424,7 +457,6 @@ class MediaPlayViewController : UIViewController
         {
             MediaShareController.sharedInstance.videoplayer?.seek(Double(currenTimeinSec))
         }
-        
     }
     
     func handleTapOnTimeProgessBar(_ sender: UITapGestureRecognizer)
@@ -504,12 +536,14 @@ class MediaPlayViewController : UIViewController
         startTimeText.isHidden = false
         completionTimeText.isHidden = false
     }
+    
     func hideSlider()
     {
         timeSliderBar.isHidden = true
         startTimeText.isHidden = true
         completionTimeText.isHidden = true
     }
+    
     func timeFormatted(_ totalSeconds: Int) -> String
     {
         let seconds: Int = totalSeconds % 60

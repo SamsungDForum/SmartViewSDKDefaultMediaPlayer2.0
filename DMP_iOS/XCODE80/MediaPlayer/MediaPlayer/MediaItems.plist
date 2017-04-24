@@ -234,9 +234,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>11</string>
+			<string>10</string>
 			<key>title</key>
-			<string>Image 11</string>
+			<string>Image 10</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_30p.mp4_20160614_130105.739_small.jpg</string>
 			<key>url_HD</key>
@@ -244,9 +244,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>12</string>
+			<string>11</string>
 			<key>title</key>
-			<string>Image 12</string>
+			<string>Image 11</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_30p.mp4_20160614_130120.778_small.jpg</string>
 			<key>url_HD</key>
@@ -254,9 +254,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>13</string>
+			<string>12</string>
 			<key>title</key>
-			<string>Image 13</string>
+			<string>Image 12</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_30p.mp4_20160614_130121.447_small.jpg</string>
 			<key>url_HD</key>
@@ -264,9 +264,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>14</string>
+			<string>13</string>
 			<key>title</key>
-			<string>Image 14</string>
+			<string>Image 13</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130130.746_small.jpg</string>
 			<key>url_HD</key>
@@ -274,9 +274,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>15</string>
+			<string>14</string>
 			<key>title</key>
-			<string>Image 15</string>
+			<string>Image 14</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130132.242_small.jpg</string>
 			<key>url_HD</key>
@@ -284,9 +284,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>16</string>
+			<string>15</string>
 			<key>title</key>
-			<string>Image 16</string>
+			<string>Image 15</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130133.506_small.jpg</string>
 			<key>url_HD</key>
@@ -294,9 +294,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>17</string>
+			<string>16</string>
 			<key>title</key>
-			<string>Image 17</string>
+			<string>Image 16</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130136.861_small.jpg</string>
 			<key>url_HD</key>
@@ -304,9 +304,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>18</string>
+			<string>17</string>
 			<key>title</key>
-			<string>Image 18</string>
+			<string>Image 17</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130137.047_small.jpg</string>
 			<key>url_HD</key>
@@ -314,9 +314,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>19</string>
+			<string>18</string>
 			<key>title</key>
-			<string>Image 19</string>
+			<string>Image 18</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130138.342_small.jpg</string>
 			<key>url_HD</key>
@@ -324,9 +324,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>20</string>
+			<string>19</string>
 			<key>title</key>
-			<string>Image 20</string>
+			<string>Image 19</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130139.278_small.jpg</string>
 			<key>url_HD</key>
@@ -334,9 +334,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>21</string>
+			<string>20</string>
 			<key>title</key>
-			<string>Image 21</string>
+			<string>Image 20</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130140.417_small.jpg</string>
 			<key>url_HD</key>
@@ -344,9 +344,9 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>22</string>
+			<string>21</string>
 			<key>title</key>
-			<string>Image 22</string>
+			<string>Image 21</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130141.509_small.jpg</string>
 			<key>url_HD</key>
@@ -354,13 +354,13 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>23</string>
+			<string>22</string>
 			<key>title</key>
-			<string>Image 23</string>
+			<string>Image 22</string>
 			<key>url</key>
 			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130144.942_small.jpg</string>
 			<key>url_HD</key>
-			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130144.94.jpg</string>
+			<string>http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_Online_4K_60p_re.mp4_20160614_130144.942.jpg</string>
 		</dict>
 	</array>
 </dict>

@@ -29,12 +29,14 @@ class DeviceListViewController: UITableViewController {
     var didFindServiceObserver: AnyObject? = nil
 
     var didRemoveServiceObserver: AnyObject? = nil
+    
+    var longPressedService: Service? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DeviceCell")
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         didFindServiceObserver =  MediaShareController.sharedInstance.search.on(MSDidFindService) { [unowned self] notification in
             self.tableView.reloadData()
@@ -51,7 +53,7 @@ class DeviceListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if MediaShareController.sharedInstance.search.isSearching {
-            return MediaShareController.sharedInstance.services.count
+            return MediaShareController.sharedInstance.search.getServices().count
         } else {
             return 1
         }
@@ -60,6 +62,10 @@ class DeviceListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath) as UITableViewCell
         cell.textLabel!.text = MediaShareController.sharedInstance.services[indexPath.row].name
+        //let holdToDelete = UILongPressGestureRecognizer(target: cell, action: Selector("longPressDelete"));
+        let holdToDelete = UILongPressGestureRecognizer(target: self, action: #selector(longPressDelete))
+        holdToDelete.minimumPressDuration = 1.00
+        cell.addGestureRecognizer(holdToDelete)
         return cell
     }
 
@@ -76,4 +82,35 @@ class DeviceListViewController: UITableViewController {
         }
         dismiss(animated: true) { }
     }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool
+    {
+        if MediaShareController.sharedInstance.search.isSearching
+        {
+            longPressedService = MediaShareController.sharedInstance.services[indexPath.row] as Service
+        }
+        
+        return true
+    }
+    
+    func longPressDelete(sender: UILongPressGestureRecognizer)
+    {
+        
+        if sender.state == UIGestureRecognizerState.began
+        {
+            
+            let alertController = UIAlertController(title: "Delete Service", message: "Are you sure you want to try to delete service?", preferredStyle: .alert)
+            let deleteService = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                self.longPressedService?.remove()
+            })
+            let cancelService = UIAlertAction(title: "CANCEL", style: .default, handler: nil)
+            alertController.addAction(deleteService)
+            alertController.addAction(cancelService)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+        
+    }
+    
+    
 }

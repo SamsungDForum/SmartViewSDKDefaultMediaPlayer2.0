@@ -9,14 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MediaPlayer/FirstViewController.swift"
-            timestampString = "494252449.346802"
+            filePath = "MediaPlayer/MediaShareController.swift"
+            timestampString = "503386981.601684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "onClientDisconnect(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,14 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MediaPlayer/FirstViewController.swift"
-            timestampString = "494252459.474795"
+            filePath = "MediaPlayer/VideoPlayerController.swift"
+            timestampString = "503386761.459134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "onPlay()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -41,46 +41,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MediaPlayer/FirstViewController.swift"
-            timestampString = "494252461.274893"
+            filePath = "MediaPlayer/VideoPlayerController.swift"
+            timestampString = "503386763.043233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MediaPlayer/FirstViewController.swift"
-            timestampString = "494252462.954883"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MediaPlayer/FirstViewController.swift"
-            timestampString = "494252490.082884"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "onPause()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

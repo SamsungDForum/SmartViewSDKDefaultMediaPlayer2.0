@@ -26,7 +26,16 @@ import Foundation
 import AssetsLibrary
 import SmartView
 
-class MediaShareController: NSObject, ServiceSearchDelegate, ChannelDelegate , VideoPlayerDelegate, AudioPlayerDelegate, PhotoPlayerDelegate, ConnectionDelegate{
+struct Settings {
+    
+    var audioURL:String
+    var disconnectKeepPlaying:Bool
+    var showStandbyDev:Bool
+}
+
+private let backgroundMusic = "https://www.samsungdforum.com/smartview/sample/audio/Beverly_-_01_-_You_Said_It.mp3"
+
+class MediaShareController: NSObject, ServiceSearchDelegate ,ChannelDelegate ,ConnectionDelegate{
     
   
     var videoplayer: VideoPlayer? = nil
@@ -49,6 +58,7 @@ class MediaShareController: NSObject, ServiceSearchDelegate, ChannelDelegate , V
     var channelId: String = "samsung.default.media.player"
     var isConnecting: Bool = false
     var isConnected: Bool = false
+    var isStatusConnected = false
     var isPlayerConnected: Bool = false
     
     var services = [Service]()
@@ -62,7 +72,7 @@ class MediaShareController: NSObject, ServiceSearchDelegate, ChannelDelegate , V
     
     let appName:String = "DefaultMediaPlayer2.0.2"
     
-
+    var settingsValue = Settings(audioURL: backgroundMusic, disconnectKeepPlaying: false, showStandbyDev: true)
     
     static let sharedInstance = MediaShareController()
     
@@ -73,10 +83,8 @@ class MediaShareController: NSObject, ServiceSearchDelegate, ChannelDelegate , V
         
     }
     
-
-    
     func searchServices() {
-        search.start()
+        search.start(settingsValue.showStandbyDev)
         updateCastStatus()
     }
     
@@ -135,10 +143,11 @@ class MediaShareController: NSObject, ServiceSearchDelegate, ChannelDelegate , V
     func onConnect(_ error: NSError?)
     {
         if (error != nil) {
-            search.start()
+            search.start(settingsValue.showStandbyDev)
         }
         isConnecting = false
         isConnected = true
+        isStatusConnected = true
         isPlayerConnected = true
         updateCastStatus()
     }
@@ -148,14 +157,37 @@ class MediaShareController: NSObject, ServiceSearchDelegate, ChannelDelegate , V
         if (isPlayerConnected)
         {
             NotificationCenter.default.post(name: Notification.Name(rawValue: "onDisconnect"), object: self, userInfo: nil)
-            search.start()
+            search.start(settingsValue.showStandbyDev)
             isConnecting = false
             isConnected = false
             isPlayerConnected = false
             updateCastStatus()
+            if self.playType != nil
+            {
+                MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "clearTvQueue"), object: self, userInfo: nil)
+            }
             self.playType = nil
         }
         
+    }
+    
+    func onClientDisconnect(_ client: ChannelClient) {
+        print("onClientDisconnect")
+    }
+    
+    func onClientConnect(_ client: ChannelClient) {
+        print("onClientConnect")
+
+    }
+    
+    func onReady() {
+        print("onReady")
+    }
+    
+    func onError(_ error: NSError) {
+        
+        print("onError")
     }
     
     @objc func onServiceFound(_ service: Service) {
@@ -164,7 +196,7 @@ class MediaShareController: NSObject, ServiceSearchDelegate, ChannelDelegate , V
     }
     
     @objc func onServiceLost(_ service: Service) {
-        removeObject(&services,object: service)
+        removeObject(service)
         updateCastStatus()
     }
     
@@ -172,11 +204,11 @@ class MediaShareController: NSObject, ServiceSearchDelegate, ChannelDelegate , V
         services.removeAll(keepingCapacity: false)
     }
     
-    func removeObject<T:Equatable>(_ arr:inout Array<T>, object:T) -> T? {
-        if let found = arr.index(of: object) {
-            return arr.remove(at: found)
+    func removeObject(_ service :Service) -> Void {
+        if let found = services.index(of: service) {
+             services.remove(at: found)
         }
-        return nil
+        
     }
 
 }

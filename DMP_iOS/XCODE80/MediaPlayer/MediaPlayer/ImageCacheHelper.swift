@@ -43,8 +43,8 @@ class ImageCacheHelper:NSObject{
                {
                     if let imageData = try? Data(contentsOf: imgUrl)
                     {
-                        self.setObjectForKey(imageData, imageKey: "\(imageUrl.hashValue)")
                         completionHandler(imageData)
+                        self.setObjectForKey(imageData, imageKey: "\(imageUrl.hashValue)")
                     }
                }
             })
@@ -53,17 +53,19 @@ class ImageCacheHelper:NSObject{
    class func downloadImageAtIndexPath(_ indexPath : IndexPath, mediaCollection: [Media],completionBlock: @escaping (_ result: UIImage) -> Void)
    {
         let item : Media = mediaCollection[(indexPath as NSIndexPath).row]
-        let  url  = item.mediaimageUrl
+        let  url:String?  = item.mediaimageUrl
         let diskPath = ImageCacheHelper.cacheDirectory.appendingPathComponent("\(url?.hashValue)")
-        if url != ""
+        if let imageURL = url
         {
             if ImageCacheHelper.fileManager.fileExists(atPath: diskPath)
             {
                 
                  DispatchQueue.global(qos: .background).async(execute: {
-                    let image =  UIImage(contentsOfFile: diskPath)
-                    completionBlock(image!)
-                    ImageCacheHelper.setObjectForKey(UIImageJPEGRepresentation(image!, 1.0)!, imageKey: "\(url?.hashValue)")
+                   if let image =  UIImage(contentsOfFile: diskPath)
+                   {
+                        completionBlock(image)
+                        ImageCacheHelper.setObjectForKey(UIImageJPEGRepresentation(image, 1.0)!, imageKey: "\(imageURL.hashValue)")
+                    }
                 })
                                 
             }
@@ -71,9 +73,11 @@ class ImageCacheHelper:NSObject{
             {
                 ImageCacheHelper.getImage(url!,completionHandler: { imageData in
                 try? imageData.write(to: URL(fileURLWithPath: diskPath), options: [.atomic])
-                let userImage =  UIImage(data: imageData)
-                completionBlock(userImage!)
-                })
+                if let userImage =  UIImage(data: imageData)
+                {
+                    completionBlock(userImage)
+                }
+              })
             }
         }
     }
@@ -82,13 +86,15 @@ class ImageCacheHelper:NSObject{
     {
         
         let diskPath = ImageCacheHelper.cacheDirectory.appendingPathComponent("\(url?.hashValue)")
-        if url != ""
+        if  let imageURL = url
         {
             if ImageCacheHelper.fileManager.fileExists(atPath: diskPath)
             {
-                let image =  UIImage(contentsOfFile: diskPath)
-                completionBlock(image!)
-                ImageCacheHelper.setObjectForKey(UIImageJPEGRepresentation(image!, 1.0)!, imageKey: "\(url?.hashValue)")
+               if let image =  UIImage(contentsOfFile: diskPath)
+               {
+                    completionBlock(image)
+                    ImageCacheHelper.setObjectForKey(UIImageJPEGRepresentation(image, 1.0)!, imageKey: "\(imageURL.hashValue)")
+                }
                 
             }
         }

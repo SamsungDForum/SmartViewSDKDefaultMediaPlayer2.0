@@ -145,13 +145,14 @@ class AudioViewController : UIViewController, UICollectionViewDataSource, UIColl
         ImageCacheHelper.downloadImageAtIndexPath(indexPath , mediaCollection: deviceMediaCollection, completionBlock: { (result: UIImage) in
             DispatchQueue.main.async
                 {
-                
-                    let cell1 =  collectionView.cellForItem(at: indexPath) as? MediaCell
+                  
+                    cell.mImageView.image = result
+                    /*let cell1 =  collectionView.cellForItem(at: indexPath) as? MediaCell
                     if let cell2 = cell1
                     {
                         cell2.mImageView.image = result
                         cell.indicator.hidesWhenStopped = true
-                    }
+                    }*/
                 }
         })
         cell.addMediaBtn.frame = CGRect(x: cell.frame.size.width - cell.addMediaBtn.frame.size.width - 20, y: cell.addMediaBtn.frame.origin.y, width: cell.addMediaBtn.frame.size.width, height: cell.addMediaBtn.frame.size.height)

@@ -41,20 +41,19 @@ class TerminateAppViewController: UIViewController {
     func disconnect() {
         
         if MediaShareController.sharedInstance.playType == "photo"{
-        MediaShareController.sharedInstance.photoplayer?.disconnect()
+            MediaShareController.sharedInstance.photoplayer?.disconnect(!MediaShareController.sharedInstance.settingsValue.disconnectKeepPlaying)
         }
         if MediaShareController.sharedInstance.playType == "audio"{
-            MediaShareController.sharedInstance.audioplayer?.disconnect()
+            MediaShareController.sharedInstance.audioplayer?.disconnect(!MediaShareController.sharedInstance.settingsValue.disconnectKeepPlaying)
         }
         if MediaShareController.sharedInstance.playType == "video"{
-            MediaShareController.sharedInstance.videoplayer?.disconnect()
+            MediaShareController.sharedInstance.videoplayer?.disconnect(!MediaShareController.sharedInstance.settingsValue.disconnectKeepPlaying)
         }
         
-        
+        MediaShareController.sharedInstance.updateCastStatus()
         MediaShareController.sharedInstance.isConnecting = false
         MediaShareController.sharedInstance.isConnected = false
         MediaShareController.sharedInstance.search.start()
-        MediaShareController.sharedInstance.updateCastStatus()
 
         self.dismiss(animated: true) { }
     }

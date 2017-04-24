@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		907BA4951E713AB300F924BA /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 907BA4941E713AB300F924BA /* settings.png */; };
+		90B10DD61E71272D0089386B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B10DD51E71272D0089386B /* SettingsViewController.swift */; };
 		9A1AFD6D1D533DE400CE1FC9 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1AFD6C1D533DE400CE1FC9 /* AudioViewController.swift */; };
 		9A1AFD751D5C8C2500CE1FC9 /* MediaListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1AFD741D5C8C2500CE1FC9 /* MediaListController.swift */; };
 		9A59F07C1D7AFD8F00BAB560 /* thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A59F07B1D7AFD8F00BAB560 /* thumb.png */; };
@@ -25,8 +27,6 @@
 		9A896B421D4B2B4500994F30 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A896B411D4B2B4500994F30 /* Media.swift */; };
 		9A896B441D4B2CE500994F30 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A896B431D4B2CE500994F30 /* MediaCell.swift */; };
 		9A896B461D4F216600994F30 /* MediaItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A896B451D4F216600994F30 /* MediaItems.plist */; };
-		9AF9AFA41DA3C8D800C8B0CD /* SmartView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF9AFA21DA3C8CF00C8B0CD /* SmartView.framework */; };
-		9AF9AFA51DA3C8D800C8B0CD /* SmartView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF9AFA21DA3C8CF00C8B0CD /* SmartView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9AFD0C6C1D507F0400C3494A /* ImageCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFD0C6B1D507F0400C3494A /* ImageCacheHelper.swift */; };
 		C9043F221D759D3B00C7826E /* MediaPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9043F211D759D3B00C7826E /* MediaPlayViewController.swift */; };
 		C9043F261D759E4F00C7826E /* previous.png in Resources */ = {isa = PBXBuildFile; fileRef = C9043F251D759E4F00C7826E /* previous.png */; };
@@ -95,7 +95,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9AF9AFA51DA3C8D800C8B0CD /* SmartView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +102,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		907BA4941E713AB300F924BA /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		90B10DD51E71272D0089386B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9A1AFD6C1D533DE400CE1FC9 /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9A1AFD741D5C8C2500CE1FC9 /* MediaListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MediaListController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9A59F07B1D7AFD8F00BAB560 /* thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb.png; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		9A896B411D4B2B4500994F30 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		9A896B431D4B2CE500994F30 /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
 		9A896B451D4F216600994F30 /* MediaItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MediaItems.plist; sourceTree = "<group>"; };
-		9AF9AFA21DA3C8CF00C8B0CD /* SmartView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SmartView.framework; sourceTree = "<group>"; };
 		9AFD0C6B1D507F0400C3494A /* ImageCacheHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ImageCacheHelper.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C9043F211D759D3B00C7826E /* MediaPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayViewController.swift; sourceTree = "<group>"; };
 		C9043F251D759E4F00C7826E /* previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previous.png; sourceTree = "<group>"; };
@@ -177,7 +177,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AF9AFA41DA3C8D800C8B0CD /* SmartView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +200,6 @@
 		C91382E91C15A54F00A35DA3 = {
 			isa = PBXGroup;
 			children = (
-				9AF9AFA21DA3C8CF00C8B0CD /* SmartView.framework */,
 				C9530E241C17F1CF00D8BAF4 /* images */,
 				C91382F41C15A54F00A35DA3 /* MediaPlayer */,
 				C91383091C15A54F00A35DA3 /* MediaPlayerTests */,
@@ -223,6 +221,7 @@
 		C91382F41C15A54F00A35DA3 /* MediaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				90B10DD51E71272D0089386B /* SettingsViewController.swift */,
 				C91382F51C15A54F00A35DA3 /* AppDelegate.swift */,
 				C91382FC1C15A54F00A35DA3 /* Assets.xcassets */,
 				9A8656061D76CAE200B0B5C4 /* AudioPlayerController.swift */,
@@ -272,6 +271,7 @@
 		C9530E241C17F1CF00D8BAF4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				907BA4941E713AB300F924BA /* settings.png */,
 				9A59F07B1D7AFD8F00BAB560 /* thumb.png */,
 				C9043F271D759E6200C7826E /* next.png */,
 				C9043F281D759E6200C7826E /* volume_down.png */,
@@ -379,14 +379,18 @@
 				TargetAttributes = {
 					C91382F11C15A54F00A35DA3 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 9BA8G3LBM6;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					C91383051C15A54F00A35DA3 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0810;
 						TestTargetID = C91382F11C15A54F00A35DA3;
 					};
 					C91383101C15A54F00A35DA3 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0810;
 						TestTargetID = C91382F11C15A54F00A35DA3;
 					};
 				};
@@ -453,6 +457,7 @@
 				C9043F2F1D759E6200C7826E /* next.png in Resources */,
 				9A8655E21D73EC1E00B0B5C4 /* video_Placeholder.jpeg in Resources */,
 				C9530E331C17F30100D8BAF4 /* cast_on0.png in Resources */,
+				907BA4951E713AB300F924BA /* settings.png in Resources */,
 				C9530E341C17F30100D8BAF4 /* cast_on0@2x.png in Resources */,
 				C9530E311C17F30100D8BAF4 /* cast_on.png in Resources */,
 				C9A95D391C4FAEB10069E41B /* mediaStyle.xml in Resources */,
@@ -485,6 +490,7 @@
 				9A896B421D4B2B4500994F30 /* Media.swift in Sources */,
 				C9530E4E1C1842AE00D8BAF4 /* TerminateAppViewController.swift in Sources */,
 				C942DAFC1C1AA06B00E08B87 /* VideoViewController.swift in Sources */,
+				90B10DD61E71272D0089386B /* SettingsViewController.swift in Sources */,
 				9A1AFD6D1D533DE400CE1FC9 /* AudioViewController.swift in Sources */,
 				C9530E521C18433A00D8BAF4 /* DeviceListViewController.swift in Sources */,
 				9A896B441D4B2CE500994F30 /* MediaCell.swift in Sources */,
@@ -646,6 +652,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: HYOJAE LEE (L6J4NPG367)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9BA8G3LBM6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -653,10 +661,12 @@
 				INFOPLIST_FILE = MediaPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.samsung.smartview1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samsung.DMP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "accbfd52-2d84-4f21-ba5e-dff6b357b418";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -666,6 +676,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: HYOJAE LEE (L6J4NPG367)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9BA8G3LBM6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -673,10 +685,12 @@
 				INFOPLIST_FILE = MediaPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.samsung.smartview1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samsung.DMP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "accbfd52-2d84-4f21-ba5e-dff6b357b418";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -688,6 +702,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MSF.MediaPlayerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MediaPlayer.app/MediaPlayer";
 			};
 			name = Debug;
@@ -700,6 +715,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MSF.MediaPlayerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MediaPlayer.app/MediaPlayer";
 			};
 			name = Release;
@@ -711,6 +727,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MSF.MediaPlayerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = MediaPlayer;
 				USES_XCTRUNNER = YES;
 			};
@@ -723,6 +740,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MSF.MediaPlayerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = MediaPlayer;
 				USES_XCTRUNNER = YES;
 			};

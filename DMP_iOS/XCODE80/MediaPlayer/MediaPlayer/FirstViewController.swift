@@ -65,8 +65,7 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
         tvListButton.isEnabled = false
         addAllMediaButton.isHidden = true
         addAllMediaButton.isEnabled = false
-       
-        NotificationCenter.default.addObserver(self, selector: #selector(FirstViewController.showTvQueue), name: NSNotification.Name(rawValue: "TvlistRecieved"), object: nil)
+  
         NotificationCenter.default.addObserver(self, selector: #selector(FirstViewController.showButton), name: NSNotification.Name(rawValue: "onPlay"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(FirstViewController.hideButton), name: NSNotification.Name(rawValue: "onDisconnect"), object: nil)
 
@@ -78,6 +77,15 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
         
         self.navigationItem.titleView = label
         self.navigationController?.navigationBar.tintColor = UIColor.black
+        
+        let button = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 250, width: 70, height: 70))
+        button.backgroundColor = .orange
+        button.setImage(UIImage(named:"settings.png"), for: .normal)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        self.view.addSubview(button)
         
         navigationItem.titleView?.tintColor = UIColor.black
         castItem!.castButton.addTarget(self, action: #selector(FirstViewController.cast), for: UIControlEvents.touchUpInside)
@@ -114,6 +122,29 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
         self.view.backgroundColor = UIColor.orange
     }
     
+    func buttonAction(sender: UIButton!) {
+        //print("Button tapped")
+        
+        
+        let settingsView = sb.instantiateViewController(withIdentifier: "settingsView") as? SettingsViewController
+//        settingsView?.view.frame = CGRect(x:0, y:scrollView.bounds.height, width: self.view.bounds.size.width - 50, height: self.view.bounds.size.height + 50)
+        
+//        let dummyViewController = UIViewController()
+//        let scroll = UIScrollView(frame: CGRect(x:0, y:20, width:view.bounds.size.width - 50, height: view.bounds.size.height - 50))
+//        scroll.backgroundColor = UIColor.white
+//        scroll.contentSize = CGSize(width: scrollView.bounds.width, height: scrollView.bounds.height + 150)
+//        scroll.autoresizingMask = UIViewAutoresizing.flexibleWidth
+//        
+//        scrollView.addSubview(settingsView!.view)
+//        
+//        dummyViewController.view.addSubview(scrollView)
+        settingsView?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        
+        present(settingsView!, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(settingsView!, animated: false)
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool)
     {
        // title = "Default Media Player"
@@ -134,8 +165,6 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
     override func viewWillLayoutSubviews()
     {
         super.viewWillLayoutSubviews()
-        audioView?.view.frame = CGRect(x:(self.view.bounds.size.width), y:0, width: self.view.bounds.size.width, height: scrollView.bounds.height)
-
     }
     // 2: Add the cast button action
     func cast()
@@ -190,7 +219,7 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
             MediaShareController.sharedInstance.deviceMediaCollection = (photoView?.deviceMediaCollection)!
             for mediaItem in MediaShareController.sharedInstance.deviceMediaCollection
             {
-                item1[uri] = mediaItem.mediaimageUrl as AnyObject?
+                item1[uri] = mediaItem.mediaimageUrl_HD as AnyObject?
                 item1[title] = mediaItem.mediaTitle as AnyObject?
                 item1[albumName] = "" as AnyObject?
                 item1[albumArt] = "" as AnyObject?
@@ -232,92 +261,88 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
     {
         let time = DispatchTime.now() + Double(Int64(2.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: time) { () -> Void in
-            
-            if MediaShareController.sharedInstance.playType == "photo"
-            {
-              MediaShareController.sharedInstance.photoplayer?.getList()
-            }
-            else if MediaShareController.sharedInstance.playType == "audio"
-            {
-              MediaShareController.sharedInstance.audioplayer?.getList()
-            }
-            else if MediaShareController.sharedInstance.playType == "video"
-            {
-              MediaShareController.sharedInstance.videoplayer?.getList()
-            }
+            self.getTVQueue()
         }
     }
     
-    @IBAction func getTVqueue(_ sender: AnyObject)
+    func getTVQueue()
     {
-        if bTVlistVisible == false
+        if MediaShareController.sharedInstance.playType == "photo"
         {
+            MediaShareController.sharedInstance.photoplayer?.getList()
+        }
+        else if MediaShareController.sharedInstance.playType == "audio"
+        {
+            MediaShareController.sharedInstance.audioplayer?.getList()
+        }
+        else if MediaShareController.sharedInstance.playType == "video"
+        {
+            MediaShareController.sharedInstance.videoplayer?.getList()
+        }
+    }
+    @IBAction func showTVqueue(_ sender: AnyObject)
+    {
+        self.getTVQueue()
+        DispatchQueue.main.async {
             
-           if MediaShareController.sharedInstance.playType == "photo"
-           {
-              MediaShareController.sharedInstance.photoplayer?.getList()
-           }
-          else if MediaShareController.sharedInstance.playType == "audio"
-           {
-              MediaShareController.sharedInstance.audioplayer?.getList()
-           }
-          else if MediaShareController.sharedInstance.playType == "video"
-           {
-              MediaShareController.sharedInstance.videoplayer?.getList()
-           }
-          
-            bTVlistVisible = true
-            scrollView.isHidden = true
-            lineView.isHidden = true
-            tvListView = sb.instantiateViewController(withIdentifier: "Mediaview") as? MediaListController
-            tvListView?.view.backgroundColor = UIColor.white
-            self.tvListView!.view.frame = CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.size.height)!+20, width: self.view.bounds.size.width,  height: self.view.frame.size.height -  (self.navigationController?.navigationBar.frame.size.height)! - 20 )
-            firstViewController.addSubview(tvListView!.view)
-          
+        if self.bTVlistVisible == false
+        {
+            self.bTVlistVisible = true
+            self.scrollView.isHidden = true
+            self.lineView.isHidden = true
+            self.tvListView?.updateMediaCollection()
+            self.firstViewController.addSubview(self.tvListView!.view)
         }
         else
         {
-            bTVlistVisible = false
-            scrollView.isHidden = false
-            lineView.isHidden = false
-            tvListView?.view.removeFromSuperview()
+            self.bTVlistVisible = false
+            self.scrollView.isHidden = false
+            self.lineView.isHidden = false
+            self.tvListView?.view.removeFromSuperview()
         }
+      }
         
     }
     
     func showButton()
     {
+        self.getTVQueue()
+        
+        DispatchQueue.main.async {
+            
         self.tvListButton.isHidden = false
         self.tvListButton.isEnabled = true
-       if  (MediaShareController.sharedInstance.currentPage == 0 && MediaShareController.sharedInstance.playType == "photo") ||
-           (MediaShareController.sharedInstance.currentPage == 1 && MediaShareController.sharedInstance.playType == "audio") ||
-        (MediaShareController.sharedInstance.currentPage == 2 && MediaShareController.sharedInstance.playType == "video")
-       {
-           self.addAllMediaButton.isHidden = false
-           self.addAllMediaButton.isEnabled = true
-       }
-        
+        if  (MediaShareController.sharedInstance.currentPage == 0 && MediaShareController.sharedInstance.playType == "photo") ||
+            (MediaShareController.sharedInstance.currentPage == 1 && MediaShareController.sharedInstance.playType == "audio") ||
+            (MediaShareController.sharedInstance.currentPage == 2 && MediaShareController.sharedInstance.playType == "video")
+            {
+              self.addAllMediaButton.isHidden = false
+              self.addAllMediaButton.isEnabled = true
+            }
+         }
     }
     func hideButton()
     {
+        
+        DispatchQueue.main.async {
+            
         self.tvListButton.isHidden = true
         self.tvListButton.isEnabled = false
     
         self.addAllMediaButton.isHidden = true
         self.addAllMediaButton.isEnabled = false
-        if bTVlistVisible == true
+        if self.bTVlistVisible == true
         {
-            bTVlistVisible = false
-            scrollView.isHidden = false
-            lineView.isHidden = false
-            tvListView?.view.removeFromSuperview()
+            self.bTVlistVisible = false
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "isTVListViewVisible"), object: self, userInfo: ["bTVlistVisible": self.bTVlistVisible])
+            self.scrollView.isHidden = false
+            self.lineView.isHidden = false
+            self.tvListView?.view.removeFromSuperview()
         }
+      }
         
     }
-     func showTvQueue()
-     {
-       tvListView?.mediaCollection.reloadData()
-     }
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     {
         
@@ -335,8 +360,12 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
     
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
-        lineView.frame.origin.x = scrollView.contentOffset.x/3
-        lineView.frame.size.width = scrollView.frame.width/3
+        DispatchQueue.main.async {
+            
+        self.lineView.frame.origin.x = scrollView.contentOffset.x/3
+        self.lineView.frame.size.width = scrollView.frame.width/3
+            
+        }
     }
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView)
@@ -346,6 +375,7 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
+        DispatchQueue.main.async {
         let page = (scrollView.contentOffset.x) / (scrollView.frame.size.width)
         if MediaShareController.sharedInstance.playType != nil
         {
@@ -354,9 +384,9 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
         }       
          if page == 0
          {
-            photoButton.setTitleColor(UIColor.black, for:UIControlState())
-            videoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
-            audioButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+            self.photoButton.setTitleColor(UIColor.black, for:UIControlState())
+            self.videoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+            self.audioButton.setTitleColor(UIColor.darkGray, for:UIControlState())
             
             MediaShareController.sharedInstance.currentPage = 0
             if MediaShareController.sharedInstance.playType != "photo"
@@ -367,9 +397,9 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
          }
         else if page == 1
         {
-            audioButton.setTitleColor(UIColor.black, for:UIControlState())
-            photoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
-            videoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+            self.audioButton.setTitleColor(UIColor.black, for:UIControlState())
+            self.photoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+            self.videoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
          
             MediaShareController.sharedInstance.currentPage = 1
             if MediaShareController.sharedInstance.playType != "audio"
@@ -381,9 +411,9 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
         }
         else if page == 2
         {
-            videoButton.setTitleColor(UIColor.black, for:UIControlState())
-            photoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
-            audioButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+            self.videoButton.setTitleColor(UIColor.black, for:UIControlState())
+            self.photoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+            self.audioButton.setTitleColor(UIColor.darkGray, for:UIControlState())
             
             MediaShareController.sharedInstance.currentPage = 2
             if MediaShareController.sharedInstance.playType != "video"
@@ -393,38 +423,49 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
 
             }
         }
+      
+        }
     }
     
     
     @IBAction func photoBtnAction(_ sender: AnyObject)
     {
-        photoButton.setTitleColor(UIColor.black, for:UIControlState())
-        videoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
-        audioButton.setTitleColor(UIColor.darkGray, for:UIControlState())
-        
         MediaShareController.sharedInstance.currentPage = 0
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         
+        DispatchQueue.main.async {
+            
+        self.photoButton.setTitleColor(UIColor.black, for:UIControlState())
+        self.videoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+        self.audioButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            
+        }
     }
     
     @IBAction func audioBtnAction(_ sender: AnyObject)
     {
-        audioButton.setTitleColor(UIColor.black, for:UIControlState())
-        photoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
-        videoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
-        
         MediaShareController.sharedInstance.currentPage = 1
-        scrollView.setContentOffset(CGPoint(x: self.view.bounds.size.width, y: 0), animated: true)
+        DispatchQueue.main.async {
+            
+        self.audioButton.setTitleColor(UIColor.black, for:UIControlState())
+        self.photoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+        self.videoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+        self.scrollView.setContentOffset(CGPoint(x: self.view.bounds.size.width, y: 0), animated: true)
+            
+        }
     }
     
     @IBAction func videoBtnAction(_ sender: AnyObject)
     {
-        videoButton.setTitleColor(UIColor.black, for:UIControlState())
-        photoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
-        audioButton.setTitleColor(UIColor.darkGray, for:UIControlState())
-        
         MediaShareController.sharedInstance.currentPage = 2
-        scrollView.setContentOffset(CGPoint(x: self.view.bounds.size.width*2, y: 0), animated: true)
+        DispatchQueue.main.async {
+
+        self.videoButton.setTitleColor(UIColor.black, for:UIControlState())
+        self.photoButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+        self.audioButton.setTitleColor(UIColor.darkGray, for:UIControlState())
+        self.scrollView.setContentOffset(CGPoint(x: self.view.bounds.size.width*2, y: 0), animated: true)
+            
+        }
     }
 
 }

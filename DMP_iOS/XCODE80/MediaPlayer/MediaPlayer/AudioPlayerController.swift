@@ -28,7 +28,9 @@ import SmartView
 
 class AudioPlayerController: NSObject, AudioPlayerDelegate,UIPopoverPresentationControllerDelegate {
 
-    var totalDuration:Int = 0
+    private var isPlayerAlreadyInit: Bool = true
+    private var isTVListVisible :Bool = false
+    var totalDuration :Int = 0
     override init () {
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(AudioPlayerController.OnAppResume), name: NSNotification.Name(rawValue: "audioApplicationResume"), object: nil)
@@ -70,24 +72,16 @@ class AudioPlayerController: NSObject, AudioPlayerDelegate,UIPopoverPresentation
     
     func onPlayerInitialized()
     {
-        if  MediaShareController.sharedInstance.mediaType == "audio"
+        isPlayerAlreadyInit = true
+        if MediaShareController.sharedInstance.playType != nil
         {
-            MediaShareController.sharedInstance.playType = "audio"
+            MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "clearTvQueue"), object: self, userInfo: nil)
         }
-        else if  MediaShareController.sharedInstance.mediaType == "photo"
-        {
-            MediaShareController.sharedInstance.playType = "photo"
-        }
-        else if  MediaShareController.sharedInstance.mediaType == "video"
-        {
-            MediaShareController.sharedInstance.playType = "video"
-        }
-        
     }
     
     func onPlayerChange(_ playerType: String)
     {
-        MediaShareController.sharedInstance.playType = "audio"
     }
     
     func onPlay()
@@ -124,6 +118,10 @@ class AudioPlayerController: NSObject, AudioPlayerDelegate,UIPopoverPresentation
     {
         NotificationCenter.default.post(name: Notification.Name(rawValue: "NotifyUnMute"), object: self, userInfo: nil)
     }
+    func onControlStatus(_ volLevel: Int, muteStatus: Bool, shuffleStatus: Bool, mode: String)
+    {
+        //print("volume  \(volLevel)  shuffleStatus  \(shuffleStatus)  and modevalue  \(mode)")
+    }
     
     func onGetVolume(_ volLevel: Int)
     {
@@ -137,12 +135,18 @@ class AudioPlayerController: NSObject, AudioPlayerDelegate,UIPopoverPresentation
     
     func onAddToList(_ enqueuedItem: [String: AnyObject])
     {
-        
+
     }
     
     func onRemoveFromList(_ dequeuedItem: [String: AnyObject])
     {
-        MediaShareController.sharedInstance.audioplayer?.getList()
+        let mediaurl = dequeuedItem["uri"] as! String
+        if let index = IndexOfMediaItem(mediaurl)
+        {
+          MediaShareController.sharedInstance.tvQueueMediaCollection.remove(at: index)
+          NotificationCenter.default.post(name: Notification.Name(rawValue: "removeItemFromTVQueue"), object: self, userInfo:nil)
+        }
+       
     }
     
     func onClearList()
@@ -152,21 +156,15 @@ class AudioPlayerController: NSObject, AudioPlayerDelegate,UIPopoverPresentation
     
     func onGetList(_ queueList: [String: AnyObject])
     {
-        MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()
-        
+        //MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()
+        var itemfoundInMediaCollec_Flag = false
         let items = queueList["data"] as! NSArray
         for inputItem in items {
             let mediaItem : Media = Media(url: "")
             
             if let uri = (inputItem as AnyObject).object(forKey: "uri")
             {
-                if MediaShareController.sharedInstance.playType == "photo" {
-                    mediaItem.mediaimageUrl = uri as! String
-                }
-                else
-                {
-                    mediaItem.mediaUrl = uri as! String
-                }
+                mediaItem.mediaUrl = uri as! String
             }
             if let title = (inputItem as AnyObject).object(forKey: "title")
             {
@@ -184,13 +182,21 @@ class AudioPlayerController: NSObject, AudioPlayerDelegate,UIPopoverPresentation
             {
                 mediaItem.mediaimageUrl = albumArt as! String
             }
-            if MediaShareController.sharedInstance.tvQueueMediaCollection.contains(mediaItem) == false
+            if IndexOfMediaItem(mediaItem.mediaUrl) == nil
             {
+                itemfoundInMediaCollec_Flag = true
                 MediaShareController.sharedInstance.tvQueueMediaCollection.append(mediaItem)
             }
         }
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "TvlistRecieved"), object: self, userInfo: nil)
-        
+        if itemfoundInMediaCollec_Flag == true
+        {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "addItemToTVQueue"), object: self, userInfo: nil)
+        }
+    }
+    
+    func IndexOfMediaItem(_ mediaUrl :String) -> Int?
+    {
+        return  MediaShareController.sharedInstance.tvQueueMediaCollection.index(where: { $0.mediaUrl == mediaUrl })
     }
     
     func onShuffle(_ status: Bool)
@@ -205,25 +211,17 @@ class AudioPlayerController: NSObject, AudioPlayerDelegate,UIPopoverPresentation
     
     func onCurrentPlaying(_ currentItem: [String: AnyObject])
     {
-        
+        if  isPlayerAlreadyInit == true
+        {
+            isPlayerAlreadyInit = false
+            MediaShareController.sharedInstance.playType = "audio"
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "onPlay"), object: self, userInfo: nil)
+        }
         if let url = currentItem["albumArt"]
         {
             let mediaImageUrl = url as! String
             NotificationCenter.default.post(name: Notification.Name(rawValue: "onThumbnailChange"), object: self, userInfo: ["url": mediaImageUrl])
         }
-        if  MediaShareController.sharedInstance.mediaType == "audio"
-        {
-            MediaShareController.sharedInstance.playType = "audio"
-        }
-        else if  MediaShareController.sharedInstance.mediaType == "photo"
-        {
-            MediaShareController.sharedInstance.playType = "photo"
-        }
-        else if  MediaShareController.sharedInstance.mediaType == "video"
-        {
-            MediaShareController.sharedInstance.playType = "video"
-        }
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "onPlay"), object: self, userInfo: nil)
         NotificationCenter.default.post(name: Notification.Name(rawValue: "NotifyPlay"), object: self, userInfo: nil)
         
     }
