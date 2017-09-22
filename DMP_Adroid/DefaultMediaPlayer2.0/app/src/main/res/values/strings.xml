@@ -1,5 +1,16 @@
 <resources>
-    <string name="app_name">DefaultMediaPlayer2.0</string>
+    <string name="app_name">Default Media Player</string>
+    <string name="sharedPrefrencesFile">com.samsung.DefaultMediaPlayer2.0.Settings</string>
+    <string name="showStandbyScreen">showStandbyScreen</string>
+    <string name="bgImageUrl1">bgImage1</string>
+    <string name="bgImageUrl2">bgImage2</string>
+    <string name="bgImageUrl3">bgImage3</string>
+    <string name="watermarkUrl">watermark</string>
+    <string name="bgAudioUrl">bgAudio</string>
+    <string name="useTVList">useTVList</string>
+    <string name="showStandbyDevices">showStandbyDevices</string>
+    <string name="closeOnDisconnect">closeOnDisconnect</string>
+    <string name="firstDBInitialize">firstDBInitialize</string>
 
     <string name="castIcon">Cast Status</string>
     <string name="queueIcon">List</string>
@@ -13,4 +24,10 @@
     <string name="lblListWait">List is loading. Please wait..</string>
     <string name="lblAppBackground">\"Default Media Player\"\nhas gone in background,\non your tv.</string>
     <string name="btnBringAppToForeground">Bring to foreground</string>
+
+    <string-array name="aspect_ratios">
+        <item>Fullscreen</item>
+        <item>Portrait</item>
+        <item>Square</item>
+    </string-array>
 </resources>
