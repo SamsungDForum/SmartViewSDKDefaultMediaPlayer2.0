@@ -24,21 +24,19 @@ import java.util.ArrayList;
  * @author Ankit Saini
  * Adapter class to populate photo Items in Photos tab (Listview).
  */
-public class PhotosListViewAdapter extends ArrayAdapter<PhotoItem> {
+class PhotosListViewAdapter extends ArrayAdapter<PhotoItem> {
     private final static String TAG = "PhotosListViewAdapter";
-    private Context mContext;
     private int mLayoutResourceId;
     private ArrayList<PhotoItem> mData = new ArrayList<PhotoItem>();
 
-    public PhotosListViewAdapter(Context context, int layoutResourceId, ArrayList<PhotoItem> data)
+    PhotosListViewAdapter(Context context, int layoutResourceId, ArrayList<PhotoItem> data)
     {
         super(context, layoutResourceId, data);
-        this.mContext = context;
         this.mLayoutResourceId = layoutResourceId;
         this.mData = data;
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         ImageView thumbNailImage;
         TextView photoTitle;
     }
@@ -56,7 +54,7 @@ public class PhotosListViewAdapter extends ArrayAdapter<PhotoItem> {
 
         if(null == rowView)
         {
-            LayoutInflater inflater = ((Activity)mContext).getLayoutInflater();
+            LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
             rowView = inflater.inflate(mLayoutResourceId, parent, false);
             holder = new ViewHolder();
             holder.thumbNailImage = (ImageView)rowView.findViewById(R.id.photo_thumbnail);
@@ -84,17 +82,17 @@ public class PhotosListViewAdapter extends ArrayAdapter<PhotoItem> {
         /*Download the image from url and display on image view..*/
         //Fetch small thumbnail images for HD Images..
         String thumbnailUrl = item.photoUrl;
-        if(thumbnailUrl.contains("samsungdforum")) {
+        if(thumbnailUrl.contains("developer.samsung.com")) {
             thumbnailUrl = thumbnailUrl.replace(".jpg", "_small.jpg");
         }
         Log.v(TAG, "Photo Thumbnail URL : " + thumbnailUrl);
         if(thumbnailUrl.isEmpty()) {
             //holder.thumbNailImage.setImageDrawable(null);
-            Picasso.with(mContext)
+            Picasso.with(getContext())
                     .load(R.drawable.thumbnail)
                     .into(holder.thumbNailImage);
         } else {
-            Picasso.with(mContext)
+            Picasso.with(getContext())
                     .load(thumbnailUrl)
                     .error(R.drawable.thumbnail)
                     .memoryPolicy(MemoryPolicy.NO_STORE)
@@ -118,10 +116,10 @@ public class PhotosListViewAdapter extends ArrayAdapter<PhotoItem> {
                         photoUrl = Uri.parse("");
                     }
                     if (CastStateMachineSingleton.getInstance().getCurrentCastState() == CastStates.CONNECTED) {
-                        MediaLauncherSingleton.getInstance(). enqueue(photoUrl,
+                        MediaLauncherSingleton.getInstance(getContext()). enqueue(photoUrl,
                                 item.photoTitle);
                     } else {
-                        Toast.makeText(mContext, "Please connect to a TV.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Please connect to a TV.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -134,7 +132,7 @@ public class PhotosListViewAdapter extends ArrayAdapter<PhotoItem> {
      * Updates grid data and refresh grid items..
      * @param data
      */
-    public void setData(ArrayList<PhotoItem> data) {
+    void setData(ArrayList<PhotoItem> data) {
         this.mData = data;
         notifyDataSetChanged();
     }

@@ -1,36 +1,38 @@
 package samsung.mediaplayerqueue;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 
 import com.samsung.multiscreen.Search;
 import com.samsung.multiscreen.Service;
 
 /**
  * @author Ankit Saini
- * Instantiates tv discovery and populate TVListAdapter with available services (TVs).
+ * Instantiates device discovery and populate DeviceListAdapter with available services.
  */
-public class TVSearch {
+class TVSearch extends View {
     private static String TAG = "TVSearch";
-    private Search mTVSearch = null;
-    private Context mContext = null;
-    private TVListAdapter mTVListAdapter = null;
-    private Handler mTVLsitHandler = new Handler();
+    private Search mSearch = null;
+    private TVListAdapter mDeviceListAdapter = null;
+    private Handler mDeviceListHandler = new Handler();
+    private static TVSearch mInstance = null;
 
-    private void init(Context context) {
-            mContext = context;
-            mTVListAdapter = new TVListAdapter(mContext, R.layout.layout_tvlist_item);
+    private TVSearch(Context context) {
+        super(context);
+        mDeviceListAdapter = new TVListAdapter(context, R.layout.layout_tvlist_item);
     }
 
     /*
      * Method to notify TV List data change.
      */
     private void notifyDataChange() {
-        mTVLsitHandler.post(new Runnable() {
+        mDeviceListHandler.post(new Runnable() {
             @Override
             public void run() {
-                mTVListAdapter.notifyDataSetChanged();
+                mDeviceListAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -38,7 +40,7 @@ public class TVSearch {
     /*
      * Method to update (add) new service (tv) to ListView adapter.
      */
-    private void updateTVList(Service service) {
+    private void updateTVList(final Service service) {
         if(null == service)
         {
             Log.w(TAG, "updateTVList(): NULL service!!!");
@@ -46,26 +48,39 @@ public class TVSearch {
         }
 
         /*If service already doesn't exist in TVListAdapter, add it*/
-        if(!mTVListAdapter.contains(service))
+        if(!mDeviceListAdapter.contains(service))
         {
-            mTVListAdapter.add(service);
-            Log.v(TAG, "TVListAdapter.add(service): " + service);
-            notifyDataChange();
+            ((Activity)getContext()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mDeviceListAdapter.add(service);
+                    Log.v(TAG, "TVListAdapter.add(service): " + service);
+                    notifyDataChange();
+                }
+            });
         }
     }
 
+    static TVSearch getInstance(Context context) {
+        if(mInstance == null) {
+            mInstance = new TVSearch(context);
+        }
+        return mInstance;
+    }
+
     /*Start TV Discovery*/
-    public void startDiscovery() {
-        if(mContext == null || mTVListAdapter == null) {
+    void startDiscovery(Boolean showStandbyDevices) {
+        if(getContext() == null || mDeviceListAdapter == null) {
             Log.w(TAG, "Can't start Discovery.");
             return;
         }
 
-        if(null == mTVSearch)
+        if(mSearch == null)
         {
-            mTVSearch = Service.search(mContext);
-            Log.v(TAG, "Device (" + mTVSearch + ") Search instantiated..");
-            mTVSearch.setOnServiceFoundListener(new Search.OnServiceFoundListener() {
+            mSearch = Service.search(getContext());
+
+            Log.v(TAG, "Device (" + mSearch + ") Search instantiated..");
+            mSearch.setOnServiceFoundListener(new Search.OnServiceFoundListener() {
                 @Override
                 public void onFound(Service service) {
                     Log.v(TAG, "setOnServiceFoundListener(): onFound(): Service Added: " + service);
@@ -73,21 +88,21 @@ public class TVSearch {
                 }
             });
 
-            mTVSearch.setOnStartListener(new Search.OnStartListener() {
+            mSearch.setOnStartListener(new Search.OnStartListener() {
                 @Override
                 public void onStart() {
                     Log.v(TAG, "Starting Discovery.");
                 }
             });
 
-            mTVSearch.setOnStopListener(new Search.OnStopListener() {
+            mSearch.setOnStopListener(new Search.OnStopListener() {
                 @Override
                 public void onStop() {
                     Log.v(TAG, "Discovery Stopped.");
                 }
             });
 
-            mTVSearch.setOnServiceLostListener(new Search.OnServiceLostListener() {
+            mSearch.setOnServiceLostListener(new Search.OnServiceLostListener() {
                 @Override
                 public void onLost(Service service) {
                     Log.v(TAG, "Discovery: Service Lost!!!");
@@ -95,13 +110,13 @@ public class TVSearch {
                     if (null == service) {
                         return;
                     }
-                    mTVListAdapter.remove(service);
+                    mDeviceListAdapter.remove(service);
                     notifyDataChange();
                 }
             });
         }
 
-        boolean bStartDiscovery = mTVSearch.start();
+        boolean bStartDiscovery = mSearch.start(showStandbyDevices);
         if(bStartDiscovery)
         {
             Log.v(TAG, "Discovery Already Started..");
@@ -113,11 +128,12 @@ public class TVSearch {
     }
 
     /* Stop TV Discovery*/
-    public void stopDiscovery() {
-        if (null != mTVSearch)
+    void stopDiscovery() {
+        if (null != mSearch)
         {
-            mTVSearch.stop();
-            mTVSearch = null;
+            mSearch.stop();
+            //mSearch = null;
+            mDeviceListAdapter.clear();
             Log.v(TAG, "Stopping Discovery.");
         }
         if(CastStateMachineSingleton.getInstance().getCurrentCastState() != CastStates.CONNECTED) {
@@ -125,16 +141,16 @@ public class TVSearch {
         }
     }
 
-    TVSearch(Context context){
-        init(context);
+    TVListAdapter getTVListAdapter() {
+        return mDeviceListAdapter;
     }
 
-    public TVListAdapter getTVListAdapter() {
-        return mTVListAdapter;
+    boolean isSearching() {
+        return mSearch != null && mSearch.isSearching();
     }
 
-    public boolean isSearching() {
-        return mTVSearch.isSearching();
+    void clearStandbyDeviceList() {
+        mSearch.clearStandbyDeviceList();
     }
 
 }

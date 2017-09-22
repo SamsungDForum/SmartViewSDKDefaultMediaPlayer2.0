@@ -9,7 +9,7 @@ import java.util.List;
  * @author Ankit Saini
  * Class to maintain the cast satus of the application.
  */
-public class CastStateMachineSingleton implements CastStateHandler{
+class CastStateMachineSingleton implements CastStateHandler {
     private final String TAG = "CastStateM.Singleton";
     private CastStates mCurrentCastState;
     private static CastStateMachineSingleton mInstance = null;
@@ -19,11 +19,11 @@ public class CastStateMachineSingleton implements CastStateHandler{
         mCurrentCastState = CastStates.IDLE;
     }
 
-    public CastStateMachineSingleton() {
+    private CastStateMachineSingleton() {
         initCastStateMachine();
     }
 
-    public static CastStateMachineSingleton getInstance() {
+    static CastStateMachineSingleton getInstance() {
         if(mInstance == null) {
             mInstance = new CastStateMachineSingleton();
         }

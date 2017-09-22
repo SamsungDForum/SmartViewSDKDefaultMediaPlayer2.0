@@ -4,11 +4,11 @@ package samsung.mediaplayerqueue;
  * @author Ankit Saini
  * Class to manage PhotoItems
  */
-public class PhotoItem {
-    public String photoUrl;
-    public String photoTitle;
+class PhotoItem {
+    String photoUrl;
+    String photoTitle;
 
-    public PhotoItem (
+    PhotoItem (
             String photoUrl,
             String photoTitle) {
         this.photoUrl = photoUrl;

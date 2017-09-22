@@ -22,11 +22,10 @@ import org.json.JSONObject;
  * @author Ankit Saini
  * This class manages the playback controls for videos & youtube.
  */
-public class PlaybackControls
+class PlaybackControls
         extends Dialog
         implements View.OnClickListener,
-        SeekBar.OnSeekBarChangeListener {//,
-        //PlayerNotice{
+        SeekBar.OnSeekBarChangeListener {
     private static final String TAG = "PlaybackControls";
     private static PlaybackControls mInstance = null;
 
@@ -43,6 +42,7 @@ public class PlaybackControls
     private SeekBar volumeSeekBar;
     private TextView txtTitle;
     private ImageView imgThumbnail;
+    private Activity mCurrentActivity;
 
     private int videoProgress = 0;
     private int videoVolume = 0;
@@ -52,27 +52,25 @@ public class PlaybackControls
     private Boolean isMute;
     private Boolean isPlaying;
 
-    Activity mActivity = null;
-
     private PlaybackControls(Context context) {
         super(context);
+        mCurrentActivity = (Activity) context;
     }
 
-    public void init(Activity activity) {
-        mActivity = activity;
-        btnPlayPause    = (Button)activity.findViewById(R.id.btnPlay);
-        btnStop         = (Button)activity.findViewById(R.id.btnStop);
-        btnForward      = (Button)activity.findViewById(R.id.btnForward);
-        btnRewind       = (Button)activity.findViewById(R.id.btnRewind);
-        btnMuteUnmute   = (Button)activity.findViewById(R.id.btnMute);
-        btnRepeat       = (Button)activity.findViewById(R.id.btnRepeat);
-        btnNext         = (Button)activity.findViewById(R.id.btnNext);
-        btnPrevious     = (Button)activity.findViewById(R.id.btnPrevious);
-        btnShuffle      = (Button)activity.findViewById(R.id.btnShuffle);
-        videoSeekBar    = (SeekBar)activity.findViewById(R.id.videoSeekBar);
-        volumeSeekBar   = (SeekBar)activity.findViewById(R.id.volumeSeekBar);
-        txtTitle        = (TextView)activity.findViewById(R.id.title);
-        imgThumbnail    = (ImageView)activity.findViewById(R.id.thumbnail);
+    void init() {
+        btnPlayPause    = (Button) mCurrentActivity.findViewById(R.id.btnPlay);
+        btnStop         = (Button) mCurrentActivity.findViewById(R.id.btnStop);
+        btnForward      = (Button) mCurrentActivity.findViewById(R.id.btnForward);
+        btnRewind       = (Button) mCurrentActivity.findViewById(R.id.btnRewind);
+        btnMuteUnmute   = (Button) mCurrentActivity.findViewById(R.id.btnMute);
+        btnRepeat       = (Button) mCurrentActivity.findViewById(R.id.btnRepeat);
+        btnNext         = (Button) mCurrentActivity.findViewById(R.id.btnNext);
+        btnPrevious     = (Button) mCurrentActivity.findViewById(R.id.btnPrevious);
+        btnShuffle      = (Button) mCurrentActivity.findViewById(R.id.btnShuffle);
+        videoSeekBar    = (SeekBar) mCurrentActivity.findViewById(R.id.videoSeekBar);
+        volumeSeekBar   = (SeekBar) mCurrentActivity.findViewById(R.id.volumeSeekBar);
+        txtTitle        = (TextView) mCurrentActivity.findViewById(R.id.title);
+        imgThumbnail    = (ImageView) mCurrentActivity.findViewById(R.id.thumbnail);
 
         btnPlayPause.setOnClickListener(PlaybackControls.this);
         btnStop.setOnClickListener(PlaybackControls.this);
@@ -96,7 +94,7 @@ public class PlaybackControls
         isMute      = false;
     }
 
-    public static PlaybackControls getInstance(Context context){
+    static PlaybackControls getInstance(Context context){
         if(mInstance == null) {
             mInstance = new PlaybackControls(context);
         }
@@ -133,10 +131,10 @@ public class PlaybackControls
         }
         if(seekBar == videoSeekBar) {
             videoSeekBar.setProgress(videoProgress);
-            MediaLauncherSingleton.getInstance().seekTo(videoProgress);
+            MediaLauncherSingleton.getInstance(getContext()).seekTo(videoProgress);
         } else if(seekBar == volumeSeekBar) {
             volumeSeekBar.setProgress(videoVolume);
-            MediaLauncherSingleton.getInstance().setVolume(videoVolume);
+            MediaLauncherSingleton.getInstance(getContext()).setVolume(videoVolume);
         }
     }
 
@@ -147,63 +145,63 @@ public class PlaybackControls
             Log.v(TAG, "onClick(): TV Disconnected!");
             return;
         }
-        if(!MediaLauncherSingleton.getInstance().isConnected()) {
+        if(!MediaLauncherSingleton.getInstance(getContext()).isConnected()) {
             Log.v(TAG, "onClick(): isConnected: false");
             return;
         }
         if(view == view.findViewById(R.id.btnPlay)){
             if(isPlaying){
                 Log.v(TAG, "onClick(): Pause");
-                MediaLauncherSingleton.getInstance().pause();
+                MediaLauncherSingleton.getInstance(getContext()).pause();
             }
             else {
                 Log.v(TAG, "onClick(): Play");
-                MediaLauncherSingleton.getInstance().play();
+                MediaLauncherSingleton.getInstance(getContext()).play();
             }
         }
         else if(view == view.findViewById(R.id.btnStop)){
             Log.v(TAG, "onClick(): Stop");
-            MediaLauncherSingleton.getInstance().stop();
+            MediaLauncherSingleton.getInstance(getContext()).stop();
         }
         else if(view == view.findViewById(R.id.btnForward)){
             Log.v(TAG, "onClick(): Forward");
-            MediaLauncherSingleton.getInstance().forward();
+            MediaLauncherSingleton.getInstance(getContext()).forward();
         }
         else if(view == view.findViewById(R.id.btnRewind)){
             Log.v(TAG, "onClick(): Rewind");
-            MediaLauncherSingleton.getInstance().rewind();
+            MediaLauncherSingleton.getInstance(getContext()).rewind();
         }
         else if(view == view.findViewById(R.id.btnMute)){
             if(isMute){
                 Log.v(TAG, "onClick(): Unmute");
-                MediaLauncherSingleton.getInstance().unmute();
+                MediaLauncherSingleton.getInstance(getContext()).unmute();
             }
             else {
                 Log.v(TAG, "onClick(): Mute");
-                MediaLauncherSingleton.getInstance().mute();
+                MediaLauncherSingleton.getInstance(getContext()).mute();
             }
         }
         else if(view == view.findViewById(R.id.btnRepeat)) {
             Log.v(TAG, "onClick(): Repeat");
-            MediaLauncherSingleton.getInstance().repeatQueue();
+            MediaLauncherSingleton.getInstance(getContext()).repeatQueue();
         }
         else if(view == view.findViewById(R.id.btnShuffle)) {
             Log.v(TAG, "onClick(): Shuffle");
-            MediaLauncherSingleton.getInstance().shuffleQueue();
+            MediaLauncherSingleton.getInstance(getContext()).shuffleQueue();
         }
         else if(view == view.findViewById(R.id.btnNext)) {
             Log.v(TAG, "onClick(): Next");
-            MediaLauncherSingleton.getInstance().next();
+            MediaLauncherSingleton.getInstance(getContext()).next();
         }
         else if(view == view.findViewById(R.id.btnPrevious)) {
             Log.v(TAG, "onClick(): Previous");
-            MediaLauncherSingleton.getInstance().previous();
+            MediaLauncherSingleton.getInstance(getContext()).previous();
         }
     }
 
-    //@Override
-    public void onMediaBufferingStart() {
-        View view = mActivity.getCurrentFocus();
+    void onMediaBufferingStart() {
+        View view = mCurrentActivity.getCurrentFocus();
+        if(view == null) { return; }
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -212,9 +210,9 @@ public class PlaybackControls
         });
     }
 
-    //@Override
-    public void onMediaBufferingComplete() {
-        View view = mActivity.getCurrentFocus();
+    void onMediaBufferingComplete() {
+        View view = mCurrentActivity.getCurrentFocus();
+        if(view == null) { return; }
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -223,10 +221,10 @@ public class PlaybackControls
         });
     }
 
-    //@Override
-    public void onMediaBufferingProgress(final int progress) {
+    void onMediaBufferingProgress(final int progress) {
         final int buffProgress = progress * (videoSeekBar.getMax() / 100);
-                View view = mActivity.getCurrentFocus();
+        View view = mCurrentActivity.getCurrentFocus();
+        if(view == null) { return; }
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -240,9 +238,9 @@ public class PlaybackControls
         });
     }
 
-    //@Override
-    public void onMediaCurrentPlayTime(final int progress) {
-        View view = mActivity.getCurrentFocus();
+    void onMediaCurrentPlayTime(final int progress) {
+        View view = mCurrentActivity.getCurrentFocus();
+        if(view == null) { return; }
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -256,11 +254,11 @@ public class PlaybackControls
         });
     }
 
-    //@Override
-    public void onMediaVideoStreamStart(final int duration) {
+    void onMediaVideoStreamStart(final int duration) {
         btnPlayPause.setBackground(getContext().getResources().getDrawable(R.drawable.pause));
         isPlaying = true;
-        View view = mActivity.getCurrentFocus();
+        View view = mCurrentActivity.getCurrentFocus();
+        if(view == null) { return; }
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -270,32 +268,28 @@ public class PlaybackControls
         });
     }
 
-    //@Override
-    public void onMediaStreamCompleted() {
+    void onMediaStreamCompleted() {
         btnPlayPause.setBackground(getContext().getResources().getDrawable(R.drawable.play));
         isPlaying = false;
     }
 
-    //@Override
-    public void onPlayerInitialized() {}
+    void onPlayerInitialized() {}
 
-    //@Override
-    public void onMediaPlay() {
+    void onMediaPlay() {
         btnPlayPause.setBackground(getContext().getResources().getDrawable(R.drawable.pause));
         isPlaying = true;
     }
 
-    //@Override
-    public void onMediaPause() {
+    void onMediaPause() {
         btnPlayPause.setBackground(getContext().getResources().getDrawable(R.drawable.play));
         isPlaying = false;
     }
 
-    //@Override
-    public void onMediaStop() {
+    void onMediaStop() {
         btnPlayPause.setBackground(getContext().getResources().getDrawable(R.drawable.play));
         isPlaying = false;
-        View view = mActivity.getCurrentFocus();
+        View view = mCurrentActivity.getCurrentFocus();
+        if(view == null) { return; }
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -306,26 +300,21 @@ public class PlaybackControls
         });
     }
 
-    //@Override
-    public void onMediaForward() {}
+    void onMediaForward() {}
 
-    //@Override
-    public void onMediaRewind() {}
+    void onMediaRewind() {}
 
-    //@Override
-    public void onMediaMute() {
+    void onMediaMute() {
         btnMuteUnmute.setBackground(getContext().getResources().getDrawable(R.drawable.unmute));
         isMute = true;
     }
 
-    //@Override
-    public void onMediaUnMute() {
+    void onMediaUnMute() {
         btnMuteUnmute.setBackground(getContext().getResources().getDrawable(R.drawable.mute));
         isMute = false;
     }
 
-    //@Override
-    public void onShuffle(boolean state) {
+    void onShuffle(boolean state) {
         if(state) {
             btnShuffle.setBackground(getContext().getResources().getDrawable(R.drawable.shuffle_on));
         } else {
@@ -333,8 +322,7 @@ public class PlaybackControls
         }
     }
 
-    //@Override
-    public void onRepeat(VideoPlayer.RepeatMode mode) {
+    void onRepeat(VideoPlayer.RepeatMode mode) {
         if(mode.equals(VideoPlayer.RepeatMode.repeatOff)) {
             btnRepeat.setBackground(getContext().getResources().getDrawable(R.drawable.repeat_off));
         } else if(mode.equals(VideoPlayer.RepeatMode.repeatSingle)){
@@ -344,9 +332,9 @@ public class PlaybackControls
         }
     }
 
-    //@Override
-    public void onControlStatus(final int volLevel, final Boolean muteStatus, final Boolean shuffleStatus, final VideoPlayer.RepeatMode repeatStatus) {
-        View view = mActivity.getCurrentFocus();
+    void onControlStatus(final int volLevel, final Boolean muteStatus, final Boolean shuffleStatus, final VideoPlayer.RepeatMode repeatStatus) {
+        View view = mCurrentActivity.getCurrentFocus();
+        if(view == null) { return; }
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -369,9 +357,9 @@ public class PlaybackControls
         onRepeat(repeatStatus);
     }
 
-    //@Override
-    public void onVolumeChange(final int volLevel) {
-        View view = mActivity.getCurrentFocus();
+    void onVolumeChange(final int volLevel) {
+        View view = mCurrentActivity.getCurrentFocus();
+        if(view == null) { return; }
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -385,8 +373,7 @@ public class PlaybackControls
         });
     }
 
-    //@Override
-    public void onCurrentPlaying(JSONObject data, String playerType) {
+    void onCurrentPlaying(JSONObject data, String playerType) {
         try {
             if (playerType.equalsIgnoreCase(MediaLauncherSingleton.PlayerType.VIDEO.name())) {
                 onCurrentPlaying(data.getString(MediaLauncherSingleton.TITLE),
@@ -401,7 +388,7 @@ public class PlaybackControls
                         Uri.parse(data.getString(MediaLauncherSingleton.URL)),
                         MediaLauncherSingleton.PlayerType.PHOTO);
             } else {
-                Picasso.with(mActivity.getApplicationContext())
+                Picasso.with(getContext())
                         .load(R.drawable.image_background)
                         .into(imgThumbnail);
             }
@@ -410,7 +397,7 @@ public class PlaybackControls
         }
     }
 
-    public void onCurrentPlaying(String title, Uri thumbnailUrl, MediaLauncherSingleton.PlayerType playerType) {
+    void onCurrentPlaying(String title, Uri thumbnailUrl, MediaLauncherSingleton.PlayerType playerType) {
         try {
             if (title != null) {
                 txtTitle.setText(title);
@@ -418,21 +405,21 @@ public class PlaybackControls
 
             //Fetch small thumbnail images for HD Images..
             String strThumbnailUrl = thumbnailUrl.toString();
-            if(strThumbnailUrl.contains("samsungdforum.com/smartview/sample/image/photo_")) {
+            if(strThumbnailUrl.contains("developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Demo_")) {
                 strThumbnailUrl = strThumbnailUrl.replace(".jpg", "_small.jpg");
             }
             if(strThumbnailUrl.equals("")) {
-                Picasso.with(mActivity.getApplicationContext())
+                Picasso.with(getContext())
                         .load(R.drawable.image_background)
                         .into(imgThumbnail);
-            } else if (strThumbnailUrl != null) {
-                Picasso.with(mActivity.getApplicationContext())
+            } else if (strThumbnailUrl.length() > 0) {
+                Picasso.with(getContext())
                         .load(strThumbnailUrl)
                         .error(R.drawable.image_background)
                         .memoryPolicy(MemoryPolicy.NO_STORE)
                         .into(imgThumbnail);
             } else {
-                Picasso.with(mActivity.getApplicationContext())
+                Picasso.with(getContext())
                         .load(R.drawable.image_background)
                         .into(imgThumbnail);
             }
@@ -462,12 +449,12 @@ public class PlaybackControls
         }
     }
 
-    public void resetPlaybackControls() {
+    void resetPlaybackControls() {
         videoSeekBar.setProgress(0);
         videoSeekBar.setSecondaryProgress(0);
         volumeSeekBar.setProgress(0);
         txtTitle.setText("");
-        Picasso.with(mActivity.getApplicationContext())
+        Picasso.with(getContext())
                 .load(R.drawable.image_background)
                 .into(imgThumbnail);
         btnPlayPause.setBackground(getContext().getResources().getDrawable(R.drawable.play));
@@ -481,4 +468,3 @@ public class PlaybackControls
         videoSeekBar.setVisibility(View.VISIBLE);
     }
 }
-

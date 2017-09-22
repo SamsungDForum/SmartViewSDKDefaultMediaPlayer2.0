@@ -4,13 +4,13 @@ package samsung.mediaplayerqueue;
  * @author Ankit Saini
  * Class to manage AudioItems
  */
-public class AudioItem {
-    public String audioUrl;
-    public String audioTitle;
-    public String albumName;
-    public String albumArt;
+class AudioItem {
+    String audioUrl;
+    String audioTitle;
+    String albumName;
+    String albumArt;
 
-    public AudioItem(
+    AudioItem(
             String audioUrl,
             String audioTitle,
             String albumName,

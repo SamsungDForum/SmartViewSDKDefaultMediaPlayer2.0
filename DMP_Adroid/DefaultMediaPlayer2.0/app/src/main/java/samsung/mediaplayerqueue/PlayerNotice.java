@@ -8,24 +8,24 @@ import org.json.JSONObject;
  * @author Ankit Saini
  * Interface class for PLayerNotice notification handler.
  */
-public interface PlayerNotice {
-    public void onMediaPlay();
-    public void onMediaPause();
-    public void onMediaStop();
-    public void onMediaForward();
-    public void onMediaRewind();
-    public void onMediaMute();
-    public void onMediaUnMute();
-    public void onShuffle(boolean state);
-    public void onRepeat(VideoPlayer.RepeatMode mode);
-    public void onGetVolume(int level);
+interface PlayerNotice {
+    void onMediaPlay();
+    void onMediaPause();
+    void onMediaStop();
+    void onMediaForward();
+    void onMediaRewind();
+    void onMediaMute();
+    void onMediaUnMute();
+    void onShuffle(boolean state);
+    void onRepeat(VideoPlayer.RepeatMode mode);
+    void onGetVolume(int level);
 
-    public void onMediaBufferingStart();
-    public void onMediaBufferingComplete();
-    public void onMediaBufferingProgress(int progress);
-    public void onMediaCurrentPlayTime(int progress);
-    public void onMediaVideoStreamStart(int duration);
-    public void onMediaStreamCompleted();
-    public void onCurrentPlaying(JSONObject data, String playerType);
-    public void onPlayerInitialized();
+    void onMediaBufferingStart();
+    void onMediaBufferingComplete();
+    void onMediaBufferingProgress(int progress);
+    void onMediaCurrentPlayTime(int progress);
+    void onMediaVideoStreamStart(int duration);
+    void onMediaStreamCompleted();
+    void onCurrentPlaying(JSONObject data, String playerType);
+    void onPlayerInitialized();
 }

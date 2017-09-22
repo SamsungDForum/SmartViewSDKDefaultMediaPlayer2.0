@@ -22,21 +22,19 @@ import java.util.ArrayList;
  * @author Ankit Saini
  * Adapter class to populate video Items in Videos tab (Listview).
  */
-public class VideosListViewAdapter extends ArrayAdapter<VideoItem> {
+class VideosListViewAdapter extends ArrayAdapter<VideoItem> {
     private final static String TAG = "videosListViewAdapter";
-    private Context mContext;
     private int mLayoutResourceId;
     private ArrayList<VideoItem> mData = new ArrayList<VideoItem>();
 
-    public VideosListViewAdapter(Context context, int layoutResourceId, ArrayList<VideoItem> data)
+    VideosListViewAdapter(Context context, int layoutResourceId, ArrayList<VideoItem> data)
     {
         super(context, layoutResourceId, data);
-        this.mContext = context;
         this.mLayoutResourceId = layoutResourceId;
         this.mData = data;
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         ImageView thumbNailImage;
         TextView videoTitle;
     }
@@ -54,7 +52,7 @@ public class VideosListViewAdapter extends ArrayAdapter<VideoItem> {
 
         if(null == rowView)
         {
-            LayoutInflater inflater = ((Activity)mContext).getLayoutInflater();
+            LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
             rowView = inflater.inflate(mLayoutResourceId, parent, false);
             holder = new ViewHolder();
             holder.thumbNailImage = (ImageView)rowView.findViewById(R.id.video_thumbnail);
@@ -71,11 +69,11 @@ public class VideosListViewAdapter extends ArrayAdapter<VideoItem> {
         Log.v(TAG, "Video Thumbnail URL : " + item.thumbnailUrl);
         if(item.thumbnailUrl.isEmpty()) {
             //holder.thumbNailImage.setImageDrawable(null);
-            Picasso.with(mContext)
+            Picasso.with(getContext())
                     .load(R.drawable.thumbnail)
                     .into(holder.thumbNailImage);
         } else {
-            Picasso.with(mContext)
+            Picasso.with(getContext())
                     .load(item.thumbnailUrl)
                     .error(R.drawable.thumbnail)
                     .memoryPolicy(MemoryPolicy.NO_STORE)
@@ -94,7 +92,6 @@ public class VideosListViewAdapter extends ArrayAdapter<VideoItem> {
                 public void onClick(View v) {
                     Uri videoUrl = null;
                     Uri thumbnailUrl = null;
-                    Uri subtitleUrl = null;
 
                     if (item.videoUrl != null) {
                         videoUrl = Uri.parse(item.videoUrl);
@@ -107,11 +104,11 @@ public class VideosListViewAdapter extends ArrayAdapter<VideoItem> {
                         thumbnailUrl = Uri.parse("");
                     }
                     if (CastStateMachineSingleton.getInstance().getCurrentCastState() == CastStates.CONNECTED) {
-                        MediaLauncherSingleton.getInstance(). enqueue(videoUrl,
+                        MediaLauncherSingleton.getInstance(getContext()). enqueue(videoUrl,
                                 item.videoTitle,
                                 thumbnailUrl);
                     } else {
-                        Toast.makeText(mContext, "Please connect to a TV.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Please connect to a TV.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -124,7 +121,7 @@ public class VideosListViewAdapter extends ArrayAdapter<VideoItem> {
      * Updates grid data and refresh grid items..
      * @param data
      */
-    public void setData(ArrayList<VideoItem> data) {
+    void setData(ArrayList<VideoItem> data) {
         this.mData = data;
         notifyDataSetChanged();
     }

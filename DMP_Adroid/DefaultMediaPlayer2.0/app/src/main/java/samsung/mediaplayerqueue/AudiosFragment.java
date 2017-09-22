@@ -32,8 +32,6 @@ import java.util.ArrayList;
 public class AudiosFragment extends Fragment{
     public static final String TAG = "AudiosFragment";
     private OnFragmentInteractionListener mListener;
-    private ListView listView;
-    private AudiosListViewAdapter listAdapter;
 
     public static AudiosFragment newInstance(String param1, String param2) {
         AudiosFragment fragment = new AudiosFragment();
@@ -61,6 +59,9 @@ public class AudiosFragment extends Fragment{
         }
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_audios, container, false);
+        ListView listView;
+        AudiosListViewAdapter listAdapter;
+
         listAdapter = new AudiosListViewAdapter(container.getContext(),
                 R.layout.layout_audios,
                 getData());
@@ -89,7 +90,7 @@ public class AudiosFragment extends Fragment{
                     final AudioItem item = (AudioItem) parent.getItemAtPosition(position);
 
                     // Send this url to TV..
-                    MediaLauncherSingleton.getInstance().playContent(item.audioUrl,
+                    MediaLauncherSingleton.getInstance(getContext()).playContent(item.audioUrl,
                             item.audioTitle,
                             item.albumName,
                             item.albumArt);
@@ -106,8 +107,9 @@ public class AudiosFragment extends Fragment{
             AssetManager manager = context.getAssets();
             InputStream is = manager.open(filename);
             byte[] buffer = new byte[is.available()];
-            is.read(buffer);
-            is.close();
+            if(is.read(buffer) > 0) {
+                is.close();
+            }
 
             return new String(buffer, "UTF-8");
         } catch (IOException e) {
@@ -148,8 +150,8 @@ public class AudiosFragment extends Fragment{
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 }

@@ -13,15 +13,17 @@ import android.widget.Toast;
  * @author Ankit Saini
  * This singleton class is responsible for displaying the loader bar when an event is in progress.
  */
-public class Loader {
-    public static final String TAG = "Loader";
+class Loader
+    extends View {
+    private static final String TAG = "Loader";
 
     private static Loader mInstance = null;
-    private static Context mContext;
     private static Dialog mDialog = null;
     private static boolean loaderOnDisplay = false;
 
-    private Loader() {}
+    private Loader(Context context) {
+        super(context);
+    }
 
     private void destroyTimer(long timeout) {
         new CountDownTimer(timeout*1000, 1000) {
@@ -31,28 +33,27 @@ public class Loader {
             @Override
             public void onFinish() {
                 if(loaderOnDisplay) {
-                    Toast.makeText(mContext, "TV is taking too long to process your request.\nExit TV Application & start again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "TV is taking too long to process your request.\nExit TV Application & start again.", Toast.LENGTH_SHORT).show();
                     destroy();
                 }
             }
         }.start();
     }
 
-    public static Loader getInstance(Context context) {
-        mContext = context;
+    static Loader getInstance(Context context) {
         if(mInstance == null) {
-            mInstance = new Loader();
+            mInstance = new Loader(context);
         }
             return mInstance;
     }
 
-    public void display() {
+    void display() {
         Log.d(TAG, "display()");
         if(mDialog == null) {
             loaderOnDisplay = true;
-            mDialog = new Dialog(mContext);
+            mDialog = new Dialog(getContext());
             mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View dialogView = layoutInflater.inflate(R.layout.layout_loader, null, false);
             mDialog.setContentView(dialogView);
             mDialog.setCancelable(false);
@@ -62,7 +63,7 @@ public class Loader {
         }
     }
 
-    public void destroy() {
+    void destroy() {
         Log.d(TAG, "destroy()");
         if(mDialog != null
                 && mDialog.isShowing()

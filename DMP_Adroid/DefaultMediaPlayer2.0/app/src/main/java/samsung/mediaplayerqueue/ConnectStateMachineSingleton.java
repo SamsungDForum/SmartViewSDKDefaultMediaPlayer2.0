@@ -9,7 +9,7 @@ import java.util.List;
  * @author Ankit Saini
  * Class to maintain the connect satus of the application.
  */
-public class ConnectStateMachineSingleton implements ConnectStateHandler{
+class ConnectStateMachineSingleton implements ConnectStateHandler{
     private final String TAG = "ConnectStateM.Singleton";
     private ConnectStates mCurrentConnectState;
     private static ConnectStateMachineSingleton mInstance = null;
@@ -19,24 +19,24 @@ public class ConnectStateMachineSingleton implements ConnectStateHandler{
         mCurrentConnectState = ConnectStates.DISCONNECTED;
     }
 
-    public ConnectStateMachineSingleton() {
+    private ConnectStateMachineSingleton() {
         initConnectStateMachine();
     }
 
-    public static ConnectStateMachineSingleton getInstance() {
+    static ConnectStateMachineSingleton getInstance() {
         if(mInstance == null) {
             mInstance = new ConnectStateMachineSingleton();
         }
         return mInstance;
     }
 
-    public void setCurrentConnectState(ConnectStates currentConnectState) {
+    void setCurrentConnectState(ConnectStates currentConnectState) {
         Log.d(TAG, "Connection status changed to: " + currentConnectState.name());
         this.mCurrentConnectState = currentConnectState;
         connectStatusChangeObserver(currentConnectState);
     }
 
-    public ConnectStates getCurrentConnectState() {
+    ConnectStates getCurrentConnectState() {
         return this.mCurrentConnectState;
     }
 

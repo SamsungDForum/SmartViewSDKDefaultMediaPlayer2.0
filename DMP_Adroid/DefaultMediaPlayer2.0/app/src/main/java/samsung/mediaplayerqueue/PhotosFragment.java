@@ -32,10 +32,8 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class PhotosFragment extends Fragment{
-    public static final String TAG = "PhotosFragment";
+    private static final String TAG = "PhotosFragment";
     private OnFragmentInteractionListener mListener;
-    private GridView gridView;
-    private PhotosListViewAdapter listAdapter;
 
     public static PhotosFragment newInstance(String param1, String param2) {
         PhotosFragment fragment = new PhotosFragment();
@@ -63,6 +61,9 @@ public class PhotosFragment extends Fragment{
         }
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_photos, container, false);
+        GridView gridView;
+        PhotosListViewAdapter listAdapter;
+
         listAdapter = new PhotosListViewAdapter(container.getContext(),
                 R.layout.layout_photos,
                 getData());
@@ -100,7 +101,7 @@ public class PhotosFragment extends Fragment{
                     final PhotoItem item = (PhotoItem) parent.getItemAtPosition(position);
 
                     // Send this url to TV..
-                    MediaLauncherSingleton.getInstance().playContent(item.photoUrl,
+                    MediaLauncherSingleton.getInstance(getContext()).playContent(item.photoUrl,
                             item.photoTitle);
                 } else {
                     Toast.makeText(getActivity(), "Please connect to a TV.", Toast.LENGTH_SHORT).show();
@@ -115,8 +116,9 @@ public class PhotosFragment extends Fragment{
             AssetManager manager = context.getAssets();
             InputStream is = manager.open(filename);
             byte[] buffer = new byte[is.available()];
-            is.read(buffer);
-            is.close();
+            if(is.read(buffer) > 0) {
+                is.close();
+            }
 
             return new String(buffer, "UTF-8");
         } catch (IOException e) {
@@ -155,8 +157,8 @@ public class PhotosFragment extends Fragment{
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 }

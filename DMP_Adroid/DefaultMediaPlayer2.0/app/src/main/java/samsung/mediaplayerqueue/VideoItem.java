@@ -4,12 +4,12 @@ package samsung.mediaplayerqueue;
  * @author Ankit Saini
  * Class to manage VideoItems
  */
-public class VideoItem {
-    public String videoUrl;
-    public String videoTitle;
-    public String thumbnailUrl;
+class VideoItem {
+    String videoUrl;
+    String videoTitle;
+    String thumbnailUrl;
 
-    public VideoItem(
+    VideoItem(
                      String videoUrl,
                      String videoTitle,
                      String thumbnailUrl) {

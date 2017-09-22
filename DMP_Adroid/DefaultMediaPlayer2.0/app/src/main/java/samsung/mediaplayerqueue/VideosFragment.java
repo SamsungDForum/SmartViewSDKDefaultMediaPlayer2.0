@@ -32,8 +32,6 @@ import java.util.ArrayList;
 public class VideosFragment extends Fragment{
     public static final String TAG = "VideosFragment";
     private OnFragmentInteractionListener mListener;
-    private ListView listView;
-    private VideosListViewAdapter listAdapter;
 
     public static VideosFragment newInstance(String param1, String param2) {
         VideosFragment fragment = new VideosFragment();
@@ -59,6 +57,8 @@ public class VideosFragment extends Fragment{
             Log.w(TAG, "NULL container!");
             return null;
         }
+        ListView listView;
+        VideosListViewAdapter listAdapter;
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_videos, container, false);
         listAdapter = new VideosListViewAdapter(container.getContext(),
@@ -89,7 +89,7 @@ public class VideosFragment extends Fragment{
                     final VideoItem item = (VideoItem) parent.getItemAtPosition(position);
 
                     // Send this url to TV..
-                    MediaLauncherSingleton.getInstance().playContent(item.videoUrl,
+                    MediaLauncherSingleton.getInstance(getContext()).playContent(item.videoUrl,
                             item.videoTitle,
                             item.thumbnailUrl);
                 } else {
@@ -105,8 +105,9 @@ public class VideosFragment extends Fragment{
             AssetManager manager = context.getAssets();
             InputStream is = manager.open(filename);
             byte[] buffer = new byte[is.available()];
-            is.read(buffer);
-            is.close();
+            if(is.read(buffer) > 0) {
+                is.close();
+            }
 
             return new String(buffer, "UTF-8");
         } catch (IOException e) {
@@ -146,8 +147,8 @@ public class VideosFragment extends Fragment{
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 }

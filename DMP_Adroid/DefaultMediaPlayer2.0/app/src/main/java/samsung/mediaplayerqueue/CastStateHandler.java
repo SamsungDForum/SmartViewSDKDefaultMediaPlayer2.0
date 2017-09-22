@@ -4,9 +4,9 @@ package samsung.mediaplayerqueue;
  * @author Ankit Saini
  * Interface class for registering & deregistering to Cast status notifications.
  */
-public interface CastStateHandler {
-    public void registerObserver(CastStateObserver observer);
-    public void removeObserver(CastStateObserver observer);
+interface CastStateHandler {
+    void registerObserver(CastStateObserver observer);
+    void removeObserver(CastStateObserver observer);
 
-    public void castStatusChangeObserver(CastStates value);
+    void castStatusChangeObserver(CastStates value);
 }

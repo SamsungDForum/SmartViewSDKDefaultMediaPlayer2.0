@@ -17,24 +17,22 @@ import com.squareup.picasso.Picasso;
  * @author Ankit Saini
  * THE Q Adapter.
  */
-public class QueueAdapter extends ArrayAdapter<QueueItem> {
+class QueueAdapter extends ArrayAdapter<QueueItem> {
 
-    private Context mContext;
     private int mLayoutResourceId;
     private LayoutInflater mInflater;
 
-    public QueueAdapter(Context context, int resourceId) {
+    QueueAdapter(Context context, int resourceId) {
         super(context, resourceId);
-        this.mContext = context;
         this.mLayoutResourceId = resourceId;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public boolean contains(QueueItem item) {
+    boolean contains(QueueItem item) {
         return (getPosition(item) >= 0);
     }
 
-    public void replace(QueueItem item) {
+    void replace(QueueItem item) {
         int position = getPosition(item);
         if (position >= 0)
         {
@@ -43,15 +41,16 @@ public class QueueAdapter extends ArrayAdapter<QueueItem> {
         }
     }
 
-    class ViewHolder {
+    private class ViewHolder {
         ImageView   thumbnail;
         TextView    title;
     }
 
-    public int getItemPosition(String url) {
+    int getItemPosition(String url) {
         int position = -1;
         for(int i = 0; i < getCount(); ++i) {
             QueueItem temp = getItem(i);
+            if(temp == null) { return 0; }
 
             //String(Url) compare..
             boolean isEqual = true;
@@ -93,39 +92,41 @@ public class QueueAdapter extends ArrayAdapter<QueueItem> {
         }
 
         final QueueItem qItem = getItem(position);
-        if(qItem.contentthumbUrl.isEmpty()) {
-            Picasso.with(mContext)
-                    .load(R.drawable.thumbnail)
-                    .into(holder.thumbnail);
-        } else {
-            Picasso.with(mContext)
-                    .load(qItem.contentthumbUrl)
-                    .error(R.drawable.thumbnail)
-                    .memoryPolicy(MemoryPolicy.NO_STORE)
-                    .into(holder.thumbnail);
-        }
-        holder.title.setText(qItem.contentTitle);
+        if(qItem != null) {
+            if (qItem.contentthumbUrl.isEmpty()) {
+                Picasso.with(getContext())
+                        .load(R.drawable.thumbnail)
+                        .into(holder.thumbnail);
+            } else {
+                Picasso.with(getContext())
+                        .load(qItem.contentthumbUrl)
+                        .error(R.drawable.thumbnail)
+                        .memoryPolicy(MemoryPolicy.NO_STORE)
+                        .into(holder.thumbnail);
+            }
+            holder.title.setText(qItem.contentTitle);
 
-        //Set Dequeue onClick button event.
-        Button btnDequeue = null;
-        btnDequeue = (Button)convertView.findViewById(R.id.btnDequeue);
+            //Set Dequeue onClick button event.
+            Button btnDequeue = null;
+            btnDequeue = (Button) convertView.findViewById(R.id.btnDequeue);
 
-        if(btnDequeue != null) {
-            btnDequeue.setVisibility(View.VISIBLE);
-            btnDequeue.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Uri contentUrl = null;
+            if (btnDequeue != null) {
+                btnDequeue.setVisibility(View.VISIBLE);
+                btnDequeue.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri contentUrl = null;
 
-                    if (qItem.contentUrl != null) {
-                        contentUrl = Uri.parse(qItem.contentUrl);
-                    } else {
-                        contentUrl = Uri.parse("");
+                        if (qItem.contentUrl != null) {
+                            contentUrl = Uri.parse(qItem.contentUrl);
+                        } else {
+                            contentUrl = Uri.parse("");
+                        }
+
+                        MediaLauncherSingleton.getInstance(getContext()).dequeue(contentUrl);
                     }
-
-                    MediaLauncherSingleton.getInstance().dequeue(contentUrl);
-                }
-            });
+                });
+            }
         }
 
         return convertView;

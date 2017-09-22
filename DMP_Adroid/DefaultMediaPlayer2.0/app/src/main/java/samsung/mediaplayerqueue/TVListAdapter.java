@@ -7,29 +7,25 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.samsung.multiscreen.Device;
-import com.samsung.multiscreen.Result;
 import com.samsung.multiscreen.Service;
 
 /**
  * @author Ankit Saini
  * Adapter class to populate tv list (services).
  */
-public class TVListAdapter extends ArrayAdapter<Service>
+class TVListAdapter extends ArrayAdapter<Service>
 {
-    private Context mContext;
     private int mLayoutResourceId;
     private LayoutInflater mInflater;
 
-    public TVListAdapter(Context context, int resourceId)
+    TVListAdapter(Context context, int resourceId)
     {
         super(context, resourceId);
-        this.mContext = context;
         this.mLayoutResourceId = resourceId;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public boolean contains(Service service)
+    boolean contains(Service service)
     {
         return (getPosition(service) >= 0);
     }
@@ -44,13 +40,13 @@ public class TVListAdapter extends ArrayAdapter<Service>
         }
     }
 
-    class ViewHolder
+    private class ViewHolder
     {
         TextView name;
         TextView details;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
         final ViewHolder holder;
 
@@ -60,7 +56,7 @@ public class TVListAdapter extends ArrayAdapter<Service>
 
             convertView = mInflater.inflate(mLayoutResourceId, parent, false);
             holder.name = (TextView) convertView.findViewById(R.id.tvName);
-            holder.details = (TextView) convertView.findViewById(R.id.tvDetals);
+            //holder.details = (TextView) convertView.findViewById(R.id.tvDetals);
             convertView.setTag(holder);
         }
         else
@@ -68,21 +64,25 @@ public class TVListAdapter extends ArrayAdapter<Service>
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Service service = getItem(position);
+        final Service service = getItem(position);
+        if(service == null) return convertView;
         holder.name.setText(service.getName());
-        service.getDeviceInfo(new Result<Device>() {
+
+        /*service.getDeviceInfo(new Result<Device>() {
             @Override
             public void onSuccess(Device device) {
                 String details = "[" + device.getIp() + "] [" + device.getModel() + "] [" + device.getNetworkType() + "]";
                 holder.details.setText(details);
+                Log.d("Ankit", "TV [" + position + "] : " + holder.name.getText() + ": " + holder.details.getText());
             }
 
             @Override
             public void onError(com.samsung.multiscreen.Error error) {
+                String details = "Standby TV";
+                holder.details.setText(details);
+                Log.d("Ankit", "TV [" + position + "] : " + holder.name.getText() + ": " + holder.details.getText());
             }
-        });
-
-
+        });*/
         return convertView;
     }
 }

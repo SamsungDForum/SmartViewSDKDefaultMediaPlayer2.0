@@ -8,6 +8,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -50,7 +51,7 @@ public class MainActivity
 
     private Menu mMenu = null;
     private boolean queueStatus = false;
-    private boolean isAppRunning = false;
+//    private boolean showSettings = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,15 +76,27 @@ public class MainActivity
         ConnectStateMachineSingleton.getInstance().registerObserver(this);
 
         //Initialize Playback Controls..
-        PlaybackControls.getInstance(this).init(this);
+        PlaybackControls.getInstance(this).init();
+
+        //Initialize Floating Settings button..
+        FloatingActionButton floatingSettingsButton = (FloatingActionButton)findViewById(R.id.btnSettings);
+        floatingSettingsButton.setImageResource(R.drawable.settings);
+        floatingSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displaySettings();
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        MediaLauncherSingleton.getInstance().disconnect();
-        //CastStateMachineSingleton.getInstance().setCurrentCastState(CastStates.IDLE);
+        if(mTVSearch != null) {
+            mTVSearch.stopDiscovery();
+        }
+        MediaLauncherSingleton.getInstance(getApplicationContext()).disconnect();
+        CastStateMachineSingleton.getInstance().setCurrentCastState(CastStates.IDLE);
         CastStateMachineSingleton.getInstance().removeObserver(this);
         ConnectStateMachineSingleton.getInstance().removeObserver(this);
     }
@@ -170,6 +183,8 @@ public class MainActivity
                 } else if (currentState == ConnectStates.CONNECTED) {
                     mMenu.findItem(R.id.action_queue).setVisible(true);
                     mMenu.findItem(R.id.action_AddAllToList).setVisible(true);
+                    // Stop discovery when application is in connected state.
+                    mTVSearch.stopDiscovery();
                 }
             }
         }
@@ -183,7 +198,7 @@ public class MainActivity
             queueListView.setVisibility(View.VISIBLE);
 
             mMenu.findItem(R.id.action_queue).setIcon(R.drawable.queue_active);
-            MediaLauncherSingleton.getInstance().fetchQueue();
+            MediaLauncherSingleton.getInstance(getApplicationContext()).fetchQueue();
             queueStatus = true;
         } else {
             viewPager.setVisibility(View.VISIBLE);
@@ -194,13 +209,23 @@ public class MainActivity
         }
     }
 
+    private void displaySettings() {
+        Settings.getInstance(this).show();
+//        if(showSettings) {
+//            settings.show();
+//        } else {
+//            settings.hide();
+//        }
+    }
+
     private String AssetJSONFile(String filename, Context context) {
         try {
             AssetManager manager = context.getAssets();
             InputStream is = manager.open(filename);
             byte[] buffer = new byte[is.available()];
-            is.read(buffer);
-            is.close();
+            if(is.read(buffer) > 0) {
+                is.close();
+            }
 
             return new String(buffer, "UTF-8");
         } catch (IOException e) {
@@ -233,7 +258,7 @@ public class MainActivity
                 } catch(Exception e){
                     Log.d(TAG, "Error: " + e);
                 }
-                MediaLauncherSingleton.getInstance().enqueue(list, MediaLauncherSingleton.PlayerType.VIDEO);
+                MediaLauncherSingleton.getInstance(getApplicationContext()).enqueue(list, MediaLauncherSingleton.PlayerType.VIDEO);
                 break;
             }
             case 1: {   //Audio
@@ -252,7 +277,7 @@ public class MainActivity
                 } catch(Exception e){
                     Log.d(TAG, "Error: " + e);
                 }
-                MediaLauncherSingleton.getInstance().enqueue(list, MediaLauncherSingleton.PlayerType.AUDIO);
+                MediaLauncherSingleton.getInstance(getApplicationContext()).enqueue(list, MediaLauncherSingleton.PlayerType.AUDIO);
                 break;
             }
             case 2: {   //Photo
@@ -269,11 +294,10 @@ public class MainActivity
                 } catch(Exception e){
                     Log.d(TAG, "Error: " + e);
                 }
-                MediaLauncherSingleton.getInstance().enqueue(list, MediaLauncherSingleton.PlayerType.PHOTO);
+                MediaLauncherSingleton.getInstance(getApplicationContext()).enqueue(list, MediaLauncherSingleton.PlayerType.PHOTO);
                 break;
             }
         }
-
     }
 
     private void setQueueAdapter() {
@@ -293,39 +317,40 @@ public class MainActivity
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        if (networkInfo != null && networkInfo.isConnected())
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return (networkInfo != null && networkInfo.isConnected());
     }
 
     /*
      * Method to display connected device information & show "Disconnect" button.
      */
     private void displayConnectedDeviceInfo() {
-        final Dialog lstDialog = new Dialog(this);
-        lstDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        final Dialog lstDeviceListDialog = new Dialog(this);
+        lstDeviceListDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater serviceList = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = serviceList.inflate(R.layout.layout_disconnect_tv, null, false);
-        lstDialog.setContentView(view);
-        lstDialog.setCancelable(true);
+        lstDeviceListDialog.setContentView(view);
+        lstDeviceListDialog.setCancelable(true);
 
         if(mService != null) {
-            TextView connectedTVName = (TextView)lstDialog.findViewById(R.id.txtConnectedTVName);
+            TextView connectedTVName = (TextView)lstDeviceListDialog.findViewById(R.id.txtConnectedTVName);
             connectedTVName.setText(mService.getName());
         }
-        lstDialog.show();
+        lstDeviceListDialog.show();
 
-        Button btnDisconnectTV = (Button) lstDialog.findViewById(R.id.btnDisconnect);
+        Button btnDisconnectTV = (Button) lstDeviceListDialog.findViewById(R.id.btnDisconnect);
         btnDisconnectTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaLauncherSingleton.getInstance().disconnect();
+                // Since, show standby TV feature is ON, app continues to discover devices until a
+                // successful connect() - it calls stopDiscovery() on clientConnect() event.
+                // But sometimes, app might not get a successful connect(). To handle such scenario,
+                // I call stopDiscovery() while user deselects/disconnects from current selected TV.
+                    if (mTVSearch.isSearching()) {
+                        mTVSearch.stopDiscovery();
+                    }
+                MediaLauncherSingleton.getInstance(getApplicationContext()).disconnect();
                 CastStateMachineSingleton.getInstance().setCurrentCastState(CastStates.IDLE);
-                lstDialog.dismiss();
+                lstDeviceListDialog.dismiss();
             }
         });
     }
@@ -338,37 +363,38 @@ public class MainActivity
             Toast.makeText(this, "No Network Connection", Toast.LENGTH_SHORT).show();
         } else {
             /*Prepare Dialog box..*/
-            final Dialog lstDialog = new Dialog(this);
-            lstDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            final Dialog lstDeviceListDialog = new Dialog(this);
+            lstDeviceListDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             LayoutInflater serviceList = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = serviceList.inflate(R.layout.layout_tvlist, null, false);
-            lstDialog.setContentView(view);
-            lstDialog.setCancelable(true);
+            lstDeviceListDialog.setContentView(view);
+            lstDeviceListDialog.setCancelable(true);
 
             /*Animate cast icon in dialog box*/
-            ImageView castingIcon = (ImageView)lstDialog.findViewById(R.id.imgCastIcon);
+            ImageView castingIcon = (ImageView)lstDeviceListDialog.findViewById(R.id.imgCastIcon);
             AnimationDrawable castButtonAnimation = (AnimationDrawable) MainActivity.this.getResources().getDrawable(R.drawable.casting_icon_animation);
             castingIcon.setBackground(castButtonAnimation);
             if(castButtonAnimation != null) {
                 castButtonAnimation.start();
             }
 
-            mTVSearch = new TVSearch(MainActivity.this);
+            mTVSearch = TVSearch.getInstance(MainActivity.this);
 
             //fill tvList..
-            final ListView lstConnectedTv = (ListView) lstDialog.findViewById(R.id.tvList);
+            final ListView lstConnectedTv = (ListView) lstDeviceListDialog.findViewById(R.id.tvList);
             lstConnectedTv.setAdapter(mTVSearch.getTVListAdapter());
 
             /*start discovery..*/
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    mTVSearch.startDiscovery();
+                    Boolean showStandbyDevices = Settings.getInstance(MainActivity.this).getBool(MainActivity.this.getResources().getString(R.string.showStandbyDevices));
+                    mTVSearch.startDiscovery(showStandbyDevices);
                 }
             }).start();
 
             //display dialog (list view)..
-            lstDialog.show();
+            lstDeviceListDialog.show();
 
             //set cast state as Connecting..
             CastStateMachineSingleton.getInstance().setCurrentCastState(CastStates.CONNECTING);
@@ -379,16 +405,22 @@ public class MainActivity
                     /*Get selected TV's service object*/
                     mService = (Service) parent.getItemAtPosition(position);
                     /*Dismiss TV List Dialog*/
-                    lstDialog.dismiss();
+                    lstDeviceListDialog.dismiss();
                     /*Set service for the app*/
-                    MediaLauncherSingleton.getInstance().setService(MainActivity.this, mService);
-
-                    /*Stop discovery*/
-                    mTVSearch.stopDiscovery();
+                    MediaLauncherSingleton.getInstance(getApplicationContext()).setService(mService);
                 }
             });
 
-            lstDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            //remove standby service on long-press.
+            lstConnectedTv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    ((Service)parent.getItemAtPosition(position)).remove();
+                    return true;
+                }
+            });
+
+            lstDeviceListDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialog) {
                     if (mTVSearch.isSearching()) {
@@ -423,7 +455,7 @@ public class MainActivity
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
+        ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -437,7 +469,7 @@ public class MainActivity
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }

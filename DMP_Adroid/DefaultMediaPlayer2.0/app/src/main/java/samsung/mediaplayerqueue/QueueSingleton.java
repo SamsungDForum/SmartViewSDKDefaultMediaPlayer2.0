@@ -11,19 +11,17 @@ import org.json.JSONObject;
  * @author Ankit Saini
  * Manages - THE Q.
  */
-public class QueueSingleton {
+class QueueSingleton {
     private static final String TAG = "QueueSingleton";
 
     private static QueueSingleton mInstance = null;
     private QueueAdapter mQueueAdapter = null;
-    private Context mContext;
 
     private QueueSingleton(Context context) {
-        this.mContext = context;
-        mQueueAdapter = new QueueAdapter(mContext, R.layout.layout_queue);
+        mQueueAdapter = new QueueAdapter(context, R.layout.layout_queue);
     }
 
-    public void onEnqueue(JSONObject data, MediaLauncherSingleton.PlayerType playerType) {
+    void onEnqueue(JSONObject data, MediaLauncherSingleton.PlayerType playerType) {
         if(data == null) {
             return;
         }
@@ -68,7 +66,7 @@ public class QueueSingleton {
         notifyDataChange();
     }
 
-    public void onDequeue(JSONObject data) {
+    void onDequeue(JSONObject data) {
         if(data == null) {
             return;
         }
@@ -94,7 +92,7 @@ public class QueueSingleton {
         notifyDataChange();
     }
 
-    public void onClearQueue() {
+    void onClearQueue() {
         if(mQueueAdapter.isEmpty()) {
             return;
         }
@@ -103,7 +101,7 @@ public class QueueSingleton {
         notifyDataChange();
     }
 
-    public void onFetchQueue(JSONArray data, MediaLauncherSingleton.PlayerType playerType) {
+    void onFetchQueue(JSONArray data, MediaLauncherSingleton.PlayerType playerType) {
         if(data == null) {
             return;
         }
@@ -124,7 +122,7 @@ public class QueueSingleton {
                 } else if(playerType == MediaLauncherSingleton.PlayerType.PHOTO) {
                     //Fetch small thumbnail images for HD Images..
                     String strThumbnailUrl = data.getJSONObject(i).getString(MediaLauncherSingleton.URL);
-                    if(strThumbnailUrl.contains("samsungdforum")) {
+                    if(strThumbnailUrl.contains("developer.samsung.com")) {
                         strThumbnailUrl = strThumbnailUrl.replace(".jpg", "_small.jpg");
                     }
                     item = new QueueItem(data.getJSONObject(i).getString(MediaLauncherSingleton.URL),
@@ -150,11 +148,11 @@ public class QueueSingleton {
         });
     }
 
-    public QueueAdapter getQueueAdapter() {
+    QueueAdapter getQueueAdapter() {
         return mQueueAdapter;
     }
 
-    public static QueueSingleton getInstance(Context context) {
+    static QueueSingleton getInstance(Context context) {
         if(mInstance == null) {
             mInstance = new QueueSingleton(context);
         }

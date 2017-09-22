@@ -22,21 +22,19 @@ import java.util.ArrayList;
  * @author Ankit Saini
  * Adapter class to populate audio Items in Audios tab (Listview).
  */
-public class AudiosListViewAdapter extends ArrayAdapter<AudioItem> {
+class AudiosListViewAdapter extends ArrayAdapter<AudioItem> {
     private final static String TAG = "AudiosListViewAdapter";
-    private Context mContext;
     private int mLayoutResourceId;
     private ArrayList<AudioItem> mData = new ArrayList<AudioItem>();
 
-    public AudiosListViewAdapter(Context context, int layoutResourceId, ArrayList<AudioItem> data)
+    AudiosListViewAdapter(Context context, int layoutResourceId, ArrayList<AudioItem> data)
     {
         super(context, layoutResourceId, data);
-        this.mContext = context;
         this.mLayoutResourceId = layoutResourceId;
         this.mData = data;
     }
 
-    static class ViewHolder {
+    private static class ViewHolder {
         TextView audioTitle;
         TextView albumName;
         ImageView albumArt;
@@ -55,7 +53,7 @@ public class AudiosListViewAdapter extends ArrayAdapter<AudioItem> {
 
         if(null == rowView)
         {
-            LayoutInflater inflater = ((Activity)mContext).getLayoutInflater();
+            LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
             rowView = inflater.inflate(mLayoutResourceId, parent, false);
             holder = new ViewHolder();
             holder.audioTitle = (TextView)rowView.findViewById(R.id.audio_title);
@@ -72,11 +70,11 @@ public class AudiosListViewAdapter extends ArrayAdapter<AudioItem> {
         /*Download the image from url and display on image view..*/
         Log.v(TAG, "Album Art URL : " + item.albumArt);
         if(item.albumArt.isEmpty()) {
-            Picasso.with(mContext)
+            Picasso.with(getContext())
                     .load(R.drawable.thumbnail)
                     .into(holder.albumArt);
         } else {
-            Picasso.with(mContext)
+            Picasso.with(getContext())
                     .load(item.albumArt)
                     .error(R.drawable.thumbnail)
                     .memoryPolicy(MemoryPolicy.NO_STORE)
@@ -110,12 +108,12 @@ public class AudiosListViewAdapter extends ArrayAdapter<AudioItem> {
 
                     //send enqueue request..
                     if (CastStateMachineSingleton.getInstance().getCurrentCastState() == CastStates.CONNECTED) {
-                        MediaLauncherSingleton.getInstance().enqueue(audioUrl,
+                        MediaLauncherSingleton.getInstance(getContext()).enqueue(audioUrl,
                                 item.audioTitle,
                                 item.albumName,
                                 albumArt);
                     } else {
-                        Toast.makeText(mContext, "Please connect to a TV.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Please connect to a TV.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -128,7 +126,7 @@ public class AudiosListViewAdapter extends ArrayAdapter<AudioItem> {
      * Updates grid data and refresh grid items..
      * @param data
      */
-    public void setData(ArrayList<AudioItem> data) {
+    void setData(ArrayList<AudioItem> data) {
         this.mData = data;
         notifyDataSetChanged();
     }
