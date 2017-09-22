@@ -10,7 +10,7 @@
         android:icon="@drawable/add_all"
         android:visible="false"
         app:showAsAction="always"/>
-   <item
+    <item
         android:title="@string/queueIcon"
         android:id="@+id/action_queue"
         android:icon="@drawable/queue_deactive"
