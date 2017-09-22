@@ -35,6 +35,10 @@ class VideoPlayerController: NSObject, VideoPlayerDelegate
     {
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(VideoPlayerController.OnAppResume), name: NSNotification.Name(rawValue: "videoApplicationResume"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(VideoPlayerController.onTryStandbyConnect), name: NSNotification.Name(rawValue: "videoPlayerStandbyConnect"), object: nil)
+        
+        MediaShareController.sharedInstance.videoplayer?.playerDelegate = self
     }
     
     func onBufferingStart()
@@ -74,6 +78,13 @@ class VideoPlayerController: NSObject, VideoPlayerDelegate
     func onPlayerInitialized()
     {
         isPlayerAlreadyInit = true
+        
+        print("onPlayerInitialized")
+        if MediaShareController.sharedInstance.settingsValue.showStandbyScreen
+        {
+            MediaShareController.sharedInstance.videoplayer?.setPlayerWatermark(URL(string:MediaShareController.sharedInstance.settingsValue.watermarkURL)!)
+        }
+        
         if MediaShareController.sharedInstance.playType != nil
         {
             MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()
@@ -242,6 +253,20 @@ class VideoPlayerController: NSObject, VideoPlayerDelegate
     func OnAppResume()
     {
         MediaShareController.sharedInstance.videoplayer?.resumeApplicationInForeground()
+    }
+    
+    func onTryStandbyConnect()
+    {
+        MediaShareController.sharedInstance.videoplayer?.standbyConnect(URL(string: MediaShareController.sharedInstance.settingsValue.url1) ?? nil, screenSaverURL2: URL(string: MediaShareController.sharedInstance.settingsValue.url2) ?? nil, screenSaverURL3: URL(string: MediaShareController.sharedInstance.settingsValue.url3) ?? nil, completionHandler: { (error) in
+            if (error != nil)
+            {
+                print("Unable to standbyConnect: ", error ?? "0")
+            }
+            else
+            {
+                print("Connection Established")
+            }
+        })
     }
     
 }

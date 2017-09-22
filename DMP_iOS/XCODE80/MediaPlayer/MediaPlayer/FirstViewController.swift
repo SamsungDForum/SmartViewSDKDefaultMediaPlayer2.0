@@ -290,6 +290,10 @@ class FirstViewController: UIViewController, UIPopoverPresentationControllerDele
             self.bTVlistVisible = true
             self.scrollView.isHidden = true
             self.lineView.isHidden = true
+            
+            self.tvListView = self.sb.instantiateViewController(withIdentifier: "Mediaview") as? MediaListController
+            self.tvListView?.view.frame = CGRect(x:0, y:70, width: self.view.bounds.size.width, height: self.view.bounds.size.height - 70)
+            
             self.tvListView?.updateMediaCollection()
             self.firstViewController.addSubview(self.tvListView!.view)
         }

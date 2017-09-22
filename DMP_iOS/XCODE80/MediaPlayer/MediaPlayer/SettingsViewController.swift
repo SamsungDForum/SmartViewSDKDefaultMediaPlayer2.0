@@ -23,7 +23,15 @@ class SettingsViewController : UIViewController
     
     @IBOutlet weak var disconnectButton: UIButton!
     @IBOutlet weak var standbyDevButton: UIButton!
+    @IBOutlet weak var standbyScreenButton: UIButton!
     
+    @IBOutlet weak var standbyScreenDetailView: UIView!
+    @IBOutlet weak var textFieldwatermarkUrl: UITextField!
+    @IBOutlet weak var textFieldUrl3: UITextField!
+    @IBOutlet weak var textFieldUrl2: UITextField!
+    @IBOutlet weak var textFieldUrl1: UITextField!
+    
+    @IBOutlet weak var constraintLineTop: NSLayoutConstraint!
     @IBOutlet weak var constraintScrollBottom: NSLayoutConstraint!
     
     override func viewDidLoad()
@@ -31,6 +39,11 @@ class SettingsViewController : UIViewController
         super.viewDidLoad()
         
         textFieldAudioUrl.delegate = self
+        
+        textFieldUrl1.delegate = self
+        textFieldUrl2.delegate = self
+        textFieldUrl3.delegate = self
+        textFieldwatermarkUrl.delegate = self
         
     }
     
@@ -54,6 +67,19 @@ class SettingsViewController : UIViewController
         else
         {
             standbyDevButton.backgroundColor = .orange
+        }
+        
+        if standbyScreenButton.currentTitle == "DISABLED"
+        {
+            standbyScreenButton.backgroundColor = .lightGray
+            standbyScreenDetailView.isHidden = true
+            constraintLineTop.constant = 14
+        }
+        else
+        {
+            standbyScreenButton.backgroundColor = .orange
+            standbyScreenDetailView.isHidden = false
+            constraintLineTop.constant = 170
         }
         
     }
@@ -93,13 +119,34 @@ class SettingsViewController : UIViewController
         }
     }
     
+    @IBAction func standbyScreen(_ sender: Any) {
+        
+        if standbyScreenButton.currentTitle == "ENABLED"
+        {
+            standbyScreenButton.setTitle("DISABLED", for: .normal)
+            standbyScreenButton.backgroundColor = .lightGray
+            standbyScreenDetailView.isHidden = true
+            constraintLineTop.constant = 14
+        }
+        else
+        {
+            standbyScreenButton.setTitle("ENABLED", for: .normal)
+            standbyScreenButton.backgroundColor = .orange
+            standbyScreenDetailView.isHidden = false
+            constraintLineTop.constant = 170
+        }
+    }
     
     func saveData()
     {
         MediaShareController.sharedInstance.settingsValue.audioURL = textFieldAudioUrl.text ?? ""
         MediaShareController.sharedInstance.settingsValue.disconnectKeepPlaying = disconnectButton.currentTitle == "KEEP PLAYING" ? true : false
         MediaShareController.sharedInstance.settingsValue.showStandbyDev = standbyDevButton.currentTitle == "SHOWING" ? true : false
-        
+        MediaShareController.sharedInstance.settingsValue.showStandbyScreen = standbyScreenButton.currentTitle == "ENABLED" ? true: false
+        MediaShareController.sharedInstance.settingsValue.url1 = textFieldUrl1.text ?? ""
+        MediaShareController.sharedInstance.settingsValue.url2 = textFieldUrl2.text ?? ""
+        MediaShareController.sharedInstance.settingsValue.url3 = textFieldUrl3.text ?? ""
+        MediaShareController.sharedInstance.settingsValue.watermarkURL = textFieldwatermarkUrl.text ?? ""
     }
     
     func updateData()
@@ -107,7 +154,11 @@ class SettingsViewController : UIViewController
         textFieldAudioUrl.text = MediaShareController.sharedInstance.settingsValue.audioURL
         disconnectButton.setTitle((MediaShareController.sharedInstance.settingsValue.disconnectKeepPlaying ? "KEEP PLAYING" : "STOP PLAYING"), for: .normal)
         standbyDevButton.setTitle((MediaShareController.sharedInstance.settingsValue.showStandbyDev ? "SHOWING" : "HIDE"), for: .normal)
-        
+        standbyScreenButton.setTitle(MediaShareController.sharedInstance.settingsValue.showStandbyScreen ? "ENABLED" : "DISABLED", for: .normal)
+        textFieldUrl1.text = MediaShareController.sharedInstance.settingsValue.url1
+        textFieldUrl2.text = MediaShareController.sharedInstance.settingsValue.url2
+        textFieldUrl3.text = MediaShareController.sharedInstance.settingsValue.url3
+        textFieldwatermarkUrl.text = MediaShareController.sharedInstance.settingsValue.watermarkURL
         
     }
 }
@@ -124,7 +175,7 @@ extension SettingsViewController : UITextFieldDelegate
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
     {
         constraintScrollBottom.constant = CGFloat(kConstraintScroll)
-        //constraintScrollTop.constant = CGFloat(-1 * kConstraintScroll)
+//        constraintScrollTop.constant = CGFloat(-1 * kConstraintScroll)
 //        textField.becomeFirstResponder()
         return true
     }

@@ -40,13 +40,19 @@ class TerminateAppViewController: UIViewController {
     @IBAction
     func disconnect() {
         
+        if MediaShareController.sharedInstance.settingsValue.showStandbyScreen
+        {
+            MediaShareController.sharedInstance.videoplayer?.removePlayerWatermark()
+        }
+        
         if MediaShareController.sharedInstance.playType == "photo"{
             MediaShareController.sharedInstance.photoplayer?.disconnect(!MediaShareController.sharedInstance.settingsValue.disconnectKeepPlaying)
         }
-        if MediaShareController.sharedInstance.playType == "audio"{
+        else if MediaShareController.sharedInstance.playType == "audio"{
             MediaShareController.sharedInstance.audioplayer?.disconnect(!MediaShareController.sharedInstance.settingsValue.disconnectKeepPlaying)
         }
-        if MediaShareController.sharedInstance.playType == "video"{
+        else// MediaShareController.sharedInstance.playType == "video"{
+        {
             MediaShareController.sharedInstance.videoplayer?.disconnect(!MediaShareController.sharedInstance.settingsValue.disconnectKeepPlaying)
         }
         

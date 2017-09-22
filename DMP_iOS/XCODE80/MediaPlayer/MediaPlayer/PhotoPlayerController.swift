@@ -37,13 +37,20 @@ class PhotoPlayerController: NSObject, PhotoPlayerDelegate {
     func onPlayerInitialized(){
     
         isPlayerAlreadyInit = true
+        
+        print("onPlayerInitialized")
+        if MediaShareController.sharedInstance.settingsValue.showStandbyScreen
+        {
+            MediaShareController.sharedInstance.videoplayer?.setPlayerWatermark(URL(string:MediaShareController.sharedInstance.settingsValue.watermarkURL)!)
+        }
+        
         if MediaShareController.sharedInstance.playType != nil
         {
            MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()
            NotificationCenter.default.post(name: Notification.Name(rawValue: "clearTvQueue"), object: self, userInfo: nil)
         }
         
-        if MediaShareController.sharedInstance.settingsValue.audioURL != ""
+        if MediaShareController.sharedInstance.playType == "photo" && MediaShareController.sharedInstance.settingsValue.audioURL != ""
         {
             MediaShareController.sharedInstance.photoplayer?.setBackgroundMusic(URL(string: MediaShareController.sharedInstance.settingsValue.audioURL)!)
         }

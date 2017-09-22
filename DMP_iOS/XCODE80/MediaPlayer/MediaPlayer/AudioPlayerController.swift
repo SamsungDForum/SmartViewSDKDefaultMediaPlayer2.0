@@ -73,6 +73,12 @@ class AudioPlayerController: NSObject, AudioPlayerDelegate,UIPopoverPresentation
     func onPlayerInitialized()
     {
         isPlayerAlreadyInit = true
+        print("onPlayerInitialized")
+        if MediaShareController.sharedInstance.settingsValue.showStandbyScreen
+        {
+            MediaShareController.sharedInstance.videoplayer?.setPlayerWatermark(URL(string:MediaShareController.sharedInstance.settingsValue.watermarkURL)!)
+        }
+        
         if MediaShareController.sharedInstance.playType != nil
         {
             MediaShareController.sharedInstance.tvQueueMediaCollection.removeAll()

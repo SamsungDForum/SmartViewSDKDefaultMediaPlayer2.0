@@ -31,9 +31,19 @@ struct Settings {
     var audioURL:String
     var disconnectKeepPlaying:Bool
     var showStandbyDev:Bool
+    var showStandbyScreen:Bool
+    var url1:String
+    var url2:String
+    var url3:String
+    var watermarkURL:String
+    
 }
 
 private let backgroundMusic = "https://www.samsungdforum.com/smartview/sample/audio/Beverly_-_01_-_You_Said_It.mp3"
+private let watermarkURL = "https://smartviewsdk.github.io/API-GUIDE/images/watermark_smartviewsdk.png"
+
+private let url1 = "https://cdn.pixabay.com/photo/2016/12/29/16/12/eiskristalle-1938842__340.jpg"
+private let url2 = "https://cdn.pixabay.com/photo/2017/01/01/13/43/tree-1944565__340.jpg"
 
 class MediaShareController: NSObject, ServiceSearchDelegate ,ChannelDelegate ,ConnectionDelegate{
     
@@ -72,7 +82,7 @@ class MediaShareController: NSObject, ServiceSearchDelegate ,ChannelDelegate ,Co
     
     let appName:String = "DefaultMediaPlayer2.0.2"
     
-    var settingsValue = Settings(audioURL: backgroundMusic, disconnectKeepPlaying: false, showStandbyDev: true)
+    var settingsValue = Settings(audioURL: backgroundMusic, disconnectKeepPlaying: false, showStandbyDev: true, showStandbyScreen:false, url1:url1, url2:url2, url3:"", watermarkURL:watermarkURL)
     
     static let sharedInstance = MediaShareController()
     
@@ -113,6 +123,12 @@ class MediaShareController: NSObject, ServiceSearchDelegate ,ChannelDelegate ,Co
 
         isConnecting = false
         isConnected = true
+        
+        if settingsValue.showStandbyScreen
+        {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "videoPlayerStandbyConnect"), object: self, userInfo: nil)
+        }
+        
         self.updateCastStatus()
         
     }
@@ -150,6 +166,7 @@ class MediaShareController: NSObject, ServiceSearchDelegate ,ChannelDelegate ,Co
         isStatusConnected = true
         isPlayerConnected = true
         updateCastStatus()
+    
     }
     
     func onDisconnect(_ error: NSError?)
@@ -187,7 +204,7 @@ class MediaShareController: NSObject, ServiceSearchDelegate ,ChannelDelegate ,Co
     
     func onError(_ error: NSError) {
         
-        print("onError")
+        print("onError", error)
     }
     
     @objc func onServiceFound(_ service: Service) {
