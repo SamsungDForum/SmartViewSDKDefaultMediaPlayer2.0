@@ -13,13 +13,14 @@
         android:ellipsize="marquee"
         android:singleLine="true"
         android:textColor="@color/T_BLACK"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:padding="10dp"/>
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tvDetals"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="@color/DARK_SAFRON"
-        android:textStyle="italic"/>
+        android:textStyle="italic"/>-->
 </LinearLayout>

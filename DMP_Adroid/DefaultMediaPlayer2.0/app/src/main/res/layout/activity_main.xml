@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.75"
         android:id="@+id/rlvBody">
-
+        
         <android.support.v4.view.ViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/viewpager"
@@ -38,6 +38,17 @@
             android:focusable="true"
             android:clickable="true"
             android:visibility="invisible"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnSettings"
+            app:fabSize="normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:clickable="true"/>
+
     </RelativeLayout>
 
     <RelativeLayout
