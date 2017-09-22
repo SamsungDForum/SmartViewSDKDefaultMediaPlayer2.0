@@ -3,44 +3,44 @@
     {
       "id": 1,
       "title": "Big Buck Bunny",
-      "thumbUrl": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/BigBuckBunny.jpg",
+      "thumbUrl": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/BigBuckBunny.jpg",
       "subtitleUrl" : "",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/BigBuckBunny.mp4"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/BigBuckBunny.mp4"
     },
     {
       "id": 2,
       "title": "Elephant Dream",
-      "thumbUrl": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/ElephantsDream.jpg",
+      "thumbUrl": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/ElephantsDream.jpg",
       "subtitleUrl" : "",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/ElephantsDream.mp4"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/ElephantsDream.mp4"
     },
     {
       "id": 3,
       "title": "Sintel",
-      "thumbUrl": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Sintel.jpg",
+      "thumbUrl": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/Sintel.jpg",
       "subtitleUrl" : "",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/Sintel.mp4"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/Sintel.mp4"
     },
     {
       "id": 4,
       "title": "Tears of Steel",
-      "thumbUrl": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/TearsOfSteel.jpg",
+      "thumbUrl": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/TearsOfSteel.jpg",
       "subtitleUrl" : "",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/TearsOfSteel.mp4"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/TearsOfSteel.mp4"
     },
     {
       "id": 5,
       "title": "SmartView SDK Demo",
-      "thumbUrl": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/SamsungSamrtViewSDKDemo.jpg",
+      "thumbUrl": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/SamsungSamrtViewSDKDemo.jpg",
       "subtitleUrl" : "",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/SamsungSamrtViewSDKDemo.mp4"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/SamsungSamrtViewSDKDemo.mp4"
     },
     {
       "id": 6,
       "title": "Samsung SmartView SDK",
-      "thumbUrl": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/SamsungSmartViewSDK.jpg",
+      "thumbUrl": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/image/SamsungSmartViewSDK.jpg",
       "subtitleUrl" : "",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/SamsungSmartViewSDK.mp4"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/video/SamsungSmartViewSDK.mp4"
     },
     {
       "id": 7,

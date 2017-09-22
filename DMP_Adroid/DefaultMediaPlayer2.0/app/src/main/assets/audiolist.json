@@ -5,28 +5,28 @@
       "title": "You Said It",
       "albumArt": "http://images.genius.com/a99efcb1f3327ea6446d72ce19c09b7e.700x700x1.jpg",
       "albumName" : "Beverly",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/audio/Beverly_-_01_-_You_Said_It.mp3"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/audio/Beverly_-_01_-_You_Said_It.mp3"
     },
     {
       "id": 2,
       "title": "Bergwald Bergwald",
       "albumArt": "",
       "albumName" : "Every Now & Every Then",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/audio/Every_Now_and_Every_Then_-_08_-_Bergwald_Bergwald.mp3"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/audio/Every_Now_and_Every_Then_-_08_-_Bergwald_Bergwald.mp3"
     },
     {
       "id": 3,
       "title": "Retake",
       "albumArt": "",
       "albumName" : "Ketsa",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/audio/Ketsa_-_11_-_Retake.mp3"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/audio/Ketsa_-_11_-_Retake.mp3"
     },
     {
       "id": 4,
       "title": "Lullaby For A Robot",
       "albumArt": "",
       "albumName" : "Matt Oakley",
-      "url": "http://developer.samsung.com/onlinedocs/tv/SmartView/sample/audio/Matt_Oakley_-_01_-_Lullaby_for_a_Robot.mp3"
+      "url": "https://developer.samsung.com/onlinedocs/tv/SmartView/sample/audio/Matt_Oakley_-_01_-_Lullaby_for_a_Robot.mp3"
     }
   ]
 }
